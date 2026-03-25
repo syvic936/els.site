@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ELS Bénin — Elegant Living Space | Matériaux & Décoration de Luxe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a97a;
+    --gold-light: #dfc08e;
+    --gold-pale: #f0dfc0;
+    --noir: #070e1a;
+    --charbon: #0d1b2e;
+    --gris-fonce: #112236;
+    --gris-moyen: #1a3050;
+    --gris-clair: #7a90aa;
+    --blanc-creme: #f2ede4;
+    --blanc: #ffffff;
+    --marine: #0d1b2e;
+    --marine-light: #142640;
+    --transition: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--charbon);
+    color: var(--blanc-creme);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSEUR CUSTOM ─── */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s var(--transition), height 0.3s var(--transition), background 0.3s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s var(--transition), height 0.3s var(--transition);
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; background: var(--gold-light); }
+  body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 60px; height: 60px; opacity: 0.4; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    background: linear-gradient(to bottom, rgba(7,14,26,0.97) 0%, transparent 100%);
+    transition: background 0.4s;
+  }
+  nav.scrolled { background: rgba(7,14,26,0.98); border-bottom: 1px solid rgba(201,169,122,0.2); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-svg {
+    width: 48px; height: 48px; flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(201,169,122,0.3));
+    transition: filter 0.3s;
+  }
+  .nav-logo:hover .nav-logo-svg { filter: drop-shadow(0 0 10px rgba(201,169,122,0.6)); }
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-logo-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--blanc-creme);
+  }
+  .nav-logo-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8.5px; font-weight: 300;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-top: 3px;
+  }
+
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gris-clair); text-decoration: none;
+    position: relative; transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.4s var(--transition);
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-actions {
+    display: flex; align-items: center; gap: 24px;
+  }
+  .nav-cart {
+    position: relative; cursor: pointer;
+    color: var(--gris-clair); transition: color 0.3s;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-cart:hover { color: var(--gold); }
+  .cart-badge {
+    position: absolute; top: -8px; right: -10px;
+    background: var(--gold); color: var(--noir);
+    font-size: 9px; width: 16px; height: 16px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 400;
+  }
+  .nav-cta {
+    padding: 10px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold); font-size: 10px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--noir); }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh; min-height: 700px;
+    position: relative;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(7,14,26,0.92) 0%, rgba(13,27,46,0.55) 55%, rgba(201,169,122,0.06) 100%),
+      url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+
+  .hero-grain {
+    position: absolute; inset: 0; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-line {
+    position: absolute; left: 60px; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 40%, rgba(201,168,76,0.3) 60%, transparent);
+    animation: lineFade 2s ease 0.5s both;
+  }
+  @keyframes lineFade { from { opacity: 0; } to { opacity: 1; } }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 120px 100px;
+    animation: heroSlide 1.2s var(--transition) 0.3s both;
+  }
+  @keyframes heroSlide { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-label {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 7vw, 100px);
+    font-weight: 300; line-height: 1;
+    color: var(--blanc-creme);
+    margin-bottom: 28px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
+
+  .hero-sub {
+    font-size: 12px; letter-spacing: 0.15em;
+    color: var(--gris-clair); max-width: 400px;
+    line-height: 2; margin-bottom: 48px;
+  }
+
+  .hero-btns { display: flex; gap: 20px; align-items: center; }
+
+  .btn-primary {
+    padding: 16px 44px;
+    background: var(--gold); color: var(--noir);
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none; font-family: 'Josefin Sans', sans-serif;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    padding: 16px 44px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-pale); font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none; font-family: 'Josefin Sans', sans-serif;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; right: 60px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-size: 9px; letter-spacing: 0.3em; color: var(--gris-clair);
+    writing-mode: vertical-rl; text-transform: uppercase;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.3;transform:scaleY(0.5)} }
+
+  /* Logo ELS flottant dans le hero */
+  .hero-logo-float {
+    position: absolute;
+    right: 130px; top: 50%;
+    transform: translateY(-50%);
+    width: 180px; height: 180px;
+    opacity: 0;
+    animation: floatLogoIn 1.8s var(--transition) 0.8s both;
+    z-index: 2;
+  }
+  @keyframes floatLogoIn {
+    from { opacity: 0; transform: translateY(-50%) scale(0.8) rotate(-10deg); }
+    to   { opacity: 0.55; transform: translateY(-50%) scale(1) rotate(0deg); }
+  }
+  .hero-logo-float svg {
+    width: 100%; height: 100%;
+    filter: drop-shadow(0 0 24px rgba(201,169,122,0.35));
+    animation: floatPulse 6s ease-in-out infinite;
+  }
+  @keyframes floatPulse {
+    0%,100% { filter: drop-shadow(0 0 18px rgba(201,169,122,0.3)); transform: rotate(0deg); }
+    50%      { filter: drop-shadow(0 0 34px rgba(201,169,122,0.55)); transform: rotate(3deg); }
+  }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    background: var(--gold);
+    padding: 14px 0; overflow: hidden;
+  }
+  .ticker {
+    display: flex; white-space: nowrap;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker span {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--noir); padding: 0 40px;
+  }
+  .ticker span::before { content: '◆  '; opacity: 0.5; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SECTIONS COMMUNES ─── */
+  section { padding: 120px 0; }
+
+  .section-header {
+    text-align: center; margin-bottom: 80px;
+  }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 58px); font-weight: 300;
+    color: var(--blanc-creme); line-height: 1.1;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-divider {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 24px auto 0;
+  }
+
+  /* ─── SAVOIR-FAIRE ─── */
+  .savoir-faire { background: var(--noir); }
+
+  .savoir-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; max-width: 1400px; margin: 0 auto;
+  }
+  .savoir-image {
+    position: relative; overflow: hidden;
+    height: 600px;
+  }
+  .savoir-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s var(--transition);
+    filter: brightness(0.75) saturate(0.8);
+  }
+  .savoir-image:hover img { transform: scale(1.06); }
+  .savoir-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(7,14,26,0.75) 0%, transparent 60%);
+  }
+  .savoir-image-label {
+    position: absolute; bottom: 30px; left: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-style: italic;
+    color: var(--blanc-creme);
+  }
+
+  .savoir-text {
+    padding: 80px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--gris-fonce);
+  }
+  .savoir-text p {
+    font-size: 13px; line-height: 2.2;
+    color: var(--gris-clair); margin-bottom: 20px;
+  }
+  .savoir-text p strong {
+    color: var(--gold-pale); font-weight: 300;
+  }
+  .savoir-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 30px; margin-top: 40px;
+  }
+  .stat-item { border-left: 1px solid rgba(201,169,122,0.35); padding-left: 20px; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; color: var(--gold);
+  }
+  .stat-label {
+    font-size: 10px; letter-spacing: 0.2em; color: var(--gris-clair);
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* ─── CATÉGORIES ─── */
+  .categories { background: var(--charbon); }
+
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 2px; max-width: 1400px; margin: 0 auto;
+  }
+  .cat-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    height: 380px;
+  }
+  .cat-card:first-child { grid-column: span 2; }
+  .cat-card:nth-child(4) { grid-column: span 2; }
+
+  .cat-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s var(--transition);
+    filter: brightness(0.6) saturate(0.7);
+  }
+  .cat-card:hover img { transform: scale(1.08); filter: brightness(0.5) saturate(0.7); }
+
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(7,14,26,0.35) 0%, transparent 100%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 36px;
+    transition: background 0.4s;
+  }
+  .cat-card:hover .cat-overlay { background: linear-gradient(135deg, rgba(7,14,26,0.6) 0%, rgba(201,169,122,0.12) 100%); }
+
+  .cat-tag {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 300; color: var(--blanc-creme);
+    line-height: 1.1;
+  }
+  .cat-count {
+    font-size: 10px; letter-spacing: 0.15em; color: var(--gris-clair);
+    margin-top: 8px; transition: color 0.3s;
+  }
+  .cat-card:hover .cat-count { color: var(--gold-light); }
+
+  .cat-arrow {
+    position: absolute; top: 36px; right: 36px;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(201,169,122,0.5);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translate(10px, -10px);
+    transition: opacity 0.3s, transform 0.3s var(--transition);
+  }
+  .cat-card:hover .cat-arrow { opacity: 1; transform: translate(0,0); }
+  .cat-arrow svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; }
+
+  /* ─── PRODUITS ─── */
+  .produits { background: var(--gris-fonce); }
+
+  .produits-filter {
+    display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    margin: 0 auto 40px; max-width: 1400px;
+  }
+  .filter-btn {
+    padding: 12px 32px; cursor: pointer;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gris-clair); background: transparent;
+    border: 1px solid rgba(201,169,122,0.15);
+    border-left: none; transition: all 0.3s; font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+  }
+  .filter-btn:first-child { border-left: 1px solid rgba(201,169,122,0.15); }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gold); color: var(--noir);
+    border-color: var(--gold);
+  }
+
+  .produits-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; max-width: 1400px; margin: 0 auto;
+  }
+
+  .prod-card {
+    background: var(--charbon);
+    cursor: pointer; position: relative;
+    transition: transform 0.4s var(--transition);
+  }
+  .prod-card:hover { transform: translateY(-6px); z-index: 2; }
+
+  .prod-img {
+    position: relative; overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .prod-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s var(--transition);
+    filter: saturate(0.8);
+  }
+  .prod-card:hover .prod-img img { transform: scale(1.06); filter: saturate(1); }
+
+  .prod-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--gold); color: var(--noir);
+    font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 5px 10px;
+  }
+  .prod-badge.new { background: var(--blanc-creme); color: var(--noir); }
+  .prod-badge.promo { background: #8b2e2e; color: var(--blanc-creme); }
+
+  .prod-actions {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 100%);
+    display: flex; gap: 8px; justify-content: center;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s var(--transition);
+  }
+  .prod-card:hover .prod-actions { opacity: 1; transform: translateY(0); }
+
+  .prod-btn {
+    padding: 10px 20px; border: none; cursor: pointer;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif; font-weight: 300;
+    transition: background 0.2s;
+  }
+  .prod-btn.add { background: var(--gold); color: var(--noir); flex: 1; }
+  .prod-btn.add:hover { background: var(--gold-light); }
+  .prod-btn.wish { background: rgba(255,255,255,0.1); color: var(--blanc-creme); width: 40px; padding: 10px; }
+  .prod-btn.wish:hover { background: rgba(255,255,255,0.2); }
+
+  .prod-info { padding: 20px; }
+  .prod-ref { font-size: 9px; letter-spacing: 0.2em; color: var(--gris-clair); margin-bottom: 6px; text-transform: uppercase; }
+  .prod-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 300; color: var(--blanc-creme);
+    margin-bottom: 6px; line-height: 1.2;
+  }
+  .prod-matiere { font-size: 10px; color: var(--gris-clair); margin-bottom: 12px; }
+  .prod-price-row { display: flex; align-items: baseline; gap: 12px; }
+  .prod-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; color: var(--gold);
+  }
+  .prod-price-old {
+    font-size: 13px; color: var(--gris-clair);
+    text-decoration: line-through;
+  }
+  .prod-unit { font-size: 10px; color: var(--gris-clair); margin-left: auto; }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--noir); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; max-width: 1400px; margin: 0 auto;
+  }
+  .service-card {
+    padding: 50px 36px;
+    background: var(--gris-fonce);
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    text-align: center;
+  }
+  .service-card:hover { border-color: var(--gold); background: var(--gris-moyen); }
+
+  .service-icon {
+    width: 56px; height: 56px; margin: 0 auto 28px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+  .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; color: var(--blanc-creme);
+    margin-bottom: 14px;
+  }
+  .service-desc { font-size: 11px; line-height: 1.9; color: var(--gris-clair); }
+
+  /* ─── INSPIRATION BANNER ─── */
+  .inspiration {
+    position: relative; height: 600px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .inspiration-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(rgba(7,14,26,0.72), rgba(13,27,46,0.72)),
+      url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&q=80') center/cover no-repeat;
+    transition: transform 0.8s;
+  }
+  .inspiration:hover .inspiration-bg { transform: scale(1.02); }
+  .inspiration-content { position: relative; z-index: 2; text-align: center; padding: 0 60px; }
+  .inspiration-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 72px); font-weight: 300;
+    color: var(--blanc-creme); line-height: 1.1; margin-bottom: 24px;
+  }
+  .inspiration-content h2 em { font-style: italic; color: var(--gold-light); }
+  .inspiration-content p { font-size: 12px; letter-spacing: 0.1em; color: var(--gris-clair); margin-bottom: 40px; }
+
+  /* ─── TÉMOIGNAGES ─── */
+  .temoignages { background: var(--charbon); }
+
+  .temo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 30px; max-width: 1200px; margin: 0 auto;
+  }
+  .temo-card {
+    padding: 44px 36px;
+    border: 1px solid rgba(201,169,122,0.12);
+    position: relative;
+    transition: border-color 0.3s;
+    background: var(--marine-light);
+  }
+  .temo-card:hover { border-color: rgba(201,169,122,0.35); }
+  .temo-card::before {
+    content: '❝';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px; color: rgba(201,169,122,0.18);
+    position: absolute; top: 20px; left: 28px;
+    line-height: 1;
+  }
+  .temo-stars { color: var(--gold); font-size: 12px; margin-bottom: 16px; letter-spacing: 4px; }
+  .temo-text { font-size: 13px; line-height: 2; color: var(--gris-clair); margin-bottom: 24px; font-style: italic; }
+  .temo-author { display: flex; align-items: center; gap: 12px; }
+  .temo-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--gris-moyen); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold);
+  }
+  .temo-name { font-size: 12px; letter-spacing: 0.1em; color: var(--blanc-creme); }
+  .temo-role { font-size: 10px; color: var(--gris-clair); margin-top: 2px; }
+
+  /* ─── NEWSLETTER ─── */
+  .newsletter {
+    background: linear-gradient(135deg, var(--gris-fonce) 0%, var(--gris-moyen) 100%);
+    padding: 100px 0;
+    position: relative; overflow: hidden;
+  }
+  .newsletter::before {
+    content: 'ELS'; font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight: 600;
+    color: rgba(201,169,122,0.05);
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap; pointer-events: none;
+  }
+  .newsletter-inner {
+    position: relative; z-index: 2;
+    text-align: center; max-width: 600px; margin: 0 auto; padding: 0 40px;
+  }
+  .newsletter-inner h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; color: var(--blanc-creme);
+    margin-bottom: 12px;
+  }
+  .newsletter-inner p { font-size: 11px; letter-spacing: 0.1em; color: var(--gris-clair); margin-bottom: 36px; }
+  .newsletter-form { display: flex; gap: 0; }
+  .newsletter-form input {
+    flex: 1; padding: 16px 24px;
+    background: rgba(7,14,26,0.7);
+    border: 1px solid rgba(201,169,122,0.25); border-right: none;
+    color: var(--blanc-creme); font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.1em; outline: none;
+    transition: border-color 0.3s;
+  }
+  .newsletter-form input::placeholder { color: var(--gris-clair); }
+  .newsletter-form input:focus { border-color: rgba(201,169,122,0.55); }
+  .newsletter-form button {
+    padding: 16px 36px; background: var(--gold);
+    border: 1px solid var(--gold); color: var(--noir);
+    cursor: pointer; font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    transition: background 0.3s; font-weight: 300;
+  }
+  .newsletter-form button:hover { background: var(--gold-light); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--noir);
+    border-top: 1px solid rgba(201,169,122,0.15);
+    padding: 80px 0 40px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; max-width: 1200px; margin: 0 auto;
+    padding: 0 60px;
+  }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .footer-brand .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; color: var(--blanc-creme);
+    letter-spacing: 0.12em; line-height: 1.2;
+  }
+  .footer-brand .brand-name span { color: var(--gold); font-size: 11px; letter-spacing: 0.3em; display: block; font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
+  .footer-brand p { font-size: 11px; line-height: 1.9; color: var(--gris-clair); margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 12px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,169,122,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gris-clair); font-size: 12px;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    text-decoration: none; cursor: pointer;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,0.1); }
+
+  .footer-col h4 {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 11px; color: var(--gris-clair);
+    text-decoration: none; letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 60px auto 0;
+    padding: 24px 60px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 10px; color: var(--gris-clair); letter-spacing: 0.1em; }
+  .footer-payments { display: flex; gap: 8px; }
+  .payment-chip {
+    padding: 4px 10px; border: 1px solid rgba(201,169,122,0.2);
+    font-size: 9px; letter-spacing: 0.1em; color: var(--gris-clair);
+  }
+
+  /* ─── PANIER SIDEBAR ─── */
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(7,14,26,0.85); z-index: 200;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  .cart-sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0;
+    width: 420px; background: var(--gris-fonce);
+    z-index: 201; transform: translateX(100%);
+    transition: transform 0.5s var(--transition);
+    display: flex; flex-direction: column;
+    border-left: 1px solid rgba(201,169,122,0.18);
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+
+  .cart-header {
+    padding: 32px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(201,169,122,0.12);
+  }
+  .cart-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 300; color: var(--blanc-creme);
+  }
+  .cart-close {
+    width: 36px; height: 36px; background: none;
+    border: 1px solid rgba(201,169,122,0.25);
+    cursor: pointer; color: var(--gris-clair); font-size: 16px;
+    transition: all 0.3s;
+  }
+  .cart-close:hover { border-color: var(--gold); color: var(--gold); }
+
+  .cart-items { flex: 1; overflow-y: auto; padding: 24px; }
+  .cart-item {
+    display: flex; gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .cart-item-img {
+    width: 80px; height: 80px; overflow: hidden; flex-shrink: 0;
+  }
+  .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 13px; color: var(--blanc-creme); margin-bottom: 4px; }
+  .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); }
+  .cart-item-qty {
+    display: flex; align-items: center; gap: 12px; margin-top: 8px;
+  }
+  .qty-btn {
+    width: 24px; height: 24px; background: none;
+    border: 1px solid rgba(201,169,122,0.25);
+    color: var(--gris-clair); cursor: pointer; font-size: 14px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .qty-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .qty-num { font-size: 12px; color: var(--blanc-creme); }
+
+  .cart-footer {
+    padding: 24px 32px;
+    border-top: 1px solid rgba(201,169,122,0.12);
+  }
+  .cart-total {
+    display: flex; justify-content: space-between;
+    align-items: baseline; margin-bottom: 20px;
+  }
+  .cart-total span { font-size: 11px; letter-spacing: 0.2em; color: var(--gris-clair); text-transform: uppercase; }
+  .cart-total strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; color: var(--gold);
+  }
+  .cart-checkout {
+    width: 100%; padding: 18px;
+    background: var(--gold); border: none; cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif; font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--noir); font-weight: 300;
+    transition: background 0.3s;
+  }
+  .cart-checkout:hover { background: var(--gold-light); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 40px; right: 40px; z-index: 300;
+    background: var(--gold); color: var(--noir);
+    padding: 14px 28px; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    transform: translateY(20px); opacity: 0;
+    transition: all 0.4s var(--transition);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── SÉPARATEURS DE CATÉGORIES ─── */
+  .cat-section-label {
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px; padding: 56px 40px 32px;
+    font-size: 11px; letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--gold); max-width: 1400px; margin: 0 auto;
+  }
+  .cat-section-label:first-of-type { padding-top: 0; }
+  .cat-sec-icon { font-size: 8px; opacity: 0.6; }
+  .cat-section-label::before,
+  .cat-section-label::after {
+    content: ''; flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3));
+  }
+  .cat-section-label::after {
+    background: linear-gradient(to left, transparent, rgba(201,168,76,0.3));
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 30px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 40px 80px; }
+    .savoir-grid, .temo-grid { grid-template-columns: 1fr; }
+    .savoir-image { height: 350px; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+    .cat-card:first-child, .cat-card:nth-child(4) { grid-column: span 1; }
+    .produits-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 30px; }
+    .footer-bottom { padding: 24px 30px 0; flex-direction: column; gap: 16px; }
+  }
+  @media (max-width: 640px) {
+    .hero-content { padding: 0 24px 60px; }
+    .hero-btns { flex-direction: column; align-items: flex-start; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .produits-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { border-right: 1px solid rgba(201,168,76,0.2); }
+    .cart-sidebar { width: 100%; }
+    section { padding: 80px 20px; }
+    .produits-filter { flex-wrap: wrap; padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Curseurs -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Article ajouté au panier</div>
+
+<!-- Overlay panier -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- Panier sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mon Panier</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:0.1em;">Votre panier est vide</p>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">0 €</strong>
+    </div>
+    <button class="cart-checkout">Passer commande →</button>
+  </div>
+</div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <!-- Logo ELS Nautile SVG inline -->
+    <svg class="nav-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.3"/>
+      <!-- Coquille nautile dessinée en courbes -->
+      <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+        <!-- Spirale principale -->
+        <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+        <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+        <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+        <!-- Centre -->
+        <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+        <!-- Lignes radiales internes -->
+        <path d="M40 40 L54 40" opacity="0.5"/>
+        <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
+        <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
+        <path d="M40 40 Q33 45 27 50" opacity="0.3"/>
+        <path d="M40 40 Q36 33 33 24" opacity="0.3"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-main">ELEGANT</span>
+      <span class="nav-logo-sub">LIVING SPACE</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#activites">Notre Maison</a></li>
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#produits">Boutique</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-cart" onclick="toggleCart()">
+      Panier
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+    <a href="#contact" class="nav-cta">Devis gratuit</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="hero-label">Depuis 2008 — Cotonou, Bénin</p>
+    <h1 class="hero-title">
+      L'Art des<br><em>Finitions</em><br>Luxueuses
+    </h1>
+    <p class="hero-sub">
+      Carrelages, revêtements, luminaires et éléments décoratifs
+      sélectionnés auprès des maisons les plus prestigieuses d'Europe et d'Italie.
+      <br><br><strong style="color:var(--gold);letter-spacing:0.1em;font-weight:300">els.benin</strong>
+    </p>
+    <div class="hero-btns">
+      <a href="#produits" class="btn-primary">Explorer la boutique</a>
+      <a href="#categories" class="btn-ghost">Voir les collections</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Défiler</div>
+
+  <!-- Logo flottant hero -->
+  <div class="hero-logo-float">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="60" cy="60" r="57" stroke="#c9a97a" stroke-width="1" opacity="0.4"/>
+      <g stroke="#c9a97a" stroke-width="1.6" stroke-linecap="round" fill="none">
+        <path d="M60 60 Q78 45 81 60 Q84 78 66 84 Q45 90 36 72 Q25.5 51 42 36 Q60 19.5 84 33 Q105 46.5 102 70.5 Q97.5 94.5 75 102 Q51 109.5 33 93 Q15 76.5 21 52.5 Q27 28.5 48 19.5"/>
+        <path d="M60 60 Q72 51 75 60 Q78 70.5 66 75 Q54 79.5 48 69 Q40.5 57 49.5 48 Q60 37.5 73.5 45 Q87 52.5 84 69 Q81 84 69 90 Q55.5 96 46.5 87 Q33 76.5 37.5 63 Q42 49.5 55.5 42"/>
+        <path d="M60 60 Q67.5 55.5 69 60 Q72 67.5 66 70.5 Q60 73.5 55.5 69 Q51 63 54 57 Q58.5 51 64.5 54"/>
+        <circle cx="60" cy="60" r="5" stroke="#c9a97a" stroke-width="1.2"/>
+        <path d="M60 60 L81 60" opacity="0.45"/>
+        <path d="M60 60 Q69 51 81 45" opacity="0.35"/>
+        <path d="M60 60 Q64.5 70.5 66 84" opacity="0.35"/>
+        <path d="M60 60 Q49.5 67.5 40.5 75" opacity="0.25"/>
+        <path d="M60 60 Q54 49.5 49.5 36" opacity="0.25"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Carrelage Grand Format</span>
+    <span>Parquet Massif</span>
+    <span>Marbre Naturel</span>
+    <span>Luminaires Design</span>
+    <span>Peintures Spéciales</span>
+    <span>Béton Ciré</span>
+    <span>Faïence Artisanale</span>
+    <span>Pierre Naturelle</span>
+    <span>Accessoires de Salle de Bain</span>
+    <span>Carrelage Grand Format</span>
+    <span>Parquet Massif</span>
+    <span>Marbre Naturel</span>
+    <span>Luminaires Design</span>
+    <span>Peintures Spéciales</span>
+    <span>Béton Ciré</span>
+    <span>Faïence Artisanale</span>
+    <span>Pierre Naturelle</span>
+    <span>Accessoires de Salle de Bain</span>
+  </div>
+</div>
+
+<!-- ─── SAVOIR-FAIRE ─── -->
+<section class="savoir-faire" id="activites">
+  <div class="savoir-grid">
+    <div class="savoir-image">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Showroom luxe">
+      <div class="savoir-image-overlay"></div>
+      <div class="savoir-image-label">Notre Showroom</div>
+    </div>
+    <div class="savoir-text">
+      <p class="section-label" style="text-align:left;font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Notre Maison</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--blanc-creme);margin-bottom:28px;line-height:1.1">
+        L'excellence au service<br><em style="font-style:italic;color:var(--gold-light)">de votre espace</em>
+      </h2>
+      <p>Fondée en 2008 à Cotonou, <strong>ELS Bénin — Elegant Living Space</strong> s'est imposée comme la référence
+      en matière de matériaux de finition et décoration haut de gamme en Afrique de l'Ouest.</p>
+      <p>Nous importons directement nos collections depuis <strong>l'Italie, l'Espagne et la France</strong>,
+      vous garantissant des produits authentiques, certifiés, avec une traçabilité complète.</p>
+      <p>Notre showroom de 1 200 m² vous accueille pour vous plonger dans l'univers du luxe architectural,
+      avec des <strong>espaces de mise en scène grandeur nature</strong> pour visualiser votre projet.</p>
+      <div class="savoir-stats">
+        <div class="stat-item">
+          <div class="stat-num">+2400</div>
+          <div class="stat-label">Références en stock</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">16</div>
+          <div class="stat-label">Années d'expertise</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">840</div>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Marques partenaires</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CATÉGORIES ─── -->
+<section class="categories" id="categories">
+  <div class="section-header">
+    <p class="section-label">Nos Collections</p>
+    <h2 class="section-title">Explorez <em>l'univers</em><br>des matériaux d'exception</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="cat-grid">
+
+    <div class="cat-card" onclick="filterProducts('carrelage')">
+      <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=900&q=80" alt="Carrelage">
+      <div class="cat-overlay">
+        <p class="cat-tag">Collection</p>
+        <h3 class="cat-name">Carrelage &<br>Grand Format</h3>
+        <p class="cat-count">148 références →</p>
+      </div>
+      <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+    </div>
+
+    <div class="cat-card" onclick="filterProducts('marbre')">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Marbre">
+      <div class="cat-overlay">
+        <p class="cat-tag">Collection</p>
+        <h3 class="cat-name">Marbre &<br>Pierre Naturelle</h3>
+        <p class="cat-count">96 références →</p>
+      </div>
+      <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+    </div>
+
+    <div class="cat-card" onclick="filterProducts('parquet')">
+      <img src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=600&q=80" alt="Parquet">
+      <div class="cat-overlay">
+        <p class="cat-tag">Collection</p>
+        <h3 class="cat-name">Parquet &<br>Revêtements Sol</h3>
+        <p class="cat-count">74 références →</p>
+      </div>
+      <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+    </div>
+
+    <div class="cat-card" onclick="filterProducts('luminaire')">
+      <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=900&q=80" alt="Luminaires">
+      <div class="cat-overlay">
+        <p class="cat-tag">Collection</p>
+        <h3 class="cat-name">Luminaires &<br>Éclairage Design</h3>
+        <p class="cat-count">112 références →</p>
+      </div>
+      <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+    </div>
+
+    <div class="cat-card" onclick="filterProducts('peinture')">
+      <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=600&q=80" alt="Peintures">
+      <div class="cat-overlay">
+        <p class="cat-tag">Collection</p>
+        <h3 class="cat-name">Peintures &<br>Enduits Décoratifs</h3>
+        <p class="cat-count">203 références →</p>
+      </div>
+      <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── BOUTIQUE ─── -->
+<section class="produits" id="produits">
+  <div class="section-header">
+    <p class="section-label">Boutique en ligne</p>
+    <h2 class="section-title">Produits <em>d'exception</em></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="produits-filter" id="filterBar">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">Tout voir</button>
+    <button class="filter-btn" onclick="filterProducts('carrelage', this)">Carrelage</button>
+    <button class="filter-btn" onclick="filterProducts('marbre', this)">Marbre</button>
+    <button class="filter-btn" onclick="filterProducts('parquet', this)">Parquet</button>
+    <button class="filter-btn" onclick="filterProducts('luminaire', this)">Luminaires</button>
+    <button class="filter-btn" onclick="filterProducts('peinture', this)">Peintures</button>
+  </div>
+
+  <!-- ══ SÉPARATEUR CATÉGORIE ══ -->
+  <div class="cat-section-label" id="sec-carrelage">
+    <span class="cat-sec-icon">◆</span>
+    <span>Carrelage &amp; Grand Format</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="produitsGrid">
+
+    <!-- ══════════ CARRELAGE ══════════ -->
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Carrelage Grand Format">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory', 185000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Grand Format Ivory</h3>
+        <p class="prod-matiere">Grès pleine masse · 120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">Pierre naturelle italienne · 60×120 cm · Poli</p>
+        <div class="prod-price-row"><span class="prod-price">210 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Faïence Zellige">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">Argile émaillée artisanale · 10×10 cm</p>
+        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Carrelage Hexagonal">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Hexagone Terrazzo Gold', 128000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT004</p>
+        <h3 class="prod-name">Hexagone Terrazzo Gold</h3>
+        <p class="prod-matiere">Terrazzo reconstitué · Format hexagonal Ø 20 cm</p>
+        <div class="prod-price-row"><span class="prod-price">128 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=500&q=85" alt="Carreau ciment">
+        <span class="prod-badge promo">−15%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Carreaux Ciment Géométrique', 76000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT005</p>
+        <h3 class="prod-name">Carreaux Ciment Géométrique</h3>
+        <p class="prod-matiere">Ciment hydraulique coloré · 20×20 cm</p>
+        <div class="prod-price-row"><span class="prod-price">76 000 F</span><span class="prod-price-old">89 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Carrelage effet beton">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite', 155000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">Grès émaillé mat · 60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row"><span class="prod-price">155 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Marbre &amp; Pierre Naturelle</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridMarbre">
+
+    <!-- ══════════ MARBRE ══════════ -->
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500&q=85" alt="Marbre Calacatta">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Marbre Calacatta Gold Veiné', 420000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB001</p>
+        <h3 class="prod-name">Calacatta Gold Veiné</h3>
+        <p class="prod-matiere">Marbre blanc italien · 80×160 cm · Poli brillant</p>
+        <div class="prod-price-row"><span class="prod-price">420 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=85" alt="Marbre Nero">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Nero Marquina Premium', 395000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB002</p>
+        <h3 class="prod-name">Nero Marquina Premium</h3>
+        <p class="prod-matiere">Marbre noir d'Espagne · 60×120 cm · Veiné blanc</p>
+        <div class="prod-price-row"><span class="prod-price">395 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=500&q=85" alt="Onyx">
+        <span class="prod-badge">Rare</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Onyx Miel Translucide', 680000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB003</p>
+        <h3 class="prod-name">Onyx Miel Translucide</h3>
+        <p class="prod-matiere">Onyx naturel rétroéclairé · 30×60 cm · Iranien</p>
+        <div class="prod-price-row"><span class="prod-price">680 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=500&q=85" alt="Quartzite">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Quartzite Taj Mahal', 360000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB004</p>
+        <h3 class="prod-name">Quartzite Taj Mahal</h3>
+        <p class="prod-matiere">Quartzite brésilien · 60×120 cm · Satiné</p>
+        <div class="prod-price-row"><span class="prod-price">360 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1609767668595-9ccd5f8f0c5e?w=500&q=85" alt="Pierre bleue">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Ardoise Bleue Naturelle', 145000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB005</p>
+        <h3 class="prod-name">Ardoise Bleue Naturelle</h3>
+        <p class="prod-matiere">Ardoise clivée · 30×60 cm · Aspect brut</p>
+        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=85" alt="Marbre Statuario">
+        <span class="prod-badge promo">−10%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Statuario Extra', 510000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB006</p>
+        <h3 class="prod-name">Statuario Extra</h3>
+        <p class="prod-matiere">Marbre blanc de Carrare · 90×180 cm · Extra-brillant</p>
+        <div class="prod-price-row"><span class="prod-price">510 000 F</span><span class="prod-price-old">567 000 F</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Parquet &amp; Revêtements Sol</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridParquet">
+
+    <!-- ══════════ PARQUET ══════════ -->
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=85" alt="Parquet chêne">
+        <span class="prod-badge">Best-seller</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Chêne Massif Fumé Huilé', 145000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ001</p>
+        <h3 class="prod-name">Chêne Massif Fumé Huilé</h3>
+        <p class="prod-matiere">Chêne européen · 190×15 mm · Finition huile naturelle</p>
+        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Parquet noyer">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Noyer Américain Verni Satiné', 198000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ002</p>
+        <h3 class="prod-name">Noyer Américain Verni Satiné</h3>
+        <p class="prod-matiere">Noyer massif · 210×20 mm · Verni 5 couches</p>
+        <div class="prod-price-row"><span class="prod-price">198 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Parquet chevron">
+        <span class="prod-badge">Luxe</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Parquet Chevron Versailles', 175000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ003</p>
+        <h3 class="prod-name">Parquet Chevron Versailles</h3>
+        <p class="prod-matiere">Chêne multicouche · Motif chevron 70° · Vieilli</p>
+        <div class="prod-price-row"><span class="prod-price">175 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1560440021-33f9b867899d?w=500&q=85" alt="Sol vinyle luxe">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('LVT Stone Oak Premium', 85000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ004</p>
+        <h3 class="prod-name">LVT Stone Oak Premium</h3>
+        <p class="prod-matiere">Vinyle de luxe · 230×15 mm · Ep. 5 mm · Imperméable</p>
+        <div class="prod-price-row"><span class="prod-price">85 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=500&q=85" alt="Bambou">
+        <span class="prod-badge new">Écologique</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Bambou Densifié Caramel', 110000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ005</p>
+        <h3 class="prod-name">Bambou Densifié Caramel</h3>
+        <p class="prod-matiere">Bambou compressé · 185×15 mm · Ultra-résistant</p>
+        <div class="prod-price-row"><span class="prod-price">110 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&q=85" alt="Moquette velours">
+        <span class="prod-badge promo">−20%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Moquette Velours Cachemire', 95000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ006</p>
+        <h3 class="prod-name">Moquette Velours Cachemire</h3>
+        <p class="prod-matiere">Laine & soie · Velours coupé · Laize 4 m</p>
+        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-price-old">119 000 F</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Luminaires &amp; Éclairage Design</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridLuminaire">
+
+    <!-- ══════════ LUMINAIRES ══════════ -->
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=500&q=85" alt="Lustre cristal">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lustre Cristal Bohème Grand', 950000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU001</p>
+        <h3 class="prod-name">Lustre Cristal Bohème Grand</h3>
+        <p class="prod-matiere">Cristal K9 taillé · Ø 90 cm · 12 bras · LED G9</p>
+        <div class="prod-price-row"><span class="prod-price">950 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=85" alt="Suspension Murano">
+        <span class="prod-badge promo">−20%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Suspension Murano Or 24k', 380000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU002</p>
+        <h3 class="prod-name">Suspension Murano Or 24k</h3>
+        <p class="prod-matiere">Verre soufflé de Murano · Ø 60 cm · Doré</p>
+        <div class="prod-price-row"><span class="prod-price">380 000 F</span><span class="prod-price-old">475 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&q=85" alt="Applique laiton">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Applique Laiton Brossé', 165000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU003</p>
+        <h3 class="prod-name">Applique Laiton Brossé</h3>
+        <p class="prod-matiere">Laiton massif brossé · LED intégré 3000K · IP44</p>
+        <div class="prod-price-row"><span class="prod-price">165 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=85" alt="Lampe de table design">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lampe Table Marbre & Or', 245000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU004</p>
+        <h3 class="prod-name">Lampe Table Marbre &amp; Or</h3>
+        <p class="prod-matiere">Socle marbre blanc · Pied laiton · Abat-jour lin</p>
+        <div class="prod-price-row"><span class="prod-price">245 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618047-f4e8c5e0f8e2?w=500&q=85" alt="Spot encastré">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Spot Encastré Doré LED', 48000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU005</p>
+        <h3 class="prod-name">Spot Encastré Doré LED</h3>
+        <p class="prod-matiere">Aluminium doré · LED 7W 3000K · Orientable 35°</p>
+        <div class="prod-price-row"><span class="prod-price">48 000 F</span><span class="prod-unit">/ unité</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=85" alt="Ruban LED">
+        <span class="prod-badge new">Smart</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Profil LED Aluminium Premium', 35000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU006</p>
+        <h3 class="prod-name">Profil LED Aluminium Premium</h3>
+        <p class="prod-matiere">Profilé alu · Ruban LED RGBWW · Compatible domotique</p>
+        <div class="prod-price-row"><span class="prod-price">35 000 F</span><span class="prod-unit">/ ml</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Peintures &amp; Enduits Décoratifs</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridPeinture">
+
+    <!-- ══════════ PEINTURES ══════════ -->
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=500&q=85" alt="Stuc venitien">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Stuc Vénitien Madreperlato', 125000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE001</p>
+        <h3 class="prod-name">Stuc Vénitien Madreperlato</h3>
+        <p class="prod-matiere">Enduit de chaux et marbrine · Nacré · Couvre 6–8 m²</p>
+        <div class="prod-price-row"><span class="prod-price">125 000 F</span><span class="prod-unit">/ seau 5L</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&q=85" alt="Béton ciré">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Béton Ciré Anthracite Kit Complet', 78000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE002</p>
+        <h3 class="prod-name">Béton Ciré Anthracite Kit Complet</h3>
+        <p class="prod-matiere">Enduit minéral + vernis · Kit pour 8 m² · 12 coloris</p>
+        <div class="prod-price-row"><span class="prod-price">78 000 F</span><span class="prod-unit">/ kit</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=85" alt="Peinture or">
+        <span class="prod-badge">Luxe</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Peinture Métallisée Or Bruni', 68000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE003</p>
+        <h3 class="prod-name">Peinture Métallisée Or Bruni</h3>
+        <p class="prod-matiere">Acrylique métallisé · 1L · Couvre 8–10 m²</p>
+        <div class="prod-price-row"><span class="prod-price">68 000 F</span><span class="prod-unit">/ litre</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1504198458649-3128b932f49e?w=500&q=85" alt="Chaux naturelle">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Enduit Chaux Naturelle', 42000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE004</p>
+        <h3 class="prod-name">Enduit Chaux Naturelle Tadelakt</h3>
+        <p class="prod-matiere">Chaux hydraulique · Imperméable · Aspect minéral · 25 kg</p>
+        <div class="prod-price-row"><span class="prod-price">42 000 F</span><span class="prod-unit">/ sac</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=85" alt="Papier peint">
+        <span class="prod-badge new">Collection 2025</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Papier Peint Panoramique Jungle', 185000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE005</p>
+        <h3 class="prod-name">Papier Peint Panoramique</h3>
+        <p class="prod-matiere">Non-tissé intissé · Impression HD · Lé 0,52 m</p>
+        <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ panneau</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Peinture velours">
+        <span class="prod-badge promo">−12%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Peinture Velours Mat Premium', 38000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE006</p>
+        <h3 class="prod-name">Peinture Velours Mat Premium</h3>
+        <p class="prod-matiere">Acrylique velours · 2.5L · Lavable classe 3 · 200 teintes</p>
+        <div class="prod-price-row"><span class="prod-price">38 000 F</span><span class="prod-price-old">43 000 F</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:60px">
+    <a href="#" class="btn-ghost">Voir tout le catalogue →</a>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-label">Nos Services</p>
+    <h2 class="section-title">Un accompagnement<br><em>sur mesure</em></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="service-name">Showroom Premium</h3>
+      <p class="service-desc">Visitez notre espace de 1 200 m² avec plus de 2 400 références exposées dans des ambiances grandeur nature. Conseil personnalisé inclus.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h3 class="service-name">Livraison & Pose</h3>
+      <p class="service-desc">Livraison sur Cotonou et dans tout le Bénin. Mise en relation avec nos artisans certifiés pour une pose dans les règles de l'art.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <h3 class="service-name">Conseil Design</h3>
+      <p class="service-desc">Nos architectes d'intérieur partenaires vous accompagnent dans la conception de vos espaces et la sélection cohérente de vos matériaux.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="service-name">Devis sur mesure</h3>
+      <p class="service-desc">Estimez votre projet gratuitement. Notre équipe calcule les quantités nécessaires et vous propose le meilleur rapport qualité-prix.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── INSPIRATION ─── -->
+<div class="inspiration">
+  <div class="inspiration-bg"></div>
+  <div class="inspiration-content">
+    <h2>Transformez votre espace<br>en <em>œuvre d'art</em></h2>
+    <p>Chaque projet mérite des matériaux à la hauteur de votre ambition.</p>
+    <a href="#contact" class="btn-primary">Démarrer mon projet</a>
+  </div>
+</div>
+
+<!-- ─── TÉMOIGNAGES ─── -->
+<section class="temoignages">
+  <div class="section-header">
+    <p class="section-label">Témoignages</p>
+    <h2 class="section-title">Ce que disent<br><em>nos clients</em></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="temo-grid">
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">Maison Aurore m'a fourni des carrelages en marbre d'une qualité exceptionnelle pour ma villa. Le service était parfait du conseil jusqu'à la livraison.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">A</div>
+        <div>
+          <p class="temo-name">Adetokunbo M.</p>
+          <p class="temo-role">Architecte, Lagos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">J'ai équipé tout mon hôtel en matériaux de chez Maison Aurore. Le rapport qualité-prix est imbattable et les délais ont été parfaitement respectés.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">K</div>
+        <div>
+          <p class="temo-name">Kofi A.</p>
+          <p class="temo-role">Hôtelier, Accra</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">Le showroom est magnifique et les conseillers sont très compétents. Ils m'ont aidé à choisir les bons matériaux pour chaque pièce de ma résidence.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">F</div>
+        <div>
+          <p class="temo-name">Fatoumata D.</p>
+          <p class="temo-role">Particulier, Cotonou</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── NEWSLETTER ─── -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h3>Restez inspiré</h3>
+    <p>Recevez nos nouvelles collections, offres exclusives et conseils déco directement dans votre boîte mail.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Votre adresse e-mail">
+      <button>S'inscrire</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:56px;height:56px;margin-bottom:12px">
+          <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.25"/>
+          <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+            <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+            <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+            <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+            <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+            <path d="M40 40 L54 40" opacity="0.5"/>
+            <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
+            <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
+          <div style="font-size:10px;letter-spacing:0.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
+        </div>
+      </div>
+      <p>Spécialiste des matériaux de finition et décoration haut de gamme depuis 2008. Showroom à Cotonou, livraisons dans toute l'Afrique de l'Ouest.</p>
+      <div class="footer-social">
+        <a class="social-btn">in</a>
+        <a class="social-btn">f</a>
+        <a class="social-btn">ig</a>
+        <a class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Carrelage & Grand Format</a></li>
+        <li><a href="#">Marbre & Pierre</a></li>
+        <li><a href="#">Parquet & Revêtements</a></li>
+        <li><a href="#">Luminaires Design</a></li>
+        <li><a href="#">Peintures & Enduits</a></li>
+        <li><a href="#">Sanitaires & Bain</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Showroom & Conseil</a></li>
+        <li><a href="#">Livraison & Pose</a></li>
+        <li><a href="#">Devis gratuit</a></li>
+        <li><a href="#">Service Architectes</a></li>
+        <li><a href="#">Projets hôtels & bureaux</a></li>
+        <li><a href="#">Entretien & garantie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Boulevard Saint-Michel, Cotonou</a></li>
+        <li><a href="#">📞 +229 97 XX XX XX</a></li>
+        <li><a href="#">✉ <span class="__cf_email__" data-cfemail="a2c1cdccd6c3c1d6e2cfc3cbd1cdccc3d7d0cdd0c78cc0c8">[email&#160;protected]</span></a></li>
+        <li><a href="#">🕐 Lun–Sam : 8h – 18h</a></li>
+        <li><a href="#">Politique de retour</a></li>
+        <li><a href="#">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. Cotonou, Bénin · els.benin</p>
+    <div class="footer-payments">
+      <span class="payment-chip">MTN Money</span>
+      <span class="payment-chip">Moov Money</span>
+      <span class="payment-chip">Visa</span>
+      <span class="payment-chip">Mastercard</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── CURSEUR ───
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+(function animateRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateRing); })();
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── PANIER ───
+let cart = [];
+function toggleCart() {
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('cartOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+function addToCart(name, price) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) { existing.qty++; }
+  else { cart.push({ name, price, qty: 1 }); }
+  updateCart();
+  showToast(name + ' ajouté au panier');
+}
+
+function updateCart() {
+  const badge = document.getElementById('cartBadge');
+  const itemsEl = document.getElementById('cartItems');
+  const footerEl = document.getElementById('cartFooter');
+  const totalEl = document.getElementById('cartTotal');
+
+  const totalQty = cart.reduce((s,i)=>s+i.qty, 0);
+  badge.textContent = totalQty;
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:0.1em;">Votre panier est vide</p>';
+    footerEl.style.display = 'none'; return;
+  }
+  footerEl.style.display = 'block';
+  itemsEl.innerHTML = cart.map((item,i) => `
+    <div class="cart-item">
+      <div class="cart-item-info">
+        <p class="cart-item-name">${item.name}</p>
+        <p class="cart-item-price">${item.price.toLocaleString('fr-FR')} F</p>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  const total = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  totalEl.textContent = total.toLocaleString('fr-FR') + ' F';
+}
+
+function changeQty(i, delta) {
+  cart[i].qty += delta;
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  updateCart();
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 2800);
+}
+
+// ─── FILTRE PRODUITS ───
+function filterProducts(cat, btn) {
+  const cards = document.querySelectorAll('.prod-card');
+  const separators = document.querySelectorAll('.cat-section-label');
+  const grids = document.querySelectorAll('.produits-grid, [id^="grid"]');
+
+  if (cat === 'all') {
+    cards.forEach(c => c.style.display = 'block');
+    separators.forEach(s => s.style.display = 'flex');
+    grids.forEach(g => g.style.display = 'grid');
+  } else {
+    // Hide all separators initially
+    separators.forEach(s => s.style.display = 'none');
+
+    // Filter cards
+    cards.forEach(c => {
+      c.style.display = c.dataset.cat === cat ? 'block' : 'none';
+    });
+
+    // Show/hide grids: show only grids that have visible cards
+    grids.forEach(g => {
+      const visible = g.querySelectorAll(`.prod-card[data-cat="${cat}"]`).length > 0;
+      g.style.display = visible ? 'grid' : 'none';
+    });
+  }
+
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  if (cat !== 'all') {
+    document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ─── WISHLIST TOGGLE ───
+function toggleWish(btn) {
+  const isWished = btn.classList.toggle('wished');
+  btn.textContent = isWished ? '♥' : '♡';
+  btn.style.color = isWished ? '#e85d4a' : '';
+}
+
+// ─── ANIMATION SCROLL ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.prod-card, .service-card, .temo-card, .stat-item').

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Collections — ELS Bénin | Elegant Living Space</title>
+<link rel="stylesheet" href="els-shared.css"/>
+<style>
+  /* ─── Grille produits collections ─── */
+  .coll-hero {
+    min-height: 380px; padding-top: 80px;
+    position: relative; display: flex; align-items: flex-end; overflow: hidden;
+  }
+  .coll-hero-bg { position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);animation:phZoom 10s ease-out forwards; }
+  .coll-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(7,14,26,.96) 0%,rgba(7,14,26,.5) 55%,rgba(7,14,26,.15) 100%); }
+  .coll-content { position:relative;z-index:2;padding:48px 100px 60px; }
+
+  /* Filter tabs */
+  .coll-filter {
+    background: var(--noir);
+    border-bottom: 1px solid rgba(201,169,122,.1);
+    position: sticky; top: 80px; z-index: 50;
+  }
+  .coll-filter-inner {
+    max-width: 1400px; margin: 0 auto; padding: 0 60px;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  .coll-tab {
+    padding: 18px 30px; cursor: pointer; white-space: nowrap;
+    font-size: 10px; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--gris-clair); background: transparent; border: none;
+    border-bottom: 2px solid transparent;
+    transition: color .3s, border-color .3s;
+    font-family: 'Josefin Sans', sans-serif; font-weight: 300;
+  }
+  .coll-tab:hover { color: var(--gold-light); }
+  .coll-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* Catégorie section */
+  .coll-section { padding: 80px 0; border-bottom: 1px solid rgba(201,169,122,.08); }
+  .coll-section:last-of-type { border-bottom: none; }
+  .coll-section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px; padding: 0 60px; max-width: 1400px; margin-left: auto; margin-right: auto;
+  }
+  .coll-section-header h2 { font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-weight:300;color:var(--blanc-creme);line-height:1.1; }
+  .coll-section-header h2 em { font-style:italic;color:var(--gold-light); }
+  .coll-section-header p { font-size:11px;letter-spacing:.1em;color:var(--gris-clair);max-width:360px;line-height:1.8; }
+  .coll-see-all { font-size:10px;letter-spacing:.25em;color:var(--gold);text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(201,169,122,.3);padding-bottom:3px;white-space:nowrap;transition:border-color .3s; }
+  .coll-see-all:hover { border-color:var(--gold); }
+
+  /* Grille produits */
+  .prod-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1400px;margin:0 auto; }
+  .prod-grid.three { grid-template-columns:repeat(3,1fr); }
+  .prod-card { background:var(--charbon);cursor:pointer;position:relative;transition:transform .4s cubic-bezier(.76,0,.24,1); }
+  .prod-card:hover { transform:translateY(-6px);z-index:2; }
+  .prod-img { position:relative;overflow:hidden;aspect-ratio:3/4; }
+  .prod-img img { width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.76,0,.24,1);filter:saturate(.8); }
+  .prod-card:hover .prod-img img { transform:scale(1.06);filter:saturate(1); }
+  .prod-badge { position:absolute;top:16px;left:16px;background:var(--gold);color:var(--noir);font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:5px 10px; }
+  .prod-badge.new { background:var(--blanc-creme);color:var(--noir); }
+  .prod-badge.promo { background:#7a2020;color:var(--blanc-creme); }
+  .prod-badge.rare { background:var(--gris-moyen);color:var(--gold);border:1px solid rgba(201,169,122,.3); }
+  .prod-actions { position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(7,14,26,.9),transparent);display:flex;gap:8px;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s; }
+  .prod-card:hover .prod-actions { opacity:1;transform:translateY(0); }
+  .prod-btn { padding:10px 20px;border:none;cursor:pointer;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-family:'Josefin Sans',sans-serif;font-weight:300;transition:background .2s; }
+  .prod-btn.add { background:var(--gold);color:var(--noir);flex:1; }
+  .prod-btn.add:hover { background:var(--gold-light); }
+  .prod-btn.wish { background:rgba(255,255,255,.1);color:var(--blanc-creme);width:40px;padding:10px; }
+  .prod-btn.wish:hover { background:rgba(255,255,255,.2); }
+  .prod-info { padding:20px; }
+  .prod-ref { font-size:9px;letter-spacing:.2em;color:var(--gris-clair);margin-bottom:6px;text-transform:uppercase; }
+  .prod-name { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--blanc-creme);margin-bottom:6px;line-height:1.2; }
+  .prod-matiere { font-size:10px;color:var(--gris-clair);margin-bottom:12px; }
+  .prod-price-row { display:flex;align-items:baseline;gap:12px; }
+  .prod-price { font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold); }
+  .prod-price-old { font-size:13px;color:var(--gris-clair);text-decoration:line-through; }
+  .prod-unit { font-size:10px;color:var(--gris-clair);margin-left:auto; }
+
+  /* Bannière de catégorie */
+  .cat-banner {
+    height: 240px; position: relative; overflow: hidden;
+    max-width: 1400px; margin: 0 auto 0; display: flex; align-items: flex-end;
+  }
+  .cat-banner img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.7); }
+  .cat-banner-content { position:relative;z-index:2;padding:36px 48px;width:100%; display:flex;justify-content:space-between;align-items:flex-end; }
+
+  @media(max-width:1024px){
+    .prod-grid { grid-template-columns:repeat(2,1fr); }
+    .prod-grid.three { grid-template-columns:repeat(2,1fr); }
+    .coll-section-header { flex-direction:column;align-items:flex-start;gap:16px;padding:0 30px; }
+  }
+  @media(max-width:640px){
+    .prod-grid,.prod-grid.three { grid-template-columns:1fr; }
+    .coll-content { padding:40px 24px 50px; }
+    .coll-filter-inner { padding:0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="toast" id="toast">Article ajouté au panier ✓</div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="luxe_materiaux.html" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.3"/>
+      <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+        <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+        <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+        <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+        <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+        <path d="M40 40 L54 40" opacity="0.5"/>
+        <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
+        <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-main">ELEGANT</span>
+      <span class="nav-logo-sub">LIVING SPACE</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="apropos.html">À Propos</a></li>
+    <li><a href="collections.html" class="active">Collections</a></li>
+    <li><a href="luxe_materiaux.html#produits">Boutique</a></li>
+    <li><a href="rejoindre.html">Nous Rejoindre</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-divider"></div>
+  <div class="nav-actions">
+    <a class="nav-cart" id="navCart" onclick="toggleCart()">
+      Panier <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+    <a href="contact.html" class="nav-cta">Devis gratuit</a>
+  </div>
+</nav>
+
+<!-- Panier Sidebar -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()" style="position:fixed;inset:0;background:rgba(7,14,26,.85);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s"></div>
+<div class="cart-sidebar" id="cartSidebar" style="position:fixed;right:0;top:0;bottom:0;width:420px;background:var(--gris-fonce);z-index:201;transform:translateX(100%);transition:transform .5s cubic-bezier(.76,0,.24,1);display:flex;flex-direction:column;border-left:1px solid rgba(201,169,122,.18)">
+  <div style="padding:32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,169,122,.12)">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--blanc-creme)">Mon Panier</h3>
+    <button onclick="toggleCart()" style="width:36px;height:36px;background:none;border:1px solid rgba(201,169,122,.25);cursor:pointer;color:var(--gris-clair);font-size:16px">✕</button>
+  </div>
+  <div id="cartItems" style="flex:1;overflow-y:auto;padding:24px">
+    <p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:.1em">Votre panier est vide</p>
+  </div>
+  <div id="cartFooter" style="display:none;padding:24px 32px;border-top:1px solid rgba(201,169,122,.12)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px">
+      <span style="font-size:11px;letter-spacing:.2em;color:var(--gris-clair);text-transform:uppercase">Total</span>
+      <strong id="cartTotal" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--gold)">0 F</strong>
+    </div>
+    <button onclick="alert('Redirection vers le paiement...')" style="width:100%;padding:18px;background:var(--gold);border:none;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--noir);font-weight:300">Passer commande →</button>
+  </div>
+</div>
+
+<!-- ─── HERO COLLECTIONS ─── -->
+<section class="coll-hero">
+  <div class="coll-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=1600&q=80')"></div>
+  <div class="coll-overlay"></div>
+  <div class="breadcrumb">
+    <a href="luxe_materiaux.html">Accueil</a><span>›</span><span>Collections</span>
+  </div>
+  <div class="coll-content">
+    <p class="page-hero-label">Nos Collections</p>
+    <h1 class="page-hero-title">Matériaux <em>d'exception</em><br>pour chaque espace</h1>
+    <p class="page-hero-sub">Plus de 2 400 références réparties en 5 grandes familles, importées directement des meilleures manufactures européennes.</p>
+  </div>
+</section>
+
+<!-- ─── TABS FILTRES ─── -->
+<div class="coll-filter">
+  <div class="coll-filter-inner">
+    <button class="coll-tab active" onclick="scrollToSection('carrelage',this)">◆ Carrelage & Grand Format</button>
+    <button class="coll-tab" onclick="scrollToSection('marbre',this)">◆ Marbre & Pierre</button>
+    <button class="coll-tab" onclick="scrollToSection('parquet',this)">◆ Parquet & Revêtements</button>
+    <button class="coll-tab" onclick="scrollToSection('luminaire',this)">◆ Luminaires</button>
+    <button class="coll-tab" onclick="scrollToSection('peinture',this)">◆ Peintures & Enduits</button>
+  </div>
+</div>
+
+<!-- ══ CARRELAGE ══ -->
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.</p>
+    </div>
+    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory',185000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Travertin Noce Veiné',210000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row"><span class="prod-price">210 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré',95000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite',155000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row"><span class="prod-price">155 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARBRE ══ -->
+<section class="coll-section" id="marbre" style="background:var(--gris-fonce)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 02</p>
+      <h2>Marbre &amp; <em>Pierre Naturelle</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Calacatta, Nero Marquina, Onyx, Quartzite — les pierres les plus précieuses du monde directement dans votre espace.</p>
+    </div>
+    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500&q=85" alt="Calacatta">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Calacatta Gold Veiné',420000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB001</p>
+        <h3 class="prod-name">Calacatta Gold Veiné</h3>
+        <p class="prod-matiere">80×160 cm · Poli brillant</p>
+        <div class="prod-price-row"><span class="prod-price">420 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=85" alt="Nero">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Nero Marquina Premium',395000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB002</p>
+        <h3 class="prod-name">Nero Marquina Premium</h3>
+        <p class="prod-matiere">60×120 cm · Espagne</p>
+        <div class="prod-price-row"><span class="prod-price">395 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=500&q=85" alt="Onyx">
+        <span class="prod-badge rare">Rare</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Onyx Miel Translucide',680000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB003</p>
+        <h3 class="prod-name">Onyx Miel Translucide</h3>
+        <p class="prod-matiere">30×60 cm · Rétroéclairé</p>
+        <div class="prod-price-row"><span class="prod-price">680 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=85" alt="Statuario">
+        <span class="prod-badge promo">−10%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Statuario Extra',510000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB006</p>
+        <h3 class="prod-name">Statuario Extra</h3>
+        <p class="prod-matiere">90×180 cm · Carrare</p>
+        <div class="prod-price-row"><span class="prod-price">510 000 F</span><span class="prod-price-old">567 000 F</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARQUET ══ -->
+<section class="coll-section" id="parquet" style="background:var(--charbon)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 03</p>
+      <h2>Parquet &amp; <em>Revêtements Sol</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Du parquet massif fumé au bambou densifié écologique, chaque essence raconte une histoire différente sous vos pieds.</p>
+    </div>
+    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+  <div class="prod-grid three">
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=85" alt="Chêne fumé">
+        <span class="prod-badge">Best-seller</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Chêne Massif Fumé Huilé',145000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ001</p>
+        <h3 class="prod-name">Chêne Massif Fumé Huilé</h3>
+        <p class="prod-matiere">190×15 mm · Huile naturelle</p>
+        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Noyer">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Noyer Américain Verni Satiné',198000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ002</p>
+        <h3 class="prod-name">Noyer Américain Satiné</h3>
+        <p class="prod-matiere">210×20 mm · Verni 5 couches</p>
+        <div class="prod-price-row"><span class="prod-price">198 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=500&q=85" alt="Bambou">
+        <span class="prod-badge new">Écologique</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Bambou Densifié Caramel',110000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ005</p>
+        <h3 class="prod-name">Bambou Densifié Caramel</h3>
+        <p class="prod-matiere">185×15 mm · Ultra-résistant</p>
+        <div class="prod-price-row"><span class="prod-price">110 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LUMINAIRES ══ -->
+<section class="coll-section" id="luminaire" style="background:var(--noir)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 04</p>
+      <h2>Luminaires &amp; <em>Éclairage Design</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">La lumière transforme un espace. Nos luminaires sont sélectionnés chez les meilleurs designers européens pour créer l'ambiance parfaite.</p>
+    </div>
+    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+  <div class="prod-grid three">
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=500&q=85" alt="Lustre cristal">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lustre Cristal Bohème Grand',950000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU001</p>
+        <h3 class="prod-name">Lustre Cristal Bohème</h3>
+        <p class="prod-matiere">Cristal K9 · Ø 90 cm · 12 bras</p>
+        <div class="prod-price-row"><span class="prod-price">950 000 F</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=85" alt="Murano">
+        <span class="prod-badge promo">−20%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Suspension Murano Or 24k',380000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU002</p>
+        <h3 class="prod-name">Suspension Murano Or 24k</h3>
+        <p class="prod-matiere">Verre soufflé · Ø 60 cm</p>
+        <div class="prod-price-row"><span class="prod-price">380 000 F</span><span class="prod-price-old">475 000 F</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=85" alt="Lampe table">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lampe Table Marbre & Or',245000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU004</p>
+        <h3 class="prod-name">Lampe Table Marbre &amp; Or</h3>
+        <p class="prod-matiere">Socle marbre · Pied laiton</p>
+        <div class="prod-price-row"><span class="prod-price">245 000 F</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PEINTURES ══ -->
+<section class="coll-section" id="peinture" style="background:var(--gris-fonce)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 05</p>
+      <h2>Peintures &amp; <em>Enduits Décoratifs</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Stuc vénitien, béton ciré, tadelakt, peintures métallisées… des finitions murales qui transcendent vos murs.</p>
+    </div>
+    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+  <div class="prod-grid three">
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=500&q=85" alt="Stuc">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Stuc Vénitien Madreperlato',125000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE001</p>
+        <h3 class="prod-name">Stuc Vénitien Madreperlato</h3>
+        <p class="prod-matiere">Enduit de chaux · 5L · 6–8 m²</p>
+        <div class="prod-price-row"><span class="prod-price">125 000 F</span><span class="prod-unit">/ seau</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&q=85" alt="Béton ciré">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Béton Ciré Anthracite Kit',78000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE002</p>
+        <h3 class="prod-name">Béton Ciré Anthracite Kit</h3>
+        <p class="prod-matiere">Kit complet pour 8 m² · 12 coloris</p>
+        <div class="prod-price-row"><span class="prod-price">78 000 F</span><span class="prod-unit">/ kit</span></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=85" alt="Peinture or">
+        <span class="prod-badge">Luxe</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Peinture Métallisée Or Bruni',68000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE003</p>
+        <h3 class="prod-name">Peinture Métallisée Or Bruni</h3>
+        <p class="prod-matiere">Acrylique · 1L · 8–10 m²</p>
+        <div class="prod-price-row"><span class="prod-price">68 000 F</span><span class="prod-unit">/ litre</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:48px;height:48px">
+          <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.25"/>
+          <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+            <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+            <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+            <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
+          <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
+        </div>
+      </div>
+      <p>Importateur exclusif de matériaux de finition haut de gamme depuis 2008. Cotonou, Bénin.</p>
+      <div class="footer-social">
+        <a class="social-btn">in</a><a class="social-btn">f</a>
+        <a class="social-btn">ig</a><a class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="luxe_materiaux.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="rejoindre.html">Nous Rejoindre</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#carrelage">Carrelage & Grand Format</a></li>
+        <li><a href="#marbre">Marbre & Pierre</a></li>
+        <li><a href="#parquet">Parquet & Revêtements</a></li>
+        <li><a href="#luminaire">Luminaires Design</a></li>
+        <li><a href="#peinture">Peintures & Enduits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Boulevard Saint-Michel, Cotonou</a></li>
+        <li><a href="#">📞 +229 97 XX XX XX</a></li>
+        <li><a href="#">✉ contact@els.benin</a></li>
+        <li><a href="#">🕐 Lun–Sam : 8h – 18h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. · els.benin</p>
+    <div class="footer-payments">
+      <span class="payment-chip">MTN Money</span>
+      <span class="payment-chip">Moov Money</span>
+      <span class="payment-chip">Visa</span>
+      <span class="payment-chip">Mastercard</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Curseur
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+
+// Tabs filtres
+function scrollToSection(id,btn){
+  document.querySelectorAll('.coll-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById(id);
+  if(el){const top=el.getBoundingClientRect().top+scrollY-130;window.scrollTo({top,behavior:'smooth'});}
+}
+// Surligner tab actif au scroll
+const sections=['carrelage','marbre','parquet','luminaire','peinture'];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(id=>{const s=document.getElementById(id);if(s&&s.getBoundingClientRect().top<200)cur=id;});
+  document.querySelectorAll('.coll-tab').forEach((btn,i)=>{btn.classList.toggle('active',sections[i]===cur);});
+});
+
+// Panier
+let cart=[];
+function toggleCart(){
+  const s=document.getElementById('cartSidebar'),o=document.getElementById('cartOverlay');
+  const open=s.style.transform==='translateX(0px)';
+  s.style.transform=open?'translateX(100%)':'translateX(0px)';
+  o.style.opacity=open?'0':'1';o.style.pointerEvents=open?'none':'all';
+}
+function addToCart(name,price){
+  const ex=cart.find(i=>i.name===name);
+  ex?ex.qty++:cart.push({name,price,qty:1});
+  updateCart();showToast(name);
+}
+function updateCart(){
+  const badge=document.getElementById('cartBadge');
+  const items=document.getElementById('cartItems');
+  const footer=document.getElementById('cartFooter');
+  const total=document.getElementById('cartTotal');
+  const qty=cart.reduce((s,i)=>s+i.qty,0);
+  badge.textContent=qty;
+  if(!cart.length){items.innerHTML='<p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:.1em">Votre panier est vide</p>';footer.style.display='none';return;}
+  footer.style.display='block';
+  items.innerHTML=cart.map((item,i)=>`<div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05)"><div style="flex:1"><p style="font-size:13px;color:var(--blanc-creme);margin-bottom:4px">${item.name}</p><p style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)">${item.price.toLocaleString('fr-FR')} F</p><div style="display:flex;align-items:center;gap:12px;margin-top:8px"><button onclick="changeQty(${i},-1)" style="width:24px;height:24px;background:none;border:1px solid rgba(201,169,122,.25);color:var(--gris-clair);cursor:pointer;font-size:14px;transition:.2s">−</button><span style="font-size:12px;color:var(--blanc-creme)">${item.qty}</span><button onclick="changeQty(${i},1)" style="width:24px;height:24px;background:none;border:1px solid rgba(201,169,122,.25);color:var(--gris-clair);cursor:pointer;font-size:14px;transition:.2s">+</button></div></div></div>`).join('');
+  total.textContent=cart.reduce((s,i)=>s+i.price*i.qty,0).toLocaleString('fr-FR')+' F';
+}
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart();}
+function showToast(name){const t=document.getElementById('toast');t.textContent=name+' ajouté au panier ✓';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function toggleWish(btn){const w=btn.classList.toggle('wished');btn.textContent=w?'♥':'♡';btn.style.color=w?'#e85d4a':'';}
+
+// Animations
+const obs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';}},{threshold:.1}));
+document.querySelectorAll('.prod-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(28px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el);});
+</script>
+</body>
+</html>

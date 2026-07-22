@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nous Rejoindre — ELS Bénin | Elegant Living Space</title>
+<link rel="stylesheet" href="els-shared.css"/>
+<style>
+  .job-card {
+    background: var(--marine-light); border: 1px solid rgba(201,169,122,.1);
+    padding: 40px; position: relative; cursor: pointer;
+    transition: border-color .3s, transform .4s var(--transition);
+    overflow: hidden;
+  }
+  .job-card::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:3px; background:var(--gold); transform:scaleY(0);
+    transform-origin:bottom; transition:transform .4s var(--transition);
+  }
+  .job-card:hover { border-color:rgba(201,169,122,.35); transform:translateX(6px); }
+  .job-card:hover::before { transform:scaleY(1); }
+  .job-tag {
+    display:inline-block; padding:4px 12px;
+    border:1px solid rgba(201,169,122,.3); color:var(--gold);
+    font-size:9px; letter-spacing:.25em; text-transform:uppercase; margin-bottom:16px;
+  }
+  .job-tag.cdi { border-color:rgba(100,200,120,.3); color:#64c878; }
+  .job-tag.stage { border-color:rgba(100,160,220,.3); color:#64a0dc; }
+  .job-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--blanc-creme); margin-bottom:10px; }
+  .job-meta { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:16px; }
+  .job-meta span { font-size:10px; letter-spacing:.15em; color:var(--gris-clair); text-transform:uppercase; }
+  .job-desc { font-size:12px; line-height:1.9; color:var(--gris-clair); margin-bottom:24px; }
+  .job-arrow {
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:10px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase;
+    text-decoration:none; transition:gap .3s;
+  }
+  .job-card:hover .job-arrow { gap:18px; }
+
+  .avantage-item {
+    display:flex; gap:20px; align-items:flex-start;
+    padding:32px 0; border-bottom:1px solid rgba(201,169,122,.08);
+  }
+  .avantage-item:last-child { border-bottom:none; }
+  .avantage-num {
+    font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300;
+    color:rgba(201,169,122,.25); line-height:1; flex-shrink:0; width:60px;
+  }
+  .avantage-content h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--blanc-creme); margin-bottom:8px; }
+  .avantage-content p { font-size:12px; line-height:1.9; color:var(--gris-clair); }
+
+  /* Modal postuler */
+  .modal-overlay {
+    position:fixed; inset:0; background:rgba(7,14,26,.9);
+    z-index:300; display:none; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background:var(--gris-fonce); border:1px solid rgba(201,169,122,.2);
+    max-width:600px; width:100%; max-height:90vh; overflow-y:auto;
+    padding:48px; position:relative;
+    animation:modalIn .4s var(--transition);
+  }
+  @keyframes modalIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .modal-close {
+    position:absolute; top:20px; right:20px;
+    width:36px; height:36px; background:none;
+    border:1px solid rgba(201,169,122,.2); cursor:pointer;
+    color:var(--gris-clair); font-size:16px; transition:all .3s;
+  }
+  .modal-close:hover { border-color:var(--gold); color:var(--gold); }
+
+  .upload-zone {
+    border:1px dashed rgba(201,169,122,.3); padding:40px;
+    text-align:center; cursor:pointer; transition:border-color .3s, background .3s;
+  }
+  .upload-zone:hover { border-color:var(--gold); background:rgba(201,169,122,.04); }
+  .upload-zone p { font-size:12px; color:var(--gris-clair); letter-spacing:.1em; }
+  .upload-zone strong { color:var(--gold); display:block; font-size:14px; margin-bottom:8px; font-family:'Cormorant Garamond',serif; font-weight:300; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="toast" id="toast"></div>
+
+<!-- Modal postuler -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">✕</button>
+    <p class="section-label" style="margin-bottom:8px">Candidature</p>
+    <h2 id="modalTitle" style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--blanc-creme);margin-bottom:32px">Postuler</h2>
+    <div class="form-grid" style="margin-bottom:20px">
+      <div class="form-group" style="margin-bottom:0"><label class="form-label">Prénom</label><input class="form-input" type="text" placeholder="Votre prénom"/></div>
+      <div class="form-group" style="margin-bottom:0"><label class="form-label">Nom</label><input class="form-input" type="text" placeholder="Votre nom"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="votre@email.com"/></div>
+    <div class="form-group"><label class="form-label">Téléphone</label><input class="form-input" type="tel" placeholder="+229 XX XX XX XX"/></div>
+    <div class="form-group">
+      <label class="form-label">Lettre de motivation</label>
+      <textarea class="form-textarea" placeholder="Expliquez-nous pourquoi vous souhaitez rejoindre ELS Bénin…" style="min-height:120px"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">CV (PDF)</label>
+      <div class="upload-zone" onclick="document.getElementById('cvInput').click()">
+        <strong>Glissez votre CV ici</strong>
+        <p>ou cliquez pour parcourir · PDF uniquement · Max 5 Mo</p>
+        <input type="file" id="cvInput" accept=".pdf" style="display:none" onchange="showFileName(this)"/>
+        <p id="fileName" style="color:var(--gold);margin-top:10px;font-size:11px"></p>
+      </div>
+    </div>
+    <button class="form-submit" onclick="submitApplication()">Envoyer ma candidature →</button>
+  </div>
+</div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="luxe_materiaux.html" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.3"/>
+      <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+        <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+        <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+        <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+        <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+        <path d="M40 40 L54 40" opacity="0.5"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-main">ELEGANT</span>
+      <span class="nav-logo-sub">LIVING SPACE</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="apropos.html">À Propos</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="luxe_materiaux.html#produits">Boutique</a></li>
+    <li><a href="rejoindre.html" class="active">Nous Rejoindre</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-divider"></div>
+  <div class="nav-actions">
+    <a href="contact.html" class="nav-cta">Devis gratuit</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="breadcrumb">
+    <a href="luxe_materiaux.html">Accueil</a><span>›</span><span>Nous Rejoindre</span>
+  </div>
+  <div class="page-hero-content">
+    <p class="page-hero-label">Carrières</p>
+    <h1 class="page-hero-title">Construisez votre<br>avenir avec <em>ELS</em></h1>
+    <p class="page-hero-sub">Rejoignez une équipe passionnée qui redéfinit chaque jour les standards du luxe dans l'habitat en Afrique de l'Ouest.</p>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Rejoindre l'équipe ELS</span><span>Postes ouverts</span><span>CDI & Stages</span>
+    <span>Cotonou, Bénin</span><span>Candidature spontanée</span><span>Grandir ensemble</span>
+    <span>Rejoindre l'équipe ELS</span><span>Postes ouverts</span><span>CDI & Stages</span>
+    <span>Cotonou, Bénin</span><span>Candidature spontanée</span><span>Grandir ensemble</span>
+  </div>
+</div>
+
+<!-- ─── POURQUOI ELS ─── -->
+<section class="section-block">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Pourquoi nous rejoindre</p>
+      <h2 class="section-title">Une entreprise où il fait<br>bon <em>grandir</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div style="max-width:800px;margin:0 auto">
+      <div class="avantage-item">
+        <div class="avantage-num">01</div>
+        <div class="avantage-content">
+          <h3>Un environnement d'excellence</h3>
+          <p>Travailler chez ELS, c'est évoluer dans un cadre stimulant entouré de matériaux parmi les plus beaux du monde. Nos équipes sont formées par les meilleurs spécialistes européens du secteur.</p>
+        </div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-num">02</div>
+        <div class="avantage-content">
+          <h3>Des perspectives d'évolution réelles</h3>
+          <p>Nous croyons au talent local. 80% de nos managers sont issus de la promotion interne. Chez ELS, votre progression dépend de votre engagement et de vos résultats.</p>
+        </div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-num">03</div>
+        <div class="avantage-content">
+          <h3>Formation continue et voyages professionnels</h3>
+          <p>Nous envoyons nos équipes aux plus grands salons mondiaux (Cersaie à Bologne, Batimat à Paris, Domotex à Hanovre). Élargissez vos horizons avec ELS.</p>
+        </div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-num">04</div>
+        <div class="avantage-content">
+          <h3>Rémunération attractive + avantages</h3>
+          <p>Salaire compétitif, primes sur objectifs, mutuelle santé, réductions exclusives sur nos collections, et un environnement de travail soigné dans notre showroom de 1 200 m².</p>
+        </div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-num">05</div>
+        <div class="avantage-content">
+          <h3>Impact régional fort</h3>
+          <p>Vous contribuerez à transformer les espaces de vie de toute l'Afrique de l'Ouest. Chaque projet ELS laisse une empreinte durable sur l'architecture et le design de la région.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHIFFRES ─── -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Collaborateurs</div></div>
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Postes ouverts</div></div>
+  <div class="stat-item"><div class="stat-num">80<span class="stat-suffix">%</span></div><div class="stat-label">Promotion interne</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Pays d'activité</div></div>
+</div>
+
+<!-- ─── OFFRES D'EMPLOI ─── -->
+<section class="section-block alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Offres d'emploi</p>
+      <h2 class="section-title">Postes <em>actuellement</em> ouverts</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <div class="job-card" onclick="openModal('Conseiller(ère) Commercial(e) — Showroom')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+          <div>
+            <span class="job-tag cdi">CDI</span>
+            <h3 class="job-title">Conseiller(ère) Commercial(e) — Showroom</h3>
+            <div class="job-meta">
+              <span>📍 Cotonou, Bénin</span>
+              <span>💼 Temps plein</span>
+              <span>📅 Dès que possible</span>
+              <span>🎓 Bac +2 minimum</span>
+            </div>
+            <p class="job-desc">Vous accueillez et conseillez notre clientèle premium (particuliers, architectes, promoteurs) dans notre showroom. Vous maîtrisez notre catalogue de 2 400 références et guidez chaque client vers la solution idéale pour son projet.</p>
+          </div>
+          <span class="job-arrow">Postuler →</span>
+        </div>
+      </div>
+
+      <div class="job-card" onclick="openModal('Chef de Projet Chantier')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+          <div>
+            <span class="job-tag cdi">CDI</span>
+            <h3 class="job-title">Chef de Projet Chantier</h3>
+            <div class="job-meta">
+              <span>📍 Cotonou & déplacements</span>
+              <span>💼 Temps plein</span>
+              <span>📅 Septembre 2025</span>
+              <span>🎓 Bac +3 Génie Civil</span>
+            </div>
+            <p class="job-desc">Vous coordonnez nos équipes de pose sur les chantiers résidentiels et hôteliers. Vous assurez le suivi qualité, le respect des délais et la satisfaction client de A à Z. Expérience en pose de carrelage et revêtements exigée.</p>
+          </div>
+          <span class="job-arrow">Postuler →</span>
+        </div>
+      </div>
+
+      <div class="job-card" onclick="openModal('Responsable Marketing & Communication Digital')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+          <div>
+            <span class="job-tag cdi">CDI</span>
+            <h3 class="job-title">Responsable Marketing & Communication Digital</h3>
+            <div class="job-meta">
+              <span>📍 Cotonou, Bénin</span>
+              <span>💼 Temps plein</span>
+              <span>📅 Dès que possible</span>
+              <span>🎓 Bac +4 Communication</span>
+            </div>
+            <p class="job-desc">Vous développez la présence digitale d'ELS Bénin sur les réseaux sociaux, pilotez notre stratégie de contenu et gérez nos campagnes publicitaires. Vous avez une sensibilité certaine pour le luxe, l'architecture et le design d'intérieur.</p>
+          </div>
+          <span class="job-arrow">Postuler →</span>
+        </div>
+      </div>
+
+      <div class="job-card" onclick="openModal('Stage — Assistant(e) Design d\'Intérieur')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+          <div>
+            <span class="job-tag stage">Stage</span>
+            <h3 class="job-title">Stage — Assistant(e) Design d'Intérieur</h3>
+            <div class="job-meta">
+              <span>📍 Cotonou, Bénin</span>
+              <span>💼 3 à 6 mois</span>
+              <span>📅 Octobre 2025</span>
+              <span>🎓 Étudiant(e) Design/Archi</span>
+            </div>
+            <p class="job-desc">En cours de formation en design d'intérieur ou architecture, vous assisterez notre équipe conseil dans la création de planches d'ambiance, la sélection de matériaux et l'accompagnement des clients dans leurs projets de décoration.</p>
+          </div>
+          <span class="job-arrow">Postuler →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CANDIDATURE SPONTANÉE ─── -->
+<section class="section-block dark">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <p class="section-label">Candidature spontanée</p>
+        <h2 class="section-title" style="text-align:left;margin-bottom:24px">Votre profil<br>nous <em>intéresse</em></h2>
+        <div class="section-divider" style="margin:0 0 28px"></div>
+        <p style="font-size:13px;line-height:2.1;color:var(--gris-clair);margin-bottom:32px">Vous ne trouvez pas le poste qui vous correspond mais vous souhaitez rejoindre l'aventure ELS ? Envoyez-nous votre candidature spontanée. Nous gardons tous les profils intéressants dans notre vivier et vous recontactons dès qu'une opportunité se présente.</p>
+        <p style="font-size:13px;line-height:2.1;color:var(--gris-clair);margin-bottom:36px">Nous recherchons en permanence des profils dans les domaines du <strong style="color:var(--gold-pale);font-weight:300">commerce, de l'architecture, de la logistique, de la communication et du design</strong>.</p>
+        <button class="btn-primary" onclick="openModal('Candidature Spontanée')">Envoyer ma candidature →</button>
+      </div>
+      <div style="background:var(--gris-fonce);border:1px solid rgba(201,169,122,.1);padding:48px">
+        <p class="section-label" style="text-align:left;margin-bottom:20px">Notre processus</p>
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0">01</div>
+            <div><p style="font-size:13px;color:var(--blanc-creme);margin-bottom:4px">Candidature en ligne</p><p style="font-size:11px;color:var(--gris-clair)">Envoyez votre CV et lettre de motivation via notre formulaire.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0">02</div>
+            <div><p style="font-size:13px;color:var(--blanc-creme);margin-bottom:4px">Entretien téléphonique</p><p style="font-size:11px;color:var(--gris-clair)">Un premier échange de 20 min avec notre RH sous 72h.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0">03</div>
+            <div><p style="font-size:13px;color:var(--blanc-creme);margin-bottom:4px">Entretien au showroom</p><p style="font-size:11px;color:var(--gris-clair)">Rencontrez notre équipe dans notre espace de 1 200 m².</p></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0">04</div>
+            <div><p style="font-size:13px;color:var(--blanc-creme);margin-bottom:4px">Réponse & intégration</p><p style="font-size:11px;color:var(--gris-clair)">Réponse garantie sous 7 jours. Onboarding personnalisé.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TÉMOIGNAGES ÉQUIPE ─── -->
+<section class="section-block">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Ils ont rejoint ELS</p>
+      <h2 class="section-title">La parole à<br><em>notre équipe</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid-3">
+      <div style="padding:36px;background:var(--marine-light);border:1px solid rgba(201,169,122,.1);position:relative">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:50px;color:rgba(201,169,122,.15);position:absolute;top:16px;left:24px;line-height:1">❝</div>
+        <p style="font-size:13px;line-height:2;color:var(--gris-clair);font-style:italic;margin-bottom:24px">"Rejoindre ELS a changé ma carrière. J'ai appris énormément sur les matériaux haut de gamme et j'ai eu la chance de visiter le Cersaie à Bologne dès ma première année."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--gris-moyen);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)">S</div>
+          <div><p style="font-size:12px;color:var(--blanc-creme)">Sylvie Agossou</p><p style="font-size:10px;color:var(--gris-clair)">Conseillère commerciale · 4 ans chez ELS</p></div>
+        </div>
+      </div>
+      <div style="padding:36px;background:var(--marine-light);border:1px solid rgba(201,169,122,.1);position:relative">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:50px;color:rgba(201,169,122,.15);position:absolute;top:16px;left:24px;line-height:1">❝</div>
+        <p style="font-size:13px;line-height:2;color:var(--gris-clair);font-style:italic;margin-bottom:24px">"Ce qui m'a séduit, c'est la qualité des produits et l'ambition de l'équipe. On travaille avec les mêmes matériaux que les plus grands hôtels 5 étoiles du monde."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--gris-moyen);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)">M</div>
+          <div><p style="font-size:12px;color:var(--blanc-creme)">Mathieu Dossou</p><p style="font-size:10px;color:var(--gris-clair)">Chef de projet · 6 ans chez ELS</p></div>
+        </div>
+      </div>
+      <div style="padding:36px;background:var(--marine-light);border:1px solid rgba(201,169,122,.1);position:relative">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:50px;color:rgba(201,169,122,.15);position:absolute;top:16px;left:24px;line-height:1">❝</div>
+        <p style="font-size:13px;line-height:2;color:var(--gris-clair);font-style:italic;margin-bottom:24px">"Mon stage s'est transformé en CDI. L'équipe est bienveillante et on vous donne très vite des responsabilités. C'est une vraie école du luxe."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--gris-moyen);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)">A</div>
+          <div><p style="font-size:12px;color:var(--blanc-creme)">Aminata Kéïta</p><p style="font-size:10px;color:var(--gris-clair)">Assistante design · 2 ans chez ELS</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:48px;height:48px">
+          <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.25"/>
+          <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+            <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+            <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+            <circle cx="40" cy="40" r="3.5"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
+          <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
+        </div>
+      </div>
+      <p>Rejoignez une équipe passionnée au service des plus beaux espaces d'Afrique de l'Ouest.</p>
+      <div class="footer-social">
+        <a class="social-btn">in</a><a class="social-btn">f</a>
+        <a class="social-btn">ig</a><a class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="luxe_materiaux.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="rejoindre.html">Nous Rejoindre</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Carrières</h4>
+      <ul>
+        <li><a href="#" onclick="openModal('Conseiller Commercial')">Conseiller Commercial</a></li>
+        <li><a href="#" onclick="openModal('Chef de Projet')">Chef de Projet</a></li>
+        <li><a href="#" onclick="openModal('Responsable Marketing')">Responsable Marketing</a></li>
+        <li><a href="#" onclick="openModal('Stage Design')">Stage Design</a></li>
+        <li><a href="#" onclick="openModal('Candidature Spontanée')">Candidature spontanée</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact RH</h4>
+      <ul>
+        <li><a href="#">📍 Boulevard Saint-Michel, Cotonou</a></li>
+        <li><a href="#">📞 +229 97 XX XX XX</a></li>
+        <li><a href="#">✉ rh@els.benin</a></li>
+        <li><a href="#">🕐 Lun–Ven : 8h – 17h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. · els.benin</p>
+    <div class="footer-payments">
+      <span class="payment-chip">MTN Money</span>
+      <span class="payment-chip">Moov Money</span>
+      <span class="payment-chip">Visa</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+
+function openModal(title){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){
+  if(e.target===document.getElementById('modalOverlay')){
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+function showFileName(input){
+  if(input.files[0]) document.getElementById('fileName').textContent='✓ '+input.files[0].name;
+}
+function submitApplication(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  const t=document.getElementById('toast');
+  t.textContent='Candidature envoyée avec succès ! Nous vous recontactons sous 72h.';
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+const obs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';}},{threshold:.1}));
+document.querySelectorAll('.job-card,.avantage-item,.stat-item').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(24px)';
+  el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el);
+});
+</script>
+</body>
+</html>

@@ -1,1 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calacatta Gold Veiné — ELS Bénin | Elegant Living Space</title>
+<link rel="stylesheet" href="els-shared.css"/>
+<style>
+
+/* ══════════════════════════════════
+   LAYOUT PRINCIPAL
+══════════════════════════════════ */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+}
+
+/* ══════════════════════════════════
+   GALERIE — colonne gauche
+══════════════════════════════════ */
+.gallery-col {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  background: var(--noir);
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery-main img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .8s var(--transition), filter .6s;
+  filter: brightness(.88) saturate(.85);
+}
+.gallery-main:hover img {
+  transform: scale(1.04);
+  filter: brightness(.95) saturate(1);
+}
+
+/* Badge floating sur galerie */
+.gallery-badge {
+  position: absolute; top: 28px; left: 28px;
+  background: var(--gold); color: var(--noir);
+  font-size: 9px; letter-spacing: .25em; text-transform: uppercase;
+  padding: 7px 14px; z-index: 2;
+}
+.gallery-badge.new { background: var(--blanc-creme); }
+.gallery-badge.rare { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+
+/* Zoom hint */
+.gallery-hint {
+  position: absolute; bottom: 100px; right: 24px;
+  font-size: 9px; letter-spacing: .2em; color: rgba(242,237,228,.4);
+  text-transform: uppercase; writing-mode: vertical-rl;
+  animation: hintFade 3s ease-in-out infinite;
+}
+@keyframes hintFade { 0%,100%{opacity:.4} 50%{opacity:.9} }
+
+/* Thumbnails */
+.gallery-thumbs {
+  display: flex; gap: 2px;
+  height: 100px; background: var(--noir);
+  padding: 2px;
+}
+.thumb {
+  flex: 1; overflow: hidden; cursor: pointer;
+  position: relative; opacity: .45;
+  transition: opacity .3s;
+  border: 2px solid transparent;
+}
+.thumb.active { opacity: 1; border-color: var(--gold); }
+.thumb:hover { opacity: .85; }
+.thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .4s var(--transition);
+}
+.thumb:hover img { transform: scale(1.08); }
+
+/* Numéro / navigation galerie */
+.gallery-nav {
+  position: absolute; bottom: 108px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 8px; z-index: 3;
+}
+.gallery-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(201,169,122,.3); cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+.gallery-dot.active { background: var(--gold); transform: scale(1.4); }
+
+/* ══════════════════════════════════
+   INFO — colonne droite
+══════════════════════════════════ */
+.info-col {
+  padding: 60px 64px;
+  background: var(--charbon);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Fil d'ariane */
+.pd-breadcrumb {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 32px;
+  font-size: 9px; letter-spacing: .2em; color: var(--gris-clair); text-transform: uppercase;
+}
+.pd-breadcrumb a { color: var(--gris-clair); text-decoration: none; transition: color .3s; }
+.pd-breadcrumb a:hover { color: var(--gold); }
+.pd-breadcrumb span.sep { color: rgba(201,169,122,.3); }
+.pd-breadcrumb span.cur { color: var(--gold); }
+
+/* En-tête produit */
+.pd-cat {
+  font-size: 9px; letter-spacing: .4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.pd-cat::before { content:''; width:28px; height:1px; background:var(--gold); }
+
+.pd-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 3.5vw, 52px);
+  font-weight: 300; line-height: 1.05;
+  color: var(--blanc-creme); margin-bottom: 8px;
+}
+.pd-name em { font-style: italic; color: var(--gold-light); }
+
+.pd-ref {
+  font-size: 10px; letter-spacing: .2em; color: var(--gris-clair);
+  margin-bottom: 28px; text-transform: uppercase;
+}
+
+/* Note étoiles */
+.pd-rating {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+}
+.stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; }
+.rating-count { font-size: 11px; color: var(--gris-clair); letter-spacing: .1em; }
+
+/* Prix */
+.pd-price-block {
+  background: var(--gris-fonce);
+  border: 1px solid rgba(201,169,122,.12);
+  padding: 24px 28px; margin-bottom: 32px;
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+}
+.pd-price-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 400; color: var(--gold); line-height: 1;
+}
+.pd-price-old {
+  font-size: 20px; color: var(--gris-clair); text-decoration: line-through;
+}
+.pd-price-unit { font-size: 11px; color: var(--gris-clair); letter-spacing: .1em; }
+.pd-price-note {
+  font-size: 10px; color: var(--gris-clair); margin-top: 8px; width: 100%;
+  letter-spacing: .05em; line-height: 1.6;
+}
+
+/* Description */
+.pd-desc {
+  font-size: 13px; line-height: 2.1; color: var(--gris-clair);
+  margin-bottom: 32px; padding-bottom: 32px;
+  border-bottom: 1px solid rgba(201,169,122,.1);
+}
+.pd-desc strong { color: var(--gold-pale); font-weight: 300; }
+
+/* Sélecteur finition */
+.pd-option-label {
+  font-size: 9px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px; display: flex; justify-content: space-between;
+}
+.pd-option-label span { color: var(--gris-clair); text-transform: none; letter-spacing: .05em; font-size: 10px; }
+
+.finish-swatches {
+  display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap;
+}
+.swatch {
+  width: 48px; height: 48px; cursor: pointer;
+  border: 2px solid transparent; position: relative;
+  transition: border-color .3s, transform .3s;
+  overflow: hidden;
+}
+.swatch.active { border-color: var(--gold); transform: scale(1.1); }
+.swatch:hover { border-color: rgba(201,169,122,.5); }
+.swatch img { width: 100%; height: 100%; object-fit: cover; }
+.swatch-name {
+  position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%);
+  font-size: 8px; color: var(--gold); white-space: nowrap; letter-spacing: .1em;
+  opacity: 0; transition: opacity .2s;
+}
+.swatch:hover .swatch-name { opacity: 1; }
+
+/* Format selector */
+.format-btns {
+  display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+}
+.format-btn {
+  padding: 10px 18px; background: none;
+  border: 1px solid rgba(201,169,122,.2); cursor: pointer;
+  font-size: 10px; letter-spacing: .15em; color: var(--gris-clair);
+  font-family: 'Josefin Sans', sans-serif; font-weight: 300;
+  transition: all .3s;
+}
+.format-btn.active,
+.format-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,.06); }
+
+/* Quantité */
+.qty-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 28px;
+}
+.qty-label { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); width: 80px; }
+.qty-control {
+  display: flex; align-items: center; gap: 0;
+  border: 1px solid rgba(201,169,122,.2);
+}
+.qty-btn-pd {
+  width: 40px; height: 40px; background: none; border: none; cursor: pointer;
+  color: var(--gris-clair); font-size: 18px; line-height: 1;
+  transition: background .2s, color .2s;
+}
+.qty-btn-pd:hover { background: rgba(201,169,122,.08); color: var(--gold); }
+.qty-val {
+  width: 56px; height: 40px; background: rgba(201,169,122,.04);
+  border-left: 1px solid rgba(201,169,122,.15); border-right: 1px solid rgba(201,169,122,.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--blanc-creme); letter-spacing: .1em;
+}
+.qty-surface {
+  font-size: 11px; color: var(--gris-clair); letter-spacing: .05em;
+}
+.qty-surface strong { color: var(--gold-light); }
+
+/* Boutons CTA */
+.cta-stack {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px;
+}
+
+.btn-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 18px 32px;
+  background: #25D366;
+  color: #ffffff; font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: background .3s, transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.btn-whatsapp::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,.08);
+  transform: translateX(-100%);
+  transition: transform .5s var(--transition);
+}
+.btn-whatsapp:hover::before { transform: translateX(0); }
+.btn-whatsapp:hover {
+  background: #1fbd5c;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(37,211,102,.25);
+}
+.btn-whatsapp svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+.btn-whatsapp-sub { font-size: 9px; letter-spacing: .1em; opacity: .8; display: block; margin-top: 2px; text-transform: none; }
+
+.btn-add-cart-pd {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 32px;
+  background: var(--gold); color: var(--noir);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
+  border: none; cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+.btn-add-cart-pd:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-add-cart-pd svg { width: 18px; height: 18px; stroke: var(--noir); fill: none; stroke-width: 1.5; }
+
+.btn-devis-pd {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 32px;
+  background: none; color: var(--gold-pale);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
+  border: 1px solid rgba(201,169,122,.3); cursor: pointer;
+  text-decoration: none;
+  transition: border-color .3s, color .3s, background .3s;
+}
+.btn-devis-pd:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,.05); }
+
+/* Services rapides */
+.service-pills {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+  padding-top: 24px; border-top: 1px solid rgba(201,169,122,.1);
+}
+.pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 1px solid rgba(201,169,122,.12);
+  font-size: 9px; letter-spacing: .15em; color: var(--gris-clair); text-transform: uppercase;
+  transition: border-color .3s, color .3s;
+}
+.pill:hover { border-color: rgba(201,169,122,.3); color: var(--gold-pale); }
+.pill svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+/* Accordéon specs */
+.accordion { margin-bottom: 0; }
+.acc-item {
+  border-top: 1px solid rgba(201,169,122,.1);
+}
+.acc-item:last-child { border-bottom: 1px solid rgba(201,169,122,.1); }
+.acc-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0; cursor: pointer;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--blanc-creme);
+  transition: color .3s;
+  user-select: none;
+}
+.acc-header:hover { color: var(--gold); }
+.acc-icon {
+  width: 24px; height: 24px; border: 1px solid rgba(201,169,122,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--gold); flex-shrink: 0;
+  transition: transform .4s var(--transition), border-color .3s;
+}
+.acc-item.open .acc-icon { transform: rotate(45deg); border-color: var(--gold); }
+.acc-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height .5s var(--transition), padding .3s;
+}
+.acc-item.open .acc-body { max-height: 600px; padding-bottom: 24px; }
+.acc-body-inner { font-size: 12px; line-height: 2; color: var(--gris-clair); }
+
+/* Tableau spécifications */
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid rgba(201,169,122,.07); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td { padding: 10px 0; font-size: 12px; vertical-align: top; }
+.spec-table td:first-child {
+  color: var(--gris-clair); width: 45%; letter-spacing: .08em;
+}
+.spec-table td:last-child { color: var(--blanc-creme); }
+
+/* Certification tags */
+.cert-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.cert-tag {
+  padding: 5px 12px; border: 1px solid rgba(201,169,122,.2);
+  font-size: 9px; letter-spacing: .15em; color: var(--gold); text-transform: uppercase;
+}
+
+/* ══════════════════════════════════
+   SECTION SIMILAIRES
+══════════════════════════════════ */
+.similar-section {
+  background: var(--noir);
+  padding: 100px 0;
+}
+.similar-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; max-width: 1400px; margin: 0 auto;
+}
+.sim-card {
+  position: relative; overflow: hidden; cursor: pointer;
+  background: var(--charbon);
+  transition: transform .4s var(--transition);
+}
+.sim-card:hover { transform: translateY(-6px); z-index: 2; }
+.sim-card-img { aspect-ratio: 3/4; overflow: hidden; position: relative; }
+.sim-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.75); transition: transform .6s var(--transition), filter .4s;
+}
+.sim-card:hover .sim-card-img img { transform: scale(1.06); filter: saturate(1); }
+.sim-card-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--gold); color: var(--noir);
+  font-size: 8px; letter-spacing: .2em; text-transform: uppercase; padding: 4px 10px;
+}
+.sim-card-info { padding: 20px; }
+.sim-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300; color: var(--blanc-creme);
+  margin-bottom: 6px; line-height: 1.2;
+}
+.sim-card-sub { font-size: 10px; color: var(--gris-clair); margin-bottom: 12px; }
+.sim-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--gold);
+}
+.sim-card-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 20px; opacity: 0; transition: opacity .3s;
+  background: linear-gradient(to top, rgba(7,14,26,.85) 0%, transparent 60%);
+}
+.sim-card:hover .sim-card-overlay { opacity: 1; }
+.sim-overlay-btn {
+  width: 100%; padding: 12px; background: var(--gold);
+  color: var(--noir); border: none; cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif; font-size: 9px;
+  letter-spacing: .25em; text-transform: uppercase; font-weight: 300;
+  transition: background .2s;
+}
+.sim-overlay-btn:hover { background: var(--gold-light); }
+
+/* ══════════════════════════════════
+   FLOATING WHATSAPP BUTTON
+══════════════════════════════════ */
+.wa-float {
+  position: fixed; bottom: 36px; right: 36px; z-index: 500;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 8px 32px rgba(37,211,102,.35);
+  transition: transform .3s var(--transition), box-shadow .3s;
+  animation: waBounce 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 48px rgba(37,211,102,.5);
+}
+@keyframes waBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+.wa-float-tooltip {
+  position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+  background: rgba(7,14,26,.95); border: 1px solid rgba(37,211,102,.3);
+  color: #f2ede4; font-size: 11px; letter-spacing: .1em;
+  padding: 10px 16px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.wa-float:hover .wa-float-tooltip { opacity: 1; }
+.wa-float-tooltip::after {
+  content: ''; position: absolute; right: -8px; top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: rgba(37,211,102,.3);
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 1100px) {
+  .product-layout { grid-template-columns: 1fr; }
+  .gallery-col { position: relative; height: 70vw; max-height: 600px; top: 0; }
+  .info-col { padding: 48px 32px; }
+  .similar-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .info-col { padding: 32px 20px; }
+  .gallery-thumbs { height: 72px; }
+  .similar-grid { grid-template-columns: 1fr; }
+  .format-btns { gap: 6px; }
+  .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="toast" id="toast">Article ajouté au panier ✓</div>
+
+<!-- ── FLOATING WHATSAPP ── -->
+<a class="wa-float"
+   href="https://wa.me/22997000000?text=Bonjour%20ELS%20B%C3%A9nin%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20Marbre%20Calacatta%20Gold%20(REF-MB001)%20et%20j%27aimerais%20obtenir%20plus%20d%27informations."
+   target="_blank" rel="noopener" title="Nous contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <div class="wa-float-tooltip">Demander sur WhatsApp</div>
+</a>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="luxe_materiaux.html" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.3"/>
+      <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+        <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+        <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+        <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+        <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+        <path d="M40 40 L54 40" opacity="0.5"/>
+        <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
+        <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-main">ELEGANT</span>
+      <span class="nav-logo-sub">LIVING SPACE</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="apropos.html">À Propos</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="luxe_materiaux.html#produits">Boutique</a></li>
+    <li><a href="rejoindre.html">Nous Rejoindre</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-divider"></div>
+  <div class="nav-actions">
+    <a href="contact.html" class="nav-cta">Devis gratuit</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     LAYOUT PRINCIPAL
+══════════════════════════════════ -->
+<div class="product-layout">
+
+  <!-- ── GALERIE ── -->
+  <div class="gallery-col">
+    <div class="gallery-main" id="galleryMain" onclick="toggleZoom()">
+      <span class="gallery-badge">Exclusif</span>
+      <img id="mainImg"
+           src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=90"
+           alt="Marbre Calacatta Gold Veiné"/>
+      <div class="gallery-hint">Zoom</div>
+
+      <!-- Dots navigation -->
+      <div class="gallery-nav" id="galleryNav">
+        <div class="gallery-dot active" onclick="changeImg(0,event)"></div>
+        <div class="gallery-dot" onclick="changeImg(1,event)"></div>
+        <div class="gallery-dot" onclick="changeImg(2,event)"></div>
+        <div class="gallery-dot" onclick="changeImg(3,event)"></div>
+      </div>
+    </div>
+
+    <!-- Miniatures -->
+    <div class="gallery-thumbs">
+      <div class="thumb active" onclick="changeImg(0)">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=200&q=80" alt="Vue 1"/>
+      </div>
+      <div class="thumb" onclick="changeImg(1)">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=200&q=80" alt="Vue 2"/>
+      </div>
+      <div class="thumb" onclick="changeImg(2)">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&q=80" alt="Vue ambiance"/>
+      </div>
+      <div class="thumb" onclick="changeImg(3)">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=200&q=80" alt="Vue détail"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INFO ── -->
+  <div class="info-col">
+
+    <!-- Fil d'ariane -->
+    <div class="pd-breadcrumb">
+      <a href="luxe_materiaux.html">Accueil</a>
+      <span class="sep">›</span>
+      <a href="collections.html">Collections</a>
+      <span class="sep">›</span>
+      <a href="collections.html#marbre">Marbre & Pierre</a>
+      <span class="sep">›</span>
+      <span class="cur">Calacatta Gold</span>
+    </div>
+
+    <!-- Catégorie & nom -->
+    <p class="pd-cat">Marbre & Pierre Naturelle</p>
+    <h1 class="pd-name">Calacatta <em>Gold</em><br>Veiné</h1>
+    <p class="pd-ref">Réf. REF-MB001 · Importé d'Italie · En stock</p>
+
+    <!-- Note -->
+    <div class="pd-rating">
+      <span class="stars">★★★★★</span>
+      <span class="rating-count">4.9 / 5 · 38 avis clients</span>
+    </div>
+
+    <!-- Prix -->
+    <div class="pd-price-block">
+      <span class="pd-price-main" id="currentPrice">420 000</span>
+      <span class="pd-price-unit">FCFA / m²</span>
+      <p class="pd-price-note">
+        Prix HT · Livraison calculée selon quantité et destination ·
+        <strong style="color:var(--gold)">Devis gratuit disponible</strong> pour les commandes > 20 m²
+      </p>
+    </div>
+
+    <!-- Description -->
+    <p class="pd-desc">
+      Le <strong>Calacatta Gold Veiné</strong> est l'un des marbres les plus prisés au monde. Extrait des carrières de <strong>Carrare, en Toscane italienne</strong>, il se distingue par son fond blanc pur traversé de veines dorées et grises d'une finesse exceptionnelle.<br><br>
+      Chaque dalle est unique — une œuvre de la nature façonnée sur des millions d'années. Sa surface polie miroir reflète la lumière avec une intensité incomparable, transformant chaque espace en un lieu de prestige absolu. Idéal pour les sols, les murs, les plans de travail et les habillages de cheminée.
+    </p>
+
+    <!-- Finitions -->
+    <div style="margin-bottom:28px">
+      <div class="pd-option-label">
+        Finition de surface
+        <span id="activeFinish">Poli brillant</span>
+      </div>
+      <div class="finish-swatches">
+        <div class="swatch active" onclick="selectFinish(this,'Poli brillant',420000)" title="Poli brillant">
+          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=100&q=80" alt="Poli"/>
+          <span class="swatch-name">Poli</span>
+        </div>
+        <div class="swatch" onclick="selectFinish(this,'Adouci satiné',395000)" title="Adouci satiné">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=100&q=80" alt="Adouci"/>
+          <span class="swatch-name">Adouci</span>
+        </div>
+        <div class="swatch" onclick="selectFinish(this,'Brossé antique',380000)" title="Brossé antique">
+          <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=100&q=80" alt="Brossé"/>
+          <span class="swatch-name">Brossé</span>
+        </div>
+        <div class="swatch" onclick="selectFinish(this,'Cuir naturel',410000)" title="Cuir naturel">
+          <img src="https://images.unsplash.com/photo-1609767668595-9ccd5f8f0c5e?w=100&q=80" alt="Cuir"/>
+          <span class="swatch-name">Cuir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Format -->
+    <div style="margin-bottom:28px">
+      <div class="pd-option-label">Format disponible</div>
+      <div class="format-btns">
+        <button class="format-btn active" onclick="selectFormat(this)">30 × 60 cm</button>
+        <button class="format-btn" onclick="selectFormat(this)">60 × 60 cm</button>
+        <button class="format-btn" onclick="selectFormat(this)">60 × 120 cm</button>
+        <button class="format-btn" onclick="selectFormat(this)">80 × 160 cm</button>
+        <button class="format-btn" onclick="selectFormat(this)">Sur mesure</button>
+      </div>
+    </div>
+
+    <!-- Quantité -->
+    <div class="qty-row">
+      <span class="qty-label">Quantité</span>
+      <div class="qty-control">
+        <button class="qty-btn-pd" onclick="changeQtyPd(-1)">−</button>
+        <div class="qty-val" id="qtyVal">1</div>
+        <button class="qty-btn-pd" onclick="changeQtyPd(1)">+</button>
+      </div>
+      <span class="qty-surface">= <strong id="qtySurface">1 m²</strong></span>
+    </div>
+
+    <!-- CTA STACK -->
+    <div class="cta-stack">
+
+      <!-- BOUTON WHATSAPP PRINCIPAL -->
+      <a class="btn-whatsapp"
+         id="btnWhatsApp"
+         href="https://wa.me/22997000000?text=Bonjour%20ELS%20B%C3%A9nin%20%F0%9F%91%8B%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20*Marbre%20Calacatta%20Gold%20(REF-MB001)*%20en%20finition%20Poli%20brillant%20pour%201%20m%C2%B2.%20Pourriez-vous%20me%20donner%20plus%20d%27informations%20et%20un%20devis%20?%20Merci%20!"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span>
+          Commander via WhatsApp
+          <span class="btn-whatsapp-sub">Réponse garantie sous 1h · Lun–Sam 8h–18h</span>
+        </span>
+      </a>
+
+      <button class="btn-add-cart-pd" onclick="addToCartPd()">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Ajouter au panier
+      </button>
+
+      <a href="contact.html" class="btn-devis-pd">
+        Demander un devis personnalisé
+      </a>
+    </div>
+
+    <!-- Services pills -->
+    <div class="service-pills">
+      <div class="pill">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Livraison Cotonou
+      </div>
+      <div class="pill">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        Showroom 1 200 m²
+      </div>
+      <div class="pill">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Produit certifié
+      </div>
+      <div class="pill">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Pose disponible
+      </div>
+    </div>
+
+    <!-- Accordéon specs -->
+    <div class="accordion">
+
+      <div class="acc-item open">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          Caractéristiques techniques
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <table class="spec-table">
+              <tr><td>Matière</td><td>Marbre naturel de Carrare (Toscane, Italie)</td></tr>
+              <tr><td>Formats disponibles</td><td>30×60 / 60×60 / 60×120 / 80×160 cm · Sur mesure</td></tr>
+              <tr><td>Épaisseur</td><td>10 mm (standard) · 20 mm (sur commande)</td></tr>
+              <tr><td>Finitions</td><td>Poli brillant · Adouci satiné · Brossé antique · Cuir</td></tr>
+              <tr><td>Résistance au glissement</td><td>R9 (poli) · R11 (brossé) selon EN 13036</td></tr>
+              <tr><td>Résistance à l'usure</td><td>Classe 4 — Usage intensif</td></tr>
+              <tr><td>Usage recommandé</td><td>Sol, Mur, Plan de travail, Habillage, Escalier</td></tr>
+              <tr><td>Absorption eau</td><td>&lt; 0,1% (EN 99)</td></tr>
+              <tr><td>Coloration</td><td>Fond blanc · Veines or & gris</td></tr>
+              <tr><td>Conditionnement</td><td>Palettes de 20 m² · Commande minimum 5 m²</td></tr>
+              <tr><td>Délai de livraison</td><td>En stock → 3–5 jours · Sur commande → 3–4 semaines</td></tr>
+            </table>
+            <div class="cert-tags" style="margin-top:20px">
+              <span class="cert-tag">ISO 9001</span>
+              <span class="cert-tag">CE Marquage</span>
+              <span class="cert-tag">Origine Italie</span>
+              <span class="cert-tag">NF EN 12058</span>
+              <span class="cert-tag">Classe A</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          Conseils de pose & entretien
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p style="margin-bottom:16px"><strong style="color:var(--gold-pale)">Pose :</strong> Le marbre Calacatta doit être posé sur un support parfaitement plan et sec. Utiliser un mortier-colle flexible C2TE adapté aux pierres naturelles. Prévoir des joints de 2–3 mm minimum. Protéger la surface avec un saturateur hydrofuge avant la pose.</p>
+            <p style="margin-bottom:16px"><strong style="color:var(--gold-pale)">Entretien quotidien :</strong> Nettoyer avec un chiffon microfibre légèrement humide et un produit pH neutre. Éviter tout produit acide (vinaigre, jus de citron, produits ménagers courants) qui peuvent ternir le poli.</p>
+            <p><strong style="color:var(--gold-pale)">Entretien annuel :</strong> Appliquer un cristallisateur de marbre pour raviver l'éclat poli et renforcer la protection de surface. Faire appel à un professionnel pour le repolissage tous les 3–5 ans selon le niveau d'usage.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          Téléchargements & Documents
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+              <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid rgba(201,169,122,.15);text-decoration:none;transition:border-color .3s" onmouseover="this.style.borderColor='rgba(201,169,122,.4)'" onmouseout="this.style.borderColor='rgba(201,169,122,.15)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" stroke="#c9a97a" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                <div><p style="font-size:12px;color:var(--blanc-creme)">Fiche technique produit</p><p style="font-size:10px;color:var(--gris-clair)">PDF · 2,4 Mo</p></div>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid rgba(201,169,122,.15);text-decoration:none;transition:border-color .3s" onmouseover="this.style.borderColor='rgba(201,169,122,.4)'" onmouseout="this.style.borderColor='rgba(201,169,122,.15)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" stroke="#c9a97a" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                <div><p style="font-size:12px;color:var(--blanc-creme)">Certificat d'origine Italie</p><p style="font-size:10px;color:var(--gris-clair)">PDF · 880 Ko</p></div>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid rgba(201,169,122,.15);text-decoration:none;transition:border-color .3s" onmouseover="this.style.borderColor='rgba(201,169,122,.4)'" onmouseout="this.style.borderColor='rgba(201,169,122,.15)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" stroke="#c9a97a" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                <div><p style="font-size:12px;color:var(--blanc-creme)">Guide de pose & entretien</p><p style="font-size:10px;color:var(--gris-clair)">PDF · 1,1 Mo</p></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          Avis clients (38)
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div style="padding:20px;background:var(--marine-light);border-left:3px solid var(--gold)">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                  <span style="font-size:12px;color:var(--blanc-creme)">Kofi A. — Hôtel Horizon, Accra</span>
+                  <span style="color:var(--gold);font-size:12px">★★★★★</span>
+                </div>
+                <p style="font-size:12px;color:var(--gris-clair);font-style:italic">"Qualité extraordinaire. Le marbre a transformé le lobby de notre hôtel. Les veines sont magnifiques et chaque dalle est parfaitement calibrée. Je recommande ELS sans hésiter."</p>
+                <p style="font-size:9px;color:rgba(122,144,170,.6);margin-top:8px;letter-spacing:.1em">JANVIER 2025 · 180 M² COMMANDÉS</p>
+              </div>
+              <div style="padding:20px;background:var(--marine-light);border-left:3px solid var(--gold)">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                  <span style="font-size:12px;color:var(--blanc-creme)">Adetokunbo M. — Architecte, Lagos</span>
+                  <span style="color:var(--gold);font-size:12px">★★★★★</span>
+                </div>
+                <p style="font-size:12px;color:var(--gris-clair);font-style:italic">"J'ai utilisé le Calacatta Gold pour une villa privée à Lagos. Le résultat est époustouflant. La livraison était rapide et l'emballage parfait. Aucune casse."</p>
+                <p style="font-size:9px;color:rgba(122,144,170,.6);margin-top:8px;letter-spacing:.1em">NOVEMBRE 2024 · 95 M² COMMANDÉS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin accordion -->
+
+  </div><!-- fin info-col -->
+</div><!-- fin product-layout -->
+
+<!-- ══ PRODUITS SIMILAIRES ══ -->
+<section class="similar-section">
+  <div style="max-width:1400px;margin:0 auto;padding:0 60px 50px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
+      <div>
+        <p class="section-label">Vous aimerez aussi</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,46px);font-weight:300;color:var(--blanc-creme)">Produits <em style="font-style:italic;color:var(--gold-light)">similaires</em></h2>
+      </div>
+      <a href="collections.html#marbre" style="font-size:10px;letter-spacing:.25em;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,169,122,.3);padding-bottom:3px;text-transform:uppercase">Voir toute la collection →</a>
+    </div>
+  </div>
+  <div class="similar-grid">
+
+    <div class="sim-card" onclick="location.href='produit-detail.html'">
+      <div class="sim-card-img">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=85" alt="Nero Marquina"/>
+        <div class="sim-card-overlay">
+          <button class="sim-overlay-btn">Voir le produit →</button>
+        </div>
+      </div>
+      <div class="sim-card-info">
+        <h3 class="sim-card-name">Nero Marquina Premium</h3>
+        <p class="sim-card-sub">Marbre noir · 60×120 cm · Espagne</p>
+        <span class="sim-card-price">395 000 F <span style="font-size:12px;color:var(--gris-clair)">/m²</span></span>
+      </div>
+    </div>
+
+    <div class="sim-card" onclick="location.href='produit-detail.html'">
+      <div class="sim-card-img">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=500&q=85" alt="Onyx Miel"/>
+        <span class="sim-card-badge rare" style="background:transparent;border:1px solid var(--gold);color:var(--gold)">Rare</span>
+        <div class="sim-card-overlay">
+          <button class="sim-overlay-btn">Voir le produit →</button>
+        </div>
+      </div>
+      <div class="sim-card-info">
+        <h3 class="sim-card-name">Onyx Miel Translucide</h3>
+        <p class="sim-card-sub">Onyx naturel · 30×60 cm · Iran</p>
+        <span class="sim-card-price">680 000 F <span style="font-size:12px;color:var(--gris-clair)">/m²</span></span>
+      </div>
+    </div>
+
+    <div class="sim-card" onclick="location.href='produit-detail.html'">
+      <div class="sim-card-img">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&q=85" alt="Quartzite"/>
+        <span class="sim-card-badge" style="background:var(--blanc-creme);color:var(--noir)">Nouveau</span>
+        <div class="sim-card-overlay">
+          <button class="sim-overlay-btn">Voir le produit →</button>
+        </div>
+      </div>
+      <div class="sim-card-info">
+        <h3 class="sim-card-name">Quartzite Taj Mahal</h3>
+        <p class="sim-card-sub">Quartzite brésilien · 60×120 cm · Satiné</p>
+        <span class="sim-card-price">360 000 F <span style="font-size:12px;color:var(--gris-clair)">/m²</span></span>
+      </div>
+    </div>
+
+    <div class="sim-card" onclick="location.href='produit-detail.html'">
+      <div class="sim-card-img">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=85" alt="Statuario"/>
+        <span class="sim-card-badge promo" style="background:#7a2020;color:var(--blanc-creme)">−10%</span>
+        <div class="sim-card-overlay">
+          <button class="sim-overlay-btn">Voir le produit →</button>
+        </div>
+      </div>
+      <div class="sim-card-info">
+        <h3 class="sim-card-name">Statuario Extra</h3>
+        <p class="sim-card-sub">Marbre blanc Carrare · 90×180 cm</p>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span class="sim-card-price">510 000 F</span>
+          <span style="font-size:13px;color:var(--gris-clair);text-decoration:line-through">567 000 F</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:48px;height:48px">
+          <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.25"/>
+          <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+            <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+            <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+            <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
+          <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
+        </div>
+      </div>
+      <p>Matériaux de finition haut de gamme depuis 2008. Showroom à Cotonou, Bénin.</p>
+      <div class="footer-social">
+        <a class="social-btn">in</a><a class="social-btn">f</a>
+        <a class="social-btn">ig</a><a class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="luxe_materiaux.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="rejoindre.html">Nous Rejoindre</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="collections.html#carrelage">Carrelage & Grand Format</a></li>
+        <li><a href="collections.html#marbre">Marbre & Pierre</a></li>
+        <li><a href="collections.html#parquet">Parquet & Revêtements</a></li>
+        <li><a href="collections.html#luminaire">Luminaires Design</a></li>
+        <li><a href="collections.html#peinture">Peintures & Enduits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Bld Saint-Michel, Cotonou</a></li>
+        <li><a href="#">📞 +229 97 XX XX XX</a></li>
+        <li><a href="#">✉ contact@els.benin</a></li>
+        <li><a href="#">💬 WhatsApp Business</a></li>
+        <li><a href="#">🕐 Lun–Sam : 8h – 18h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. · els.benin</p>
+    <div class="footer-payments">
+      <span class="payment-chip">MTN Money</span>
+      <span class="payment-chip">Moov Money</span>
+      <span class="payment-chip">Visa</span>
+      <span class="payment-chip">Mastercard</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+/* ── Curseur ── */
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+
+/* ── Galerie ── */
+const images=[
+  'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=90',
+  'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=90',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=90',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&q=90',
+];
+let currentImg=0;
+
+function changeImg(idx,e){
+  if(e) e.stopPropagation();
+  currentImg=idx;
+  document.getElementById('mainImg').src=images[idx];
+  document.querySelectorAll('.thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+
+let zoomed=false;
+function toggleZoom(){
+  zoomed=!zoomed;
+  const img=document.getElementById('mainImg');
+  img.style.transform=zoomed?'scale(1.6)':'scale(1)';
+  img.style.cursor=zoomed?'zoom-out':'zoom-in';
+  document.getElementById('galleryMain').style.cursor=zoomed?'zoom-out':'zoom-in';
+}
+
+/* ── Finitions ── */
+let activePrice=420000;
+function selectFinish(el,name,price){
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('activeFinish').textContent=name;
+  activePrice=price;
+  updateDisplayPrice();
+  updateWALink();
+}
+
+/* ── Formats ── */
+function selectFormat(el){
+  document.querySelectorAll('.format-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  updateWALink();
+}
+
+/* ── Quantité ── */
+let qtyPd=1;
+function changeQtyPd(delta){
+  qtyPd=Math.max(1,Math.min(500,qtyPd+delta));
+  document.getElementById('qtyVal').textContent=qtyPd;
+  document.getElementById('qtySurface').textContent=qtyPd+' m²';
+  updateDisplayPrice();
+  updateWALink();
+}
+
+function updateDisplayPrice(){
+  const total=activePrice*qtyPd;
+  document.getElementById('currentPrice').textContent=total.toLocaleString('fr-FR');
+}
+
+/* ── Lien WhatsApp dynamique ── */
+function updateWALink(){
+  const finish=document.getElementById('activeFinish').textContent;
+  const format=document.querySelector('.format-btn.active')?.textContent||'60×120 cm';
+  const msg=`Bonjour ELS Bénin 👋, je suis intéressé(e) par le *Marbre Calacatta Gold Veiné (REF-MB001)* :\n\n• Finition : ${finish}\n• Format : ${format}\n• Quantité : ${qtyPd} m²\n\nPourriez-vous me confirmer la disponibilité et me transmettre un devis ? Merci !`;
+  document.getElementById('btnWhatsApp').href=`https://wa.me/22997000000?text=${encodeURIComponent(msg)}`;
+}
+
+/* ── Panier ── */
+function addToCartPd(){
+  const finish=document.getElementById('activeFinish').textContent;
+  const format=document.querySelector('.format-btn.active')?.textContent||'60×120 cm';
+  const name=`Calacatta Gold · ${finish} · ${format} · ${qtyPd} m²`;
+  const t=document.getElementById('toast');
+  t.textContent=name+' ajouté au panier ✓';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ── Accordéon ── */
+function toggleAcc(header){
+  const item=header.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ── Animations scroll ── */
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
+}),{threshold:.1});
+document.querySelectorAll('.sim-card,.service-pills .pill').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(24px)';
+  el.style.transition='opacity .6s ease,transform .6s ease';
+  obs.observe(el);
+});
+
+/* Init */
+updateWALink();
+</script>
+</body>
+</html>
 

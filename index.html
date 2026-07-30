@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ELS Bénin — Elegant Living Space | Matériaux & Décoration de Luxe</title>
-<link rel="stylesheet" href="els-shared.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
@@ -74,7 +73,6 @@
     transition: background 0.4s, box-shadow 0.4s;
   }
 
-  /* Liseré doré fin en haut de la nav */
   nav::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
@@ -95,23 +93,31 @@
     box-shadow: 0 6px 40px rgba(7, 14, 26, 0.8), 0 1px 0 rgba(201,169,122,0.1);
   }
 
-  /* Séparateurs verticaux entre les sections nav */
   .nav-divider {
     width: 1px; height: 28px;
     background: rgba(201,169,122,0.18);
     flex-shrink: 0;
   }
 
+  /* ─── LOGO AVEC IMGBB ─── */
   .nav-logo {
     display: flex; align-items: center; gap: 12px;
     text-decoration: none;
+    margin-right: 30px; /* Espace entre le logo et Accueil */
+    flex-shrink: 0;
   }
-  .nav-logo-svg {
-    width: 48px; height: 48px; flex-shrink: 0;
-    filter: drop-shadow(0 0 6px rgba(201,169,122,0.3));
-    transition: filter 0.3s;
+  .nav-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 4px;
+    filter: drop-shadow(0 0 8px rgba(201,169,122,0.25));
+    transition: filter 0.3s, transform 0.3s;
   }
-  .nav-logo:hover .nav-logo-svg { filter: drop-shadow(0 0 10px rgba(201,169,122,0.6)); }
+  .nav-logo:hover .nav-logo-img {
+    filter: drop-shadow(0 0 16px rgba(201,169,122,0.5));
+    transform: scale(1.02);
+  }
   .nav-logo-text {
     display: flex; flex-direction: column; line-height: 1;
   }
@@ -130,11 +136,13 @@
 
   .nav-links {
     display: flex; gap: 40px; list-style: none;
+    margin-right: auto;
   }
   .nav-links a {
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--gris-clair); text-decoration: none;
     position: relative; transition: color 0.3s;
+    white-space: nowrap;
   }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -4px; left: 0;
@@ -143,15 +151,20 @@
   }
   .nav-links a:hover { color: var(--gold-light); }
   .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--gold); }
 
   .nav-actions {
     display: flex; align-items: center; gap: 24px;
+    flex-shrink: 0;
   }
   .nav-cart {
     position: relative; cursor: pointer;
     color: var(--gris-clair); transition: color 0.3s;
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     text-decoration: none;
+    background: none;
+    border: none;
+    font-family: 'Josefin Sans', sans-serif;
   }
   .nav-cart:hover { color: var(--gold); }
   .cart-badge {
@@ -168,6 +181,9 @@
     letter-spacing: 0.25em; text-transform: uppercase;
     text-decoration: none;
     transition: background 0.3s, color 0.3s;
+    background: transparent;
+    font-family: 'Josefin Sans', sans-serif;
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--gold); color: var(--noir); }
 
@@ -177,7 +193,7 @@
     position: relative;
     display: flex; align-items: flex-end;
     overflow: hidden;
-    padding-top: 80px; /* espace nav fixe */
+    padding-top: 80px;
   }
   .hero-bg {
     position: absolute; inset: 0;
@@ -267,7 +283,6 @@
   }
   @keyframes scrollLine { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.3;transform:scaleY(0.5)} }
 
-  /* Logo ELS flottant dans le hero */
   .hero-logo-float {
     position: absolute;
     right: 130px; top: 50%;
@@ -693,6 +708,7 @@
     color: var(--gris-clair); font-size: 12px;
     transition: border-color 0.3s, color 0.3s, background 0.3s;
     text-decoration: none; cursor: pointer;
+    background: transparent;
   }
   .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,0.1); }
 
@@ -835,10 +851,33 @@
     background: linear-gradient(to left, transparent, rgba(201,168,76,0.3));
   }
 
+  /* ─── MENU BURGER (mobile) ─── */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+  }
+  .menu-toggle span {
+    width: 28px;
+    height: 2px;
+    background: var(--gold);
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
-    nav { padding: 20px 30px; }
-    .nav-links { display: none; }
+    nav { padding: 0 30px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 10px; }
+    .nav-cta { padding: 8px 18px; font-size: 9px; }
     .hero-content { padding: 0 40px 80px; }
     .savoir-grid, .temo-grid { grid-template-columns: 1fr; }
     .savoir-image { height: 350px; }
@@ -849,9 +888,31 @@
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 30px; }
     .footer-bottom { padding: 24px 30px 0; flex-direction: column; gap: 16px; }
   }
-  @media (max-width: 640px) {
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(7,14,26,0.98);
+      padding: 20px 30px;
+      gap: 16px;
+      border-bottom: 1px solid rgba(201,169,122,0.2);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 13px; }
+    .nav-divider { display: none; }
+    .nav-logo-img { width: 40px; height: 40px; }
+    .nav-logo-text .nav-logo-main { font-size: 14px; }
+    .nav-logo-text .nav-logo-sub { font-size: 7px; }
+    .nav-actions .nav-cta { display: none; }
     .hero-content { padding: 0 24px 60px; }
     .hero-btns { flex-direction: column; align-items: flex-start; }
+    .hero-title { font-size: clamp(40px, 10vw, 60px); }
     .cat-grid { grid-template-columns: 1fr; }
     .produits-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
@@ -861,14 +922,37 @@
     .cart-sidebar { width: 100%; }
     section { padding: 80px 20px; }
     .produits-filter { flex-wrap: wrap; padding: 0 20px; }
+    .filter-btn { padding: 8px 16px; font-size: 9px; }
+    .savoir-text { padding: 40px 30px; }
+    .hero-logo-float { display: none; }
+    .hero-scroll { right: 20px; }
+    .hero-line { left: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; height: 70px; }
+    .nav-logo-img { width: 32px; height: 32px; }
+    .nav-logo { margin-right: 12px; gap: 8px; }
+    .nav-logo-text .nav-logo-main { font-size: 12px; letter-spacing: 0.15em; }
+    .nav-logo-text .nav-logo-sub { font-size: 6px; }
+    .nav-links.open { top: 70px; padding: 16px 20px; }
+    .nav-links a { font-size: 12px; }
+    .nav-actions .nav-cart { font-size: 9px; }
+    .hero { padding-top: 70px; min-height: 500px; }
+    .hero-content { padding: 0 16px 40px; }
+    .hero-title { font-size: clamp(32px, 12vw, 48px); }
+    .hero-sub { font-size: 11px; max-width: 100%; }
+    .btn-primary, .btn-ghost { padding: 12px 24px; font-size: 9px; }
+    .section-title { font-size: clamp(28px, 8vw, 36px); }
+    .section-header { margin-bottom: 40px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Curseurs 
+<!-- Curseurs -->
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div> -->
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- Toast -->
 <div class="toast" id="toast">Article ajouté au panier</div>
@@ -878,47 +962,52 @@
 
 <!-- Panier sidebar -->
 <div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mon Panier</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:0.1em;">Votre panier est vide</p>
+  </div>
   <div class="cart-footer" id="cartFooter" style="display:none">
-    <button href="www.google.com" class="cart-checkout"> Passez votre devis  →</button>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">0 F</strong>
+    </div>
+    <button class="cart-checkout">Passer commande →</button>
   </div>
 </div>
 
 <!-- ─── NAVIGATION ─── -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">
-    <!-- Logo ELS Nautile SVG inline -->
-    <svg class="nav-logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
-      <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.3"/>
-      <!-- Coquille nautile dessinée en courbes -->
-      <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
-        <!-- Spirale principale -->
-        <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
-        <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
-        <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
-        <!-- Centre -->
-        <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
-        <!-- Lignes radiales internes -->
-        <path d="M40 40 L54 40" opacity="0.5"/>
-        <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
-        <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
-        <path d="M40 40 Q33 45 27 50" opacity="0.3"/>
-        <path d="M40 40 Q36 33 33 24" opacity="0.3"/>
-      </g>
-    </svg>
+  <a href="index.html" class="nav-logo">
+    <!-- Logo via ImgBB -->
+    <img src="https://i.ibb.co/jPC5gQDd/votre-logo.png" alt="ELS Bénin Logo" class="nav-logo-img">
     <span class="nav-logo-text">
       <span class="nav-logo-main">ELEGANT</span>
       <span class="nav-logo-sub">LIVING SPACE</span>
     </span>
   </a>
-  <ul class="nav-links"> 
-    <li><a href="index.html" class="active" >Accueil</a></li>
-    <li><a href="apropos.html" >À propos</a></li>
+
+  <!-- Menu Burger (mobile) -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="apropos.html">À propos</a></li>
     <li><a href="collections.html">Nos collections</a></li>
     <li><a href="rejoindre.html">Travaillez avec nous</a></li>
     <li><a href="contact.html">Nous contacter</a></li>
   </ul>
+
   <div class="nav-divider"></div>
   <div class="nav-actions">
+    <button class="nav-cart" onclick="toggleCart()">
+      Panier
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
     <a href="contact.html" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
@@ -945,7 +1034,6 @@
   </div>
   <div class="hero-scroll">Défiler</div>
 
-  <!-- Logo flottant hero -->
   <div class="hero-logo-float">
     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none">
       <circle cx="60" cy="60" r="57" stroke="#c9a97a" stroke-width="1" opacity="0.4"/>
@@ -1038,7 +1126,7 @@
   </div>
   <div class="cat-grid">
 
-    <div  href="produit-detail.html" class="cat-card" onclick="filterProducts('carrelage')">
+    <div class="cat-card" onclick="filterProducts('carrelage')">
       <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=900&q=80" alt="Carrelage">
       <div class="cat-overlay">
         <p class="cat-tag">Collection</p>
@@ -1118,36 +1206,32 @@
 
     <!-- ══════════ CARRELAGE ══════════ -->
     <div class="prod-card" data-cat="carrelage">
-      <div href="produit-detail.html" class="prod-img">
+      <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Carrelage Grand Format">
         <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory', 185000)">
-          <a href="produit-detail.html">Détail</a>
-          </button>
+          <button class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory', 185000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html" class="prod-info">
-        <p href="produit-detail.html" class="prod-ref">REF-CT001</p>
-        <h3 href="produit-detail.html" class="prod-name">Grès Cérame Grand Format Ivory</h3>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Grand Format Ivory</h3>
         <p class="prod-matiere">Grès pleine masse · 120×260 cm · Ep. 6 mm</p>
         <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ m²</span></div>
       </div>
     </div>
 
     <div class="prod-card" data-cat="carrelage">
-      <div href="produit-detail.html" class="prod-img">
+      <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">
-              <a href="produit-detail.html">Détail</a>
-            </button>
+          <button class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html" class="prod-info">
+      <div class="prod-info">
         <p class="prod-ref">REF-CT002</p>
         <h3 class="prod-name">Travertin Noce Veiné</h3>
         <p class="prod-matiere">Pierre naturelle italienne · 60×120 cm · Poli</p>
@@ -1155,18 +1239,16 @@
       </div>
     </div>
 
-    <div href="produit-detail.html" class="prod-card" data-cat="carrelage">
+    <div class="prod-card" data-cat="carrelage">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Faïence Zellige">
         <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">
-              <a href="produit-detail.html">Détail</a>
-          </button>
+          <button class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html" class="prod-info">
+      <div class="prod-info">
         <p class="prod-ref">REF-CT003</p>
         <h3 class="prod-name">Zellige Blanc Nacré</h3>
         <p class="prod-matiere">Argile émaillée artisanale · 10×10 cm</p>
@@ -1174,7 +1256,7 @@
       </div>
     </div>
 
-    <div href="produit-detail.html" class="prod-card" data-cat="carrelage">
+    <div class="prod-card" data-cat="carrelage">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Carrelage Hexagonal">
         <div class="prod-actions">
@@ -1182,7 +1264,7 @@
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html" class="prod-info">
+      <div class="prod-info">
         <p class="prod-ref">REF-CT004</p>
         <h3 class="prod-name">Hexagone Terrazzo Gold</h3>
         <p class="prod-matiere">Terrazzo reconstitué · Format hexagonal Ø 20 cm</p>
@@ -1190,16 +1272,16 @@
       </div>
     </div>
 
-    <div href="produit-detail.html" class="prod-card" data-cat="carrelage">
+    <div class="prod-card" data-cat="carrelage">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=500&q=85" alt="Carreau ciment">
         <span class="prod-badge promo">−15%</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Carreaux Ciment Géométrique', 76000)">+ Panier</button>
+          <button class="prod-btn add" onclick="addToCart('Carreaux Ciment Géométrique', 76000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html" class="prod-info">
+      <div class="prod-info">
         <p class="prod-ref">REF-CT005</p>
         <h3 class="prod-name">Carreaux Ciment Géométrique</h3>
         <p class="prod-matiere">Ciment hydraulique coloré · 20×20 cm</p>
@@ -1207,16 +1289,16 @@
       </div>
     </div>
 
-    <div href="produit-detail.html" class="prod-card" data-cat="carrelage">
+    <div class="prod-card" data-cat="carrelage">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Carrelage effet beton">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite', 155000)">+ Panier</button>
+          <button class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite', 155000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
-      <div href="produit-detail.html"bclass="prod-info">
+      <div class="prod-info">
         <p class="prod-ref">REF-CT006</p>
         <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
         <p class="prod-matiere">Grès émaillé mat · 60×60 cm · Antidérapant R11</p>
@@ -1290,7 +1372,7 @@
         <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=500&q=85" alt="Quartzite">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Quartzite Taj Mahal', 360000)"> + Panier</button>
+          <button class="prod-btn add" onclick="addToCart('Quartzite Taj Mahal', 360000)">+ Panier</button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1866,7 +1948,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ─── CURSEUR ───
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -1877,6 +1959,23 @@ document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor
 // ─── NAV SCROLL ───
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── MENU BURGER ───
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+// Fermer le menu au clic sur un lien
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
 });
 
 // ─── PANIER ───
@@ -1951,15 +2050,10 @@ function filterProducts(cat, btn) {
     separators.forEach(s => s.style.display = 'flex');
     grids.forEach(g => g.style.display = 'grid');
   } else {
-    // Hide all separators initially
     separators.forEach(s => s.style.display = 'none');
-
-    // Filter cards
     cards.forEach(c => {
       c.style.display = c.dataset.cat === cat ? 'block' : 'none';
     });
-
-    // Show/hide grids: show only grids that have visible cards
     grids.forEach(g => {
       const visible = g.querySelectorAll(`.prod-card[data-cat="${cat}"]`).length > 0;
       g.style.display = visible ? 'grid' : 'none';
@@ -1993,4 +2087,11 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.prod-card, .service-card, .temo-card, .stat-item').
+document.querySelectorAll('.prod-card, .service-card, .temo-card, .stat-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

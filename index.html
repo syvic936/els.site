@@ -118,10 +118,10 @@
   /* ─── NAV LINKS ─── */
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     list-style: none;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .nav-links a {
     font-size: 11px;
@@ -147,23 +147,23 @@
   .nav-links a:hover::after { width: 100%; }
   .nav-links a.active { color: var(--gold); }
 
-  /* ─── NAV DEVIS (droite) ─── */
-  .nav-devis {
-    padding: 10px 28px;
+  /* ─── BOUTON DEVIS (à droite) ─── */
+  .nav-devis-btn {
+    padding: 8px 22px;
     border: 1px solid var(--gold);
     color: var(--gold);
     font-size: 10px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s;
     background: transparent;
     font-family: 'Josefin Sans', sans-serif;
     white-space: nowrap;
     flex-shrink: 0;
-    margin-left: 20px;
+    border-radius: 2px;
   }
-  .nav-devis:hover {
+  .nav-devis-btn:hover {
     background: var(--gold);
     color: var(--noir);
   }
@@ -177,6 +177,7 @@
     background: none;
     border: none;
     padding: 5px;
+    flex-shrink: 0;
   }
   .menu-toggle span {
     width: 28px;
@@ -1011,7 +1012,7 @@
     nav { padding: 0 30px; }
     .nav-links { gap: 20px; }
     .nav-links a { font-size: 10px; }
-    .nav-devis { padding: 8px 20px; font-size: 9px; }
+    .nav-devis-btn { padding: 6px 16px; font-size: 9px; }
     .hero-content { padding: 0 40px 80px; }
     .savoir-grid, .temo-grid { grid-template-columns: 1fr; }
     .savoir-image { height: 350px; }
@@ -1024,7 +1025,7 @@
   }
 
   @media (max-width: 768px) {
-    nav { padding: 0 20px; height: 70px; }
+    nav { padding: 0 16px; height: 70px; }
     .menu-toggle { display: flex; }
     .nav-links {
       display: none;
@@ -1034,16 +1035,16 @@
       right: 0;
       flex-direction: column;
       background: rgba(7,14,26,0.98);
-      padding: 20px 30px;
-      gap: 16px;
+      padding: 20px 24px;
+      gap: 14px;
       border-bottom: 1px solid rgba(201,169,122,0.2);
     }
     .nav-links.open { display: flex; }
-    .nav-links a { font-size: 13px; }
-    .nav-logo-img { width: 40px; height: 40px; }
-    .nav-logo-text .nav-logo-main { font-size: 14px; }
+    .nav-links a { font-size: 12px; }
+    .nav-logo-img { width: 36px; height: 36px; }
+    .nav-logo-text .nav-logo-main { font-size: 13px; }
     .nav-logo-text .nav-logo-sub { font-size: 7px; }
-    .nav-devis { padding: 6px 16px; font-size: 8px; margin-left: 10px; }
+    .nav-devis-btn { padding: 5px 14px; font-size: 8px; }
     .hero-content { padding: 0 24px 60px; }
     .hero-btns { flex-direction: column; align-items: flex-start; }
     .hero-title { font-size: clamp(40px, 10vw, 60px); }
@@ -1063,14 +1064,14 @@
   }
 
   @media (max-width: 480px) {
-    nav { padding: 0 12px; height: 60px; }
-    .nav-logo-img { width: 32px; height: 32px; }
-    .nav-logo { gap: 8px; }
-    .nav-logo-text .nav-logo-main { font-size: 11px; letter-spacing: 0.15em; }
-    .nav-logo-text .nav-logo-sub { font-size: 6px; }
-    .nav-links.open { top: 60px; padding: 16px 20px; }
-    .nav-links a { font-size: 11px; }
-    .nav-devis { padding: 5px 12px; font-size: 7px; margin-left: 6px; }
+    nav { padding: 0 10px; height: 60px; }
+    .nav-logo-img { width: 28px; height: 28px; }
+    .nav-logo { gap: 6px; }
+    .nav-logo-text .nav-logo-main { font-size: 10px; letter-spacing: 0.1em; }
+    .nav-logo-text .nav-logo-sub { font-size: 5.5px; }
+    .nav-links.open { top: 60px; padding: 14px 16px; }
+    .nav-links a { font-size: 10px; }
+    .nav-devis-btn { padding: 4px 10px; font-size: 7px; }
     .hero { padding-top: 60px; min-height: 500px; }
     .hero-content { padding: 0 16px 40px; }
     .hero-title { font-size: clamp(28px, 12vw, 42px); }
@@ -1116,9 +1117,10 @@
     <li><a href="collections.html">Nos collections</a></li>
     <li><a href="rejoindre.html">Travaillez avec nous</a></li>
     <li><a href="contact.html">Nous contacter</a></li>
-    <li><a href="contact.html">Devis gratuit</a></li>
-    
   </ul>
+
+  <!-- DEVIS (bouton à droite) -->
+  <a href="contact.html" class="nav-devis-btn">Devis</a>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -1303,9 +1305,723 @@
         <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ m²</span></div>
       </div>
     </div>
-    <!-- (autres produits... gardez votre structure existante) -->
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">Pierre naturelle italienne · 60×120 cm · Poli</p>
+        <div class="prod-price-row"><span class="prod-price">210 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Faïence Zellige">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">Argile émaillée artisanale · 10×10 cm</p>
+        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Carrelage Hexagonal">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Hexagone Terrazzo Gold', 128000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT004</p>
+        <h3 class="prod-name">Hexagone Terrazzo Gold</h3>
+        <p class="prod-matiere">Terrazzo reconstitué · Format hexagonal Ø 20 cm</p>
+        <div class="prod-price-row"><span class="prod-price">128 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=500&q=85" alt="Carreau ciment">
+        <span class="prod-badge promo">−15%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Carreaux Ciment Géométrique', 76000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT005</p>
+        <h3 class="prod-name">Carreaux Ciment Géométrique</h3>
+        <p class="prod-matiere">Ciment hydraulique coloré · 20×20 cm</p>
+        <div class="prod-price-row"><span class="prod-price">76 000 F</span><span class="prod-price-old">89 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carrelage">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Carrelage effet beton">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite', 155000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">Grès émaillé mat · 60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row"><span class="prod-price">155 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Marbre &amp; Pierre Naturelle</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridMarbre">
+    <!-- ══════════ MARBRE ══════════ -->
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500&q=85" alt="Marbre Calacatta">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Marbre Calacatta Gold Veiné', 420000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB001</p>
+        <h3 class="prod-name">Calacatta Gold Veiné</h3>
+        <p class="prod-matiere">Marbre blanc italien · 80×160 cm · Poli brillant</p>
+        <div class="prod-price-row"><span class="prod-price">420 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=85" alt="Marbre Nero">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Nero Marquina Premium', 395000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB002</p>
+        <h3 class="prod-name">Nero Marquina Premium</h3>
+        <p class="prod-matiere">Marbre noir d'Espagne · 60×120 cm · Veiné blanc</p>
+        <div class="prod-price-row"><span class="prod-price">395 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=500&q=85" alt="Onyx">
+        <span class="prod-badge">Rare</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Onyx Miel Translucide', 680000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB003</p>
+        <h3 class="prod-name">Onyx Miel Translucide</h3>
+        <p class="prod-matiere">Onyx naturel rétroéclairé · 30×60 cm · Iranien</p>
+        <div class="prod-price-row"><span class="prod-price">680 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=500&q=85" alt="Quartzite">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Quartzite Taj Mahal', 360000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB004</p>
+        <h3 class="prod-name">Quartzite Taj Mahal</h3>
+        <p class="prod-matiere">Quartzite brésilien · 60×120 cm · Satiné</p>
+        <div class="prod-price-row"><span class="prod-price">360 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1609767668595-9ccd5f8f0c5e?w=500&q=85" alt="Pierre bleue">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Ardoise Bleue Naturelle', 145000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB005</p>
+        <h3 class="prod-name">Ardoise Bleue Naturelle</h3>
+        <p class="prod-matiere">Ardoise clivée · 30×60 cm · Aspect brut</p>
+        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="marbre">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=85" alt="Marbre Statuario">
+        <span class="prod-badge promo">−10%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Statuario Extra', 510000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-MB006</p>
+        <h3 class="prod-name">Statuario Extra</h3>
+        <p class="prod-matiere">Marbre blanc de Carrare · 90×180 cm · Extra-brillant</p>
+        <div class="prod-price-row"><span class="prod-price">510 000 F</span><span class="prod-price-old">567 000 F</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Parquet &amp; Revêtements Sol</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridParquet">
+    <!-- ══════════ PARQUET ══════════ -->
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=85" alt="Parquet chêne">
+        <span class="prod-badge">Best-seller</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Chêne Massif Fumé Huilé', 145000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ001</p>
+        <h3 class="prod-name">Chêne Massif Fumé Huilé</h3>
+        <p class="prod-matiere">Chêne européen · 190×15 mm · Finition huile naturelle</p>
+        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Parquet noyer">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Noyer Américain Verni Satiné', 198000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ002</p>
+        <h3 class="prod-name">Noyer Américain Verni Satiné</h3>
+        <p class="prod-matiere">Noyer massif · 210×20 mm · Verni 5 couches</p>
+        <div class="prod-price-row"><span class="prod-price">198 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Parquet chevron">
+        <span class="prod-badge">Luxe</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Parquet Chevron Versailles', 175000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ003</p>
+        <h3 class="prod-name">Parquet Chevron Versailles</h3>
+        <p class="prod-matiere">Chêne multicouche · Motif chevron 70° · Vieilli</p>
+        <div class="prod-price-row"><span class="prod-price">175 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1560440021-33f9b867899d?w=500&q=85" alt="Sol vinyle luxe">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('LVT Stone Oak Premium', 85000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ004</p>
+        <h3 class="prod-name">LVT Stone Oak Premium</h3>
+        <p class="prod-matiere">Vinyle de luxe · 230×15 mm · Ep. 5 mm · Imperméable</p>
+        <div class="prod-price-row"><span class="prod-price">85 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=500&q=85" alt="Bambou">
+        <span class="prod-badge new">Écologique</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Bambou Densifié Caramel', 110000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ005</p>
+        <h3 class="prod-name">Bambou Densifié Caramel</h3>
+        <p class="prod-matiere">Bambou compressé · 185×15 mm · Ultra-résistant</p>
+        <div class="prod-price-row"><span class="prod-price">110 000 F</span><span class="prod-unit">/ m²</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="parquet">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&q=85" alt="Moquette velours">
+        <span class="prod-badge promo">−20%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Moquette Velours Cachemire', 95000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PQ006</p>
+        <h3 class="prod-name">Moquette Velours Cachemire</h3>
+        <p class="prod-matiere">Laine & soie · Velours coupé · Laize 4 m</p>
+        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-price-old">119 000 F</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Luminaires &amp; Éclairage Design</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridLuminaire">
+    <!-- ══════════ LUMINAIRES ══════════ -->
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=500&q=85" alt="Lustre cristal">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lustre Cristal Bohème Grand', 950000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU001</p>
+        <h3 class="prod-name">Lustre Cristal Bohème Grand</h3>
+        <p class="prod-matiere">Cristal K9 taillé · Ø 90 cm · 12 bras · LED G9</p>
+        <div class="prod-price-row"><span class="prod-price">950 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=85" alt="Suspension Murano">
+        <span class="prod-badge promo">−20%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Suspension Murano Or 24k', 380000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU002</p>
+        <h3 class="prod-name">Suspension Murano Or 24k</h3>
+        <p class="prod-matiere">Verre soufflé de Murano · Ø 60 cm · Doré</p>
+        <div class="prod-price-row"><span class="prod-price">380 000 F</span><span class="prod-price-old">475 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&q=85" alt="Applique laiton">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Applique Laiton Brossé', 165000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU003</p>
+        <h3 class="prod-name">Applique Laiton Brossé</h3>
+        <p class="prod-matiere">Laiton massif brossé · LED intégré 3000K · IP44</p>
+        <div class="prod-price-row"><span class="prod-price">165 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=85" alt="Lampe de table design">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Lampe Table Marbre & Or', 245000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU004</p>
+        <h3 class="prod-name">Lampe Table Marbre &amp; Or</h3>
+        <p class="prod-matiere">Socle marbre blanc · Pied laiton · Abat-jour lin</p>
+        <div class="prod-price-row"><span class="prod-price">245 000 F</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618047-f4e8c5e0f8e2?w=500&q=85" alt="Spot encastré">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Spot Encastré Doré LED', 48000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU005</p>
+        <h3 class="prod-name">Spot Encastré Doré LED</h3>
+        <p class="prod-matiere">Aluminium doré · LED 7W 3000K · Orientable 35°</p>
+        <div class="prod-price-row"><span class="prod-price">48 000 F</span><span class="prod-unit">/ unité</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="luminaire">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=85" alt="Ruban LED">
+        <span class="prod-badge new">Smart</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Profil LED Aluminium Premium', 35000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-LU006</p>
+        <h3 class="prod-name">Profil LED Aluminium Premium</h3>
+        <p class="prod-matiere">Profilé alu · Ruban LED RGBWW · Compatible domotique</p>
+        <div class="prod-price-row"><span class="prod-price">35 000 F</span><span class="prod-unit">/ ml</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SÉPARATEUR ══ -->
+  <div class="cat-section-label">
+    <span class="cat-sec-icon">◆</span>
+    <span>Peintures &amp; Enduits Décoratifs</span>
+    <span class="cat-sec-icon">◆</span>
+  </div>
+  <div class="produits-grid" id="gridPeinture">
+    <!-- ══════════ PEINTURES ══════════ -->
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=500&q=85" alt="Stuc venitien">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Stuc Vénitien Madreperlato', 125000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE001</p>
+        <h3 class="prod-name">Stuc Vénitien Madreperlato</h3>
+        <p class="prod-matiere">Enduit de chaux et marbrine · Nacré · Couvre 6–8 m²</p>
+        <div class="prod-price-row"><span class="prod-price">125 000 F</span><span class="prod-unit">/ seau 5L</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&q=85" alt="Béton ciré">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Béton Ciré Anthracite Kit Complet', 78000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE002</p>
+        <h3 class="prod-name">Béton Ciré Anthracite Kit Complet</h3>
+        <p class="prod-matiere">Enduit minéral + vernis · Kit pour 8 m² · 12 coloris</p>
+        <div class="prod-price-row"><span class="prod-price">78 000 F</span><span class="prod-unit">/ kit</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=85" alt="Peinture or">
+        <span class="prod-badge">Luxe</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Peinture Métallisée Or Bruni', 68000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE003</p>
+        <h3 class="prod-name">Peinture Métallisée Or Bruni</h3>
+        <p class="prod-matiere">Acrylique métallisé · 1L · Couvre 8–10 m²</p>
+        <div class="prod-price-row"><span class="prod-price">68 000 F</span><span class="prod-unit">/ litre</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1504198458649-3128b932f49e?w=500&q=85" alt="Chaux naturelle">
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Enduit Chaux Naturelle', 42000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE004</p>
+        <h3 class="prod-name">Enduit Chaux Naturelle Tadelakt</h3>
+        <p class="prod-matiere">Chaux hydraulique · Imperméable · Aspect minéral · 25 kg</p>
+        <div class="prod-price-row"><span class="prod-price">42 000 F</span><span class="prod-unit">/ sac</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=85" alt="Papier peint">
+        <span class="prod-badge new">Collection 2025</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Papier Peint Panoramique Jungle', 185000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE005</p>
+        <h3 class="prod-name">Papier Peint Panoramique</h3>
+        <p class="prod-matiere">Non-tissé intissé · Impression HD · Lé 0,52 m</p>
+        <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ panneau</span></div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="peinture">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=85" alt="Peinture velours">
+        <span class="prod-badge promo">−12%</span>
+        <div class="prod-actions">
+          <button class="prod-btn add" onclick="addToCart('Peinture Velours Mat Premium', 38000)">+ Panier</button>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-PE006</p>
+        <h3 class="prod-name">Peinture Velours Mat Premium</h3>
+        <p class="prod-matiere">Acrylique velours · 2.5L · Lavable classe 3 · 200 teintes</p>
+        <div class="prod-price-row"><span class="prod-price">38 000 F</span><span class="prod-price-old">43 000 F</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:60px">
+    <a href="#" class="btn-ghost">Voir tout le catalogue →</a>
   </div>
 </section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-label">Nos Services</p>
+    <h2 class="section-title">Un accompagnement<br><em>sur mesure</em></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="service-name">Showroom Premium</h3>
+      <p class="service-desc">Visitez notre espace de 1 200 m² avec plus de 2 400 références exposées dans des ambiances grandeur nature. Conseil personnalisé inclus.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h3 class="service-name">Livraison & Pose</h3>
+      <p class="service-desc">Livraison sur Cotonou et dans tout le Bénin. Mise en relation avec nos artisans certifiés pour une pose dans les règles de l'art.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <h3 class="service-name">Conseil Design</h3>
+      <p class="service-desc">Nos architectes d'intérieur partenaires vous accompagnent dans la conception de vos espaces et la sélection cohérente de vos matériaux.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="service-name">Devis sur mesure</h3>
+      <p class="service-desc">Estimez votre projet gratuitement. Notre équipe calcule les quantités nécessaires et vous propose le meilleur rapport qualité-prix.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── INSPIRATION ─── -->
+<div class="inspiration">
+  <div class="inspiration-bg"></div>
+  <div class="inspiration-content">
+    <h2>Transformez votre espace<br>en <em>œuvre d'art</em></h2>
+    <p>Chaque projet mérite des matériaux à la hauteur de votre ambition.</p>
+    <a href="#contact" class="btn-primary">Démarrer mon projet</a>
+  </div>
+</div>
+
+<!-- ─── TÉMOIGNAGES ─── -->
+<section class="temoignages">
+  <div class="section-header">
+    <p class="section-label">Témoignages</p>
+    <h2 class="section-title">Ce que disent<br><em>nos clients</em></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="temo-grid">
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">Maison Aurore m'a fourni des carrelages en marbre d'une qualité exceptionnelle pour ma villa. Le service était parfait du conseil jusqu'à la livraison.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">A</div>
+        <div>
+          <p class="temo-name">Adetokunbo M.</p>
+          <p class="temo-role">Architecte, Lagos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">J'ai équipé tout mon hôtel en matériaux de chez Maison Aurore. Le rapport qualité-prix est imbattable et les délais ont été parfaitement respectés.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">K</div>
+        <div>
+          <p class="temo-name">Kofi A.</p>
+          <p class="temo-role">Hôtelier, Accra</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="temo-card">
+      <div class="temo-stars">★★★★★</div>
+      <p class="temo-text">Le showroom est magnifique et les conseillers sont très compétents. Ils m'ont aidé à choisir les bons matériaux pour chaque pièce de ma résidence.</p>
+      <div class="temo-author">
+        <div class="temo-avatar">F</div>
+        <div>
+          <p class="temo-name">Fatoumata D.</p>
+          <p class="temo-role">Particulier, Cotonou</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── NEWSLETTER ─── -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h3>Restez inspiré</h3>
+    <p>Recevez nos nouvelles collections, offres exclusives et conseils déco directement dans votre boîte mail.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Votre adresse e-mail">
+      <button>S'inscrire</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:56px;height:56px;margin-bottom:12px">
+          <circle cx="40" cy="40" r="38" stroke="#c9a97a" stroke-width="1.2" opacity="0.25"/>
+          <g stroke="#c9a97a" stroke-width="1.3" stroke-linecap="round" fill="none">
+            <path d="M40 40 Q52 30 54 40 Q56 52 44 56 Q30 60 24 48 Q17 34 28 24 Q40 13 56 22 Q70 31 68 47 Q65 63 50 68 Q34 73 22 62 Q10 51 14 35 Q18 19 32 13"/>
+            <path d="M40 40 Q48 34 50 40 Q52 47 44 50 Q36 53 32 46 Q27 38 33 32 Q40 25 49 30 Q58 36 56 46 Q54 56 46 60 Q37 64 30 58 Q22 51 25 42 Q28 32 37 28"/>
+            <path d="M40 40 Q45 37 46 41 Q48 45 44 47 Q40 49 37 46 Q34 42 36 38 Q39 34 43 36"/>
+            <circle cx="40" cy="40" r="3.5" stroke="#c9a97a" stroke-width="1"/>
+            <path d="M40 40 L54 40" opacity="0.5"/>
+            <path d="M40 40 Q46 34 54 30" opacity="0.4"/>
+            <path d="M40 40 Q43 47 44 56" opacity="0.4"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
+          <div style="font-size:10px;letter-spacing:0.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
+        </div>
+      </div>
+      <p>Spécialiste des matériaux de finition et décoration haut de gamme depuis 2008. Showroom à Cotonou, livraisons dans toute l'Afrique de l'Ouest.</p>
+      <div class="footer-social">
+        <a class="social-btn">in</a>
+        <a class="social-btn">f</a>
+        <a class="social-btn">ig</a>
+        <a class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Carrelage & Grand Format</a></li>
+        <li><a href="#">Marbre & Pierre</a></li>
+        <li><a href="#">Parquet & Revêtements</a></li>
+        <li><a href="#">Luminaires Design</a></li>
+        <li><a href="#">Peintures & Enduits</a></li>
+        <li><a href="#">Sanitaires & Bain</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Showroom & Conseil</a></li>
+        <li><a href="#">Livraison & Pose</a></li>
+        <li><a href="#">Devis gratuit</a></li>
+        <li><a href="#">Service Architectes</a></li>
+        <li><a href="#">Projets hôtels & bureaux</a></li>
+        <li><a href="#">Entretien & garantie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Boulevard Saint-Michel, Cotonou</a></li>
+        <li><a href="#">📞 +229 97 XX XX XX</a></li>
+        <li><a href="#">✉ <span class="__cf_email__" data-cfemail="a2c1cdccd6c3c1d6e2cfc3cbd1cdccc3d7d0cdd0c78cc0c8">[email&#160;protected]</span></a></li>
+        <li><a href="#">🕐 Lun–Sam : 8h – 18h</a></li>
+        <li><a href="#">Politique de retour</a></li>
+        <li><a href="#">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. Cotonou, Bénin · els.benin</p>
+    <div class="footer-payments">
+      <span class="payment-chip">MTN Money</span>
+      <span class="payment-chip">Moov Money</span>
+      <span class="payment-chip">Visa</span>
+      <span class="payment-chip">Mastercard</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 // ─── NAV SCROLL ───

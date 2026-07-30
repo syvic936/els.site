@@ -878,18 +878,7 @@
 
 <!-- Panier sidebar -->
 <div class="cart-sidebar" id="cartSidebar">
-  <!--<div class="cart-header">
-    <h3>Mon Panier</h3>
-    <button class="cart-close" onclick="toggleCart()">✕</button>
-  </div>
-  <div class="cart-items" id="cartItems">
-    <p style="font-size:12px;color:var(--gris-clair);text-align:center;padding:40px 0;letter-spacing:0.1em;">Votre panier est vide</p>
-  </div> -->
   <div class="cart-footer" id="cartFooter" style="display:none">
-    <!-- <div class="cart-total">
-      <span>Total</span>
-      <strong id="cartTotal">0 €</strong>
-    </div> -->
     <button href="www.google.com" class="cart-checkout"> Passez votre devis  →</button>
   </div>
 </div>
@@ -921,25 +910,16 @@
       <span class="nav-logo-sub">LIVING SPACE</span>
     </span>
   </a>
-  <ul class="nav-links">
-    
-    
-    <li><a href="index.html" class="active" >Acceuil</a></li>
-    <li><a href="apropos.html" >À Propos</a></li>
-    <li><a href="collections.html">Collections</a></li>
-    <li><a href="rejoindre.html">Nous Rejoindre</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="produit-detail.html">Produits</a></li>
-    
-    href="produit-detail.html"
+  <ul class="nav-links"> 
+    <li><a href="index.html" class="active" >Accueil</a></li>
+    <li><a href="apropos.html" >À propos</a></li>
+    <li><a href="collections.html">Nos collections</a></li>
+    <li><a href="rejoindre.html">Travaillez avec nous</a></li>
+    <li><a href="contact.html">Nous contacter</a></li>
   </ul>
   <div class="nav-divider"></div>
   <div class="nav-actions">
-    <!-- <a class="nav-cart" onclick="toggleCart()">
-      Panier
-      <span class="cart-badge" id="cartBadge">0</span>
-    </a> -->
-    <a href="#contact" class="nav-cta">Devis gratuit</a>
+    <a href="contact.html" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
 
@@ -1143,7 +1123,7 @@
         <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
           <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory', 185000)">
-          <a href="produit-detail.html">Produits</a>
+          <a href="produit-detail.html">Détail</a>
           </button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
@@ -1161,7 +1141,9 @@
         <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">+ Panier</button>
+          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Travertin Noce Veiné', 210000)">
+              <a href="produit-detail.html">Détail</a>
+            </button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1178,7 +1160,9 @@
         <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Faïence Zellige">
         <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">+ Panier</button>
+          <button href="produit-detail.html" class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré', 95000)">
+              <a href="produit-detail.html">Détail</a>
+          </button>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>

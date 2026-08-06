@@ -4,7 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact & Devis — ELS Bénin | Elegant Living Space</title>
-<link rel="stylesheet" href="els-shared.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -24,1172 +25,257 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--charbon);
     color: var(--blanc-creme);
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
-    cursor: default;
     overflow-x: hidden;
   }
 
   /* ─── NAV ─── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px;
-    height: 80px;
-    background: rgba(7, 14, 26, 0.96);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px; height: 80px;
+    background: rgba(7,14,26,0.96);
     backdrop-filter: blur(18px) saturate(1.4);
     -webkit-backdrop-filter: blur(18px) saturate(1.4);
-    border-bottom: 1px solid rgba(201, 169, 122, 0.22);
-    box-shadow: 0 4px 32px rgba(7, 14, 26, 0.55), 0 1px 0 rgba(201,169,122,0.08);
+    border-bottom: 1px solid rgba(201,169,122,0.22);
+    box-shadow: 0 4px 32px rgba(7,14,26,0.55);
     transition: background 0.4s, box-shadow 0.4s;
   }
-
   nav::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right,
-      transparent 0%,
-      rgba(201,169,122,0.0) 5%,
-      rgba(201,169,122,0.7) 30%,
-      var(--gold) 50%,
-      rgba(201,169,122,0.7) 70%,
-      rgba(201,169,122,0.0) 95%,
-      transparent 100%
-    );
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent 0%, rgba(201,169,122,0) 5%, rgba(201,169,122,0.7) 30%, var(--gold) 50%, rgba(201,169,122,0.7) 70%, rgba(201,169,122,0) 95%, transparent 100%);
   }
+  nav.scrolled { background: rgba(7,14,26,0.99); box-shadow: 0 6px 40px rgba(7,14,26,0.8); }
 
-  nav.scrolled {
-    background: rgba(7, 14, 26, 0.99);
-    box-shadow: 0 6px 40px rgba(7, 14, 26, 0.8), 0 1px 0 rgba(201,169,122,0.1);
-  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 4px; filter: drop-shadow(0 0 8px rgba(201,169,122,0.25)); transition: filter 0.3s, transform 0.3s; }
+  .nav-logo:hover .nav-logo-img { filter: drop-shadow(0 0 16px rgba(201,169,122,0.5)); transform: scale(1.02); }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; letter-spacing: 0.25em; color: var(--blanc-creme); }
+  .nav-logo-sub { font-family: 'Josefin Sans', sans-serif; font-size: 8.5px; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-top: 3px; }
 
-  /* ─── LOGO ─── */
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-  .nav-logo-img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: 4px;
-    filter: drop-shadow(0 0 8px rgba(201,169,122,0.25));
-    transition: filter 0.3s, transform 0.3s;
-  }
-  .nav-logo:hover .nav-logo-img {
-    filter: drop-shadow(0 0 16px rgba(201,169,122,0.5));
-    transform: scale(1.02);
-  }
-  .nav-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-  .nav-logo-main {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    color: var(--blanc-creme);
-  }
-  .nav-logo-sub {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 8.5px;
-    font-weight: 300;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-top: 3px;
-  }
-
-  /* ─── NAV LINKS ─── */
-  .nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  .nav-links a {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gris-clair);
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s;
-    white-space: nowrap;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gold);
-    transition: width 0.4s var(--transition);
-  }
+  .nav-links { display: flex; gap: 30px; list-style: none; margin: 0 auto; padding: 0 15px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris-clair); text-decoration: none; position: relative; transition: color 0.3s; white-space: nowrap; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.4s var(--transition); }
   .nav-links a:hover { color: var(--gold-light); }
   .nav-links a:hover::after { width: 100%; }
   .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { width: 100%; }
 
-  /* ─── BOUTON DEVIS (à droite) ─── */
-  .nav-devis-btn {
-    padding: 8px 22px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-    background: transparent;
-    font-family: 'Josefin Sans', sans-serif;
-    white-space: nowrap;
-    flex-shrink: 0;
-    border-radius: 2px;
-  }
-  .nav-devis-btn:hover {
-    background: var(--gold);
-    color: var(--noir);
-  }
+  .nav-devis-btn { padding: 8px 22px; border: 1px solid var(--gold); color: var(--gold); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; background: transparent; font-family: 'Josefin Sans', sans-serif; white-space: nowrap; flex-shrink: 0; border-radius: 2px; }
+  .nav-devis-btn:hover { background: var(--gold); color: var(--noir); }
 
-  /* ─── MENU BURGER ─── */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 5px;
-    flex-shrink: 0;
-  }
-  .menu-toggle span {
-    width: 28px;
-    height: 2px;
-    background: var(--gold);
-    transition: 0.3s;
-    border-radius: 2px;
-  }
-  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; flex-shrink: 0; }
+  .menu-toggle span { width: 28px; height: 2px; background: var(--gold); transition: 0.3s; border-radius: 2px; }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-  /* ─── HERO ─── */
-  .hero {
-    height: 100vh;
-    min-height: 700px;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    padding-top: 80px;
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    min-height: 360px; padding-top: 80px;
+    position: relative; display: flex; align-items: flex-end; overflow: hidden;
   }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, rgba(7,14,26,0.6) 0%, rgba(13,27,46,0.3) 55%, rgba(201,169,122,0.05) 100%),
-      url('Facade\ gros\ plans.jpg') center/cover no-repeat;
-    transform: scale(1.05);
-    animation: heroZoom 12s ease-out forwards;
-  }
-  @keyframes heroZoom { to { transform: scale(1); } }
+  .page-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.04); animation: phZoom 12s ease-out forwards; }
+  @keyframes phZoom { to { transform: scale(1); } }
+  .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,14,26,0.95) 0%, rgba(7,14,26,0.55) 55%, rgba(7,14,26,0.2) 100%); }
+  .page-hero-content { position: relative; z-index: 2; padding: 48px 100px 60px; animation: phSlide 1s var(--transition) 0.2s both; }
+  @keyframes phSlide { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .page-hero-label { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 14px; }
+  .page-hero-label::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+  .page-hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px,6vw,80px); font-weight: 300; color: var(--blanc-creme); line-height: 1; }
+  .page-hero-title em { font-style: italic; color: var(--gold-light); }
+  .page-hero-sub { font-size: 12px; letter-spacing: 0.12em; color: var(--gris-clair); margin-top: 16px; max-width: 520px; line-height: 2; }
 
-  .hero-grain {
-    position: absolute;
-    inset: 0;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-
-  .hero-line {
-    position: absolute;
-    left: 60px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 40%, rgba(201,168,76,0.3) 60%, transparent);
-    animation: lineFade 2s ease 0.5s both;
-  }
-  @keyframes lineFade { from { opacity: 0; } to { opacity: 1; } }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 120px 100px;
-    animation: heroSlide 1.2s var(--transition) 0.3s both;
-  }
-  @keyframes heroSlide { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-  .hero-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(56px, 7vw, 100px);
-    font-weight: 300;
-    line-height: 1;
-    color: var(--blanc-creme);
-    margin-bottom: 28px;
-  }
-  .hero-title em { font-style: italic; color: var(--gold-light); }
-
-  .hero-sub {
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    color: var(--gris-clair);
-    max-width: 400px;
-    line-height: 2;
-    margin-bottom: 48px;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    padding: 16px 44px;
-    background: var(--gold);
-    color: var(--noir);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    transition: background 0.3s, transform 0.3s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-  .btn-ghost {
-    padding: 16px 44px;
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--gold-pale);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    transition: border-color 0.3s, color 0.3s, transform 0.3s;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    right: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    color: var(--gris-clair);
-    writing-mode: vertical-rl;
-    text-transform: uppercase;
-  }
-  .hero-scroll::after {
-    content: '';
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollLine 1.5s ease-in-out infinite;
-  }
-  @keyframes scrollLine { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.3;transform:scaleY(0.5)} }
-
-  .hero-logo-float {
-    position: absolute;
-    right: 130px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 180px;
-    height: 180px;
-    opacity: 0;
-    animation: floatLogoIn 1.8s var(--transition) 0.8s both;
-    z-index: 2;
-  }
-  @keyframes floatLogoIn {
-    from { opacity: 0; transform: translateY(-50%) scale(0.8) rotate(-10deg); }
-    to   { opacity: 0.55; transform: translateY(-50%) scale(1) rotate(0deg); }
-  }
-  .hero-logo-float svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 24px rgba(201,169,122,0.35));
-    animation: floatPulse 6s ease-in-out infinite;
-  }
-  @keyframes floatPulse {
-    0%,100% { filter: drop-shadow(0 0 18px rgba(201,169,122,0.3)); transform: rotate(0deg); }
-    50%      { filter: drop-shadow(0 0 34px rgba(201,169,122,0.55)); transform: rotate(3deg); }
-  }
+  .breadcrumb { position: absolute; top: 96px; right: 60px; z-index: 3; display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: 0.2em; color: var(--gris-clair); text-transform: uppercase; }
+  .breadcrumb a { color: var(--gris-clair); text-decoration: none; transition: color 0.3s; }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { color: var(--gold); }
 
   /* ─── TICKER ─── */
-  .ticker-wrap {
-    background: var(--gold);
-    padding: 14px 0;
-    overflow: hidden;
-  }
-  .ticker {
-    display: flex;
-    white-space: nowrap;
-    animation: ticker 30s linear infinite;
-  }
-  .ticker span {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--noir);
-    padding: 0 40px;
-  }
+  .ticker-wrap { background: var(--gold); padding: 14px 0; overflow: hidden; }
+  .ticker { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+  .ticker span { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--noir); padding: 0 40px; }
   .ticker span::before { content: '◆  '; opacity: 0.5; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ─── SECTIONS COMMUNES ─── */
-  section { padding: 120px 0; }
+  /* ─── SECTION LABEL ─── */
+  .section-label { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 4vw, 58px);
-    font-weight: 300;
-    color: var(--blanc-creme);
-    line-height: 1.1;
-  }
-  .section-title em { font-style: italic; color: var(--gold-light); }
-  .section-divider {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    margin: 24px auto 0;
-  }
+  /* ─── CONTACT LAYOUT ─── */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; max-width: 1200px; margin: 0 auto; }
+  .contact-info { background: var(--noir); padding: 70px 56px; border-right: 1px solid rgba(201,169,122,0.1); }
+  .contact-form-side { background: var(--gris-fonce); padding: 70px 56px; }
 
-  /* ─── SAVOIR-FAIRE ─── */
-  .savoir-faire { background: var(--noir); }
-
-  .savoir-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .savoir-image {
-    position: relative;
-    overflow: hidden;
-    height: 600px;
-  }
-  .savoir-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s var(--transition);
-    filter: brightness(0.75) saturate(0.8);
-  }
-  .savoir-image:hover img { transform: scale(1.06); }
-  .savoir-image-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(7,14,26,0.75) 0%, transparent 60%);
-  }
-  .savoir-image-label {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-style: italic;
-    color: var(--blanc-creme);
-  }
-
-  .savoir-text {
-    padding: 80px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--gris-fonce);
-  }
-  .savoir-text p {
-    font-size: 13px;
-    line-height: 2.2;
-    color: var(--gris-clair);
-    margin-bottom: 20px;
-  }
-  .savoir-text p strong {
-    color: var(--gold-pale);
-    font-weight: 300;
-  }
-  .savoir-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 40px;
-  }
-  .stat-item { border-left: 1px solid rgba(201,169,122,0.35); padding-left: 20px; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--gold);
-  }
-  .stat-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--gris-clair);
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  /* ─── CATÉGORIES ─── */
-  .categories { background: var(--charbon); }
-
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 2px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .cat-card {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    height: 380px;
-  }
-  .cat-card:first-child { grid-column: span 2; }
-  .cat-card:nth-child(4) { grid-column: span 2; }
-
-  .cat-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s var(--transition);
-    filter: brightness(0.6) saturate(0.7);
-  }
-  .cat-card:hover img { transform: scale(1.08); filter: brightness(0.5) saturate(0.7); }
-
-  .cat-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(7,14,26,0.35) 0%, transparent 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 36px;
-    transition: background 0.4s;
-  }
-  .cat-card:hover .cat-overlay { background: linear-gradient(135deg, rgba(7,14,26,0.6) 0%, rgba(201,169,122,0.12) 100%); }
-
-  .cat-tag {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .cat-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    font-weight: 300;
-    color: var(--blanc-creme);
-    line-height: 1.1;
-  }
-  .cat-count {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--gris-clair);
-    margin-top: 8px;
-    transition: color 0.3s;
-  }
-  .cat-card:hover .cat-count { color: var(--gold-light); }
-
-  .cat-arrow {
-    position: absolute;
-    top: 36px;
-    right: 36px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(201,169,122,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translate(10px, -10px);
-    transition: opacity 0.3s, transform 0.3s var(--transition);
-  }
-  .cat-card:hover .cat-arrow { opacity: 1; transform: translate(0,0); }
-  .cat-arrow svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; }
-
-  /* ─── PRODUITS ─── */
-  .produits { background: var(--gris-fonce); }
-
-  .produits-filter {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    flex-wrap: wrap;
-    margin: 0 auto 40px;
-    max-width: 1400px;
-  }
-  .filter-btn {
-    padding: 12px 32px;
-    cursor: pointer;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gris-clair);
-    background: transparent;
-    border: 1px solid rgba(201,169,122,0.15);
-    border-left: none;
-    transition: all 0.3s;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 300;
-  }
-  .filter-btn:first-child { border-left: 1px solid rgba(201,169,122,0.15); }
-  .filter-btn.active, .filter-btn:hover {
-    background: var(--gold);
-    color: var(--noir);
-    border-color: var(--gold);
-  }
-
-  .produits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .prod-card {
-    background: var(--charbon);
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.4s var(--transition);
-  }
-  .prod-card:hover { transform: translateY(-6px); z-index: 2; }
-
-  .prod-img {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/4;
-  }
-  .prod-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s var(--transition);
-    filter: saturate(0.8);
-  }
-  .prod-card:hover .prod-img img { transform: scale(1.06); filter: saturate(1); }
-
-  .prod-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: var(--gold);
-    color: var(--noir);
-    font-size: 8px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 5px 10px;
-  }
-  .prod-badge.new { background: var(--blanc-creme); color: var(--noir); }
-  .prod-badge.promo { background: #8b2e2e; color: var(--blanc-creme); }
-
-  .prod-actions {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 100%);
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s, transform 0.3s var(--transition);
-  }
-  .prod-card:hover .prod-actions { opacity: 1; transform: translateY(0); }
-
-  .prod-btn {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 300;
-    transition: background 0.2s;
-  }
-  .prod-btn.add { background: var(--gold); color: var(--noir); flex: 1; }
-  .prod-btn.add:hover { background: var(--gold-light); }
-  .prod-btn.wish { background: rgba(255,255,255,0.1); color: var(--blanc-creme); width: 40px; padding: 10px; }
-  .prod-btn.wish:hover { background: rgba(255,255,255,0.2); }
-
-  .prod-info { padding: 20px; }
-  .prod-ref { font-size: 9px; letter-spacing: 0.2em; color: var(--gris-clair); margin-bottom: 6px; text-transform: uppercase; }
-  .prod-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--blanc-creme);
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-  .prod-matiere { font-size: 10px; color: var(--gris-clair); margin-bottom: 12px; }
-  .prod-price-row { display: flex; align-items: baseline; gap: 12px; }
-  .prod-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--gold);
-  }
-  .prod-price-old {
-    font-size: 13px;
-    color: var(--gris-clair);
-    text-decoration: line-through;
-  }
-  .prod-unit { font-size: 10px; color: var(--gris-clair); margin-left: auto; }
-
-  /* ─── SERVICES ─── */
-  .services { background: var(--noir); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .service-card {
-    padding: 50px 36px;
-    background: var(--gris-fonce);
-    border-top: 2px solid transparent;
-    transition: border-color 0.3s, background 0.3s;
-    text-align: center;
-  }
-  .service-card:hover { border-color: var(--gold); background: var(--gris-moyen); }
-
-  .service-icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 28px;
-    border: 1px solid rgba(201,168,76,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .service-card:hover .service-icon { border-color: var(--gold); background: rgba(201,168,76,0.08); }
-  .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-
-  .service-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--blanc-creme);
-    margin-bottom: 14px;
-  }
-  .service-desc { font-size: 11px; line-height: 1.9; color: var(--gris-clair); }
-
-  /* ─── INSPIRATION BANNER ─── */
-  .inspiration {
-    position: relative;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .inspiration-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(rgba(7,14,26,0.72), rgba(13,27,46,0.72)),
-      url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&q=80') center/cover no-repeat;
-    transition: transform 0.8s;
-  }
-  .inspiration:hover .inspiration-bg { transform: scale(1.02); }
-  .inspiration-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 60px;
-  }
-  .inspiration-content h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 5vw, 72px);
-    font-weight: 300;
-    color: var(--blanc-creme);
-    line-height: 1.1;
-    margin-bottom: 24px;
-  }
-  .inspiration-content h2 em { font-style: italic; color: var(--gold-light); }
-  .inspiration-content p { font-size: 12px; letter-spacing: 0.1em; color: var(--gris-clair); margin-bottom: 40px; }
-
-  /* ─── TÉMOIGNAGES ─── */
-  .temoignages { background: var(--charbon); }
-
-  .temo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .temo-card {
-    padding: 44px 36px;
-    border: 1px solid rgba(201,169,122,0.12);
-    position: relative;
-    transition: border-color 0.3s;
-    background: var(--marine-light);
-  }
-  .temo-card:hover { border-color: rgba(201,169,122,0.35); }
-  .temo-card::before {
-    content: '❝';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 60px;
-    color: rgba(201,169,122,0.18);
-    position: absolute;
-    top: 20px;
-    left: 28px;
-    line-height: 1;
-  }
-  .temo-stars { color: var(--gold); font-size: 12px; margin-bottom: 16px; letter-spacing: 4px; }
-  .temo-text { font-size: 13px; line-height: 2; color: var(--gris-clair); margin-bottom: 24px; font-style: italic; }
-  .temo-author { display: flex; align-items: center; gap: 12px; }
-  .temo-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--gris-moyen);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    color: var(--gold);
-  }
-  .temo-name { font-size: 12px; letter-spacing: 0.1em; color: var(--blanc-creme); }
-  .temo-role { font-size: 10px; color: var(--gris-clair); margin-top: 2px; }
-
-  /* ─── NEWSLETTER ─── */
-  .newsletter {
-    background: linear-gradient(135deg, var(--gris-fonce) 0%, var(--gris-moyen) 100%);
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .newsletter::before {
-    content: 'ELS';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 200px;
-    font-weight: 600;
-    color: rgba(201,169,122,0.05);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-  .newsletter-inner {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-  .newsletter-inner h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    color: var(--blanc-creme);
-    margin-bottom: 12px;
-  }
-  .newsletter-inner p { font-size: 11px; letter-spacing: 0.1em; color: var(--gris-clair); margin-bottom: 36px; }
-  .newsletter-form { display: flex; gap: 0; }
-  .newsletter-form input {
-    flex: 1;
-    padding: 16px 24px;
-    background: rgba(7,14,26,0.7);
-    border: 1px solid rgba(201,169,122,0.25);
-    border-right: none;
-    color: var(--blanc-creme);
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  .newsletter-form input::placeholder { color: var(--gris-clair); }
-  .newsletter-form input:focus { border-color: rgba(201,169,122,0.55); }
-  .newsletter-form button {
-    padding: 16px 36px;
-    background: var(--gold);
-    border: 1px solid var(--gold);
-    color: var(--noir);
-    cursor: pointer;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    transition: background 0.3s;
-    font-weight: 300;
-  }
-  .newsletter-form button:hover { background: var(--gold-light); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--noir);
-    border-top: 1px solid rgba(201,169,122,0.15);
-    padding: 80px 0 40px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 60px;
-  }
-  .footer-logo-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-  .footer-brand .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--blanc-creme);
-    letter-spacing: 0.12em;
-    line-height: 1.2;
-  }
-  .footer-brand .brand-name span { color: var(--gold); font-size: 11px; letter-spacing: 0.3em; display: block; font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
-  .footer-brand p { font-size: 11px; line-height: 1.9; color: var(--gris-clair); margin-bottom: 24px; }
-  .footer-social { display: flex; gap: 12px; }
-  .social-btn {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(201,169,122,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gris-clair);
-    font-size: 12px;
-    transition: border-color 0.3s, color 0.3s, background 0.3s;
-    text-decoration: none;
-    cursor: pointer;
-    background: transparent;
-  }
-  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,0.1); }
-
-  .footer-col h4 {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 12px; }
-  .footer-col ul li a {
-    font-size: 11px;
-    color: var(--gris-clair);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.3s;
-  }
-  .footer-col ul li a:hover { color: var(--gold-light); }
-
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 60px auto 0;
-    padding: 24px 60px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-copy { font-size: 10px; color: var(--gris-clair); letter-spacing: 0.1em; }
-  .footer-payments { display: flex; gap: 8px; }
-  .payment-chip {
-    padding: 4px 10px;
-    border: 1px solid rgba(201,169,122,0.2);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--gris-clair);
-  }
-
-  /* ─── TOAST ─── */
-  .toast {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 300;
-    background: var(--gold);
-    color: var(--noir);
-    padding: 14px 28px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s var(--transition);
-    pointer-events: none;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
-
-  .cat-section-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 56px 40px 32px;
-    font-size: 11px;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: var(--gold);
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .cat-section-label:first-of-type { padding-top: 0; }
-  .cat-sec-icon { font-size: 8px; opacity: 0.6; }
-  .cat-section-label::before,
-  .cat-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3));
-  }
-  .cat-section-label::after {
-    background: linear-gradient(to left, transparent, rgba(201,168,76,0.3));
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    nav { padding: 0 30px; }
-    .nav-links { gap: 20px; }
-    .nav-links a { font-size: 10px; }
-    .nav-devis-btn { padding: 6px 16px; font-size: 9px; }
-    .hero-content { padding: 0 40px 80px; }
-    .savoir-grid, .temo-grid { grid-template-columns: 1fr; }
-    .savoir-image { height: 350px; }
-    .cat-grid { grid-template-columns: 1fr 1fr; }
-    .cat-card:first-child, .cat-card:nth-child(4) { grid-column: span 1; }
-    .produits-grid { grid-template-columns: repeat(2, 1fr); }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 30px; }
-    .footer-bottom { padding: 24px 30px 0; flex-direction: column; gap: 16px; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 0 16px; height: 70px; }
-    .menu-toggle { display: flex; }
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background: rgba(7,14,26,0.98);
-      padding: 20px 24px;
-      gap: 14px;
-      border-bottom: 1px solid rgba(201,169,122,0.2);
-    }
-    .nav-links.open { display: flex; }
-    .nav-links a { font-size: 12px; }
-    .nav-logo-img { width: 36px; height: 36px; }
-    .nav-logo-text .nav-logo-main { font-size: 13px; }
-    .nav-logo-text .nav-logo-sub { font-size: 7px; }
-    .nav-devis-btn { padding: 5px 14px; font-size: 8px; }
-    .hero-content { padding: 0 24px 60px; }
-    .hero-btns { flex-direction: column; align-items: flex-start; }
-    .hero-title { font-size: clamp(40px, 10vw, 60px); }
-    .cat-grid { grid-template-columns: 1fr; }
-    .produits-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .newsletter-form { flex-direction: column; }
-    .newsletter-form input { border-right: 1px solid rgba(201,168,76,0.2); }
-    section { padding: 80px 20px; }
-    .produits-filter { flex-wrap: wrap; padding: 0 20px; }
-    .filter-btn { padding: 8px 16px; font-size: 9px; }
-    .savoir-text { padding: 40px 30px; }
-    .hero-logo-float { display: none; }
-    .hero-scroll { right: 20px; }
-    .hero-line { left: 20px; }
-  }
-
-  @media (max-width: 480px) {
-    nav { padding: 0 10px; height: 60px; }
-    .nav-logo-img { width: 28px; height: 28px; }
-    .nav-logo { gap: 6px; }
-    .nav-logo-text .nav-logo-main { font-size: 10px; letter-spacing: 0.1em; }
-    .nav-logo-text .nav-logo-sub { font-size: 5.5px; }
-    .nav-links.open { top: 60px; padding: 14px 16px; }
-    .nav-links a { font-size: 10px; }
-    .nav-devis-btn { padding: 4px 10px; font-size: 7px; }
-    .hero { padding-top: 60px; min-height: 500px; }
-    .hero-content { padding: 0 16px 40px; }
-    .hero-title { font-size: clamp(28px, 12vw, 42px); }
-    .hero-sub { font-size: 10px; max-width: 100%; }
-    .btn-primary, .btn-ghost { padding: 10px 20px; font-size: 8px; }
-    .section-title { font-size: clamp(24px, 8vw, 32px); }
-    .section-header { margin-bottom: 30px; }
-    section { padding: 60px 16px; }
-    .savoir-text h2 { font-size: 28px !important; }
-    .stat-num { font-size: 28px; }
-    .cat-card { height: 250px; }
-    .cat-name { font-size: 22px; }
-    .prod-name { font-size: 15px; }
-  }
-</style>
-
-<style>
-  .contact-layout {
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 0;
-    max-width: 1200px; margin: 0 auto;
-  }
-  .contact-info {
-    background: var(--noir); padding: 70px 56px;
-    border-right: 1px solid rgba(201,169,122,.1);
-  }
-  .contact-form-side {
-    background: var(--gris-fonce); padding: 70px 56px;
-  }
-  .info-item {
-    display: flex; gap: 20px; align-items: flex-start;
-    padding: 28px 0; border-bottom: 1px solid rgba(201,169,122,.08);
-  }
+  .info-item { display: flex; gap: 20px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid rgba(201,169,122,0.08); }
   .info-item:last-child { border-bottom: none; }
-  .info-icon {
-    width: 44px; height: 44px; border: 1px solid rgba(201,169,122,.25);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    transition: border-color .3s, background .3s;
-  }
-  .info-icon:hover { border-color: var(--gold); background: rgba(201,169,122,.08); }
+  .info-icon { width: 44px; height: 44px; border: 1px solid rgba(201,169,122,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.3s, background 0.3s; }
+  .info-icon:hover { border-color: var(--gold); background: rgba(201,169,122,0.08); }
   .info-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .info-label { font-size: 9px; letter-spacing: .3em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .info-label { font-size: 9px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
   .info-value { font-size: 14px; color: var(--blanc-creme); line-height: 1.6; }
   .info-sub { font-size: 11px; color: var(--gris-clair); margin-top: 4px; }
 
-  /* Carte map stylisée */
-  .map-box {
-    background: var(--marine-light); position: relative;
-    height: 260px; overflow: hidden; margin-top: 40px;
-    border: 1px solid rgba(201,169,122,.1);
-  }
+  .map-box { background: var(--marine-light); position: relative; height: 260px; overflow: hidden; margin-top: 40px; border: 1px solid rgba(201,169,122,0.1); }
   .map-box iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg) saturate(0.5) brightness(0.85); }
-  .map-overlay-label {
-    position: absolute; top: 16px; left: 16px;
-    background: rgba(7,14,26,.9); border: 1px solid rgba(201,169,122,.25);
-    padding: 10px 16px; font-size: 10px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase;
-  }
+  .map-overlay-label { position: absolute; top: 16px; left: 16px; background: rgba(7,14,26,0.9); border: 1px solid rgba(201,169,122,0.25); padding: 10px 16px; font-size: 10px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
 
-  /* Tabs formulaire */
-  .form-tabs { display: flex; margin-bottom: 36px; border-bottom: 1px solid rgba(201,169,122,.12); }
-  .form-tab {
-    padding: 14px 24px; cursor: pointer; background: none; border: none;
-    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--gris-clair); font-family: 'Josefin Sans', sans-serif; font-weight: 300;
-    border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .3s, border-color .3s;
-  }
+  .social-btn { width: 36px; height: 36px; border: 1px solid rgba(201,169,122,0.25); display: flex; align-items: center; justify-content: center; color: var(--gris-clair); font-size: 12px; transition: border-color 0.3s, color 0.3s, background 0.3s; text-decoration: none; cursor: pointer; background: transparent; }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,0.1); }
+
+  .horaire-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(201,169,122,0.06); font-size: 12px; }
+  .horaire-row:last-child { border-bottom: none; }
+  .horaire-day { color: var(--gris-clair); letter-spacing: 0.1em; }
+  .horaire-time { color: var(--blanc-creme); }
+  .horaire-closed { color: rgba(201,169,122,0.4); font-style: italic; }
+
+  /* ─── FORM TABS ─── */
+  .form-tabs { display: flex; margin-bottom: 36px; border-bottom: 1px solid rgba(201,169,122,0.12); overflow-x: auto; }
+  .form-tab { padding: 14px 20px; cursor: pointer; background: none; border: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris-clair); font-family: 'Josefin Sans', sans-serif; font-weight: 300; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.3s, border-color 0.3s; white-space: nowrap; }
   .form-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .form-tab:hover { color: var(--gold-light); }
+
   .form-panel { display: none; }
   .form-panel.active { display: block; }
 
-  /* Horaires */
-  .horaire-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(201,169,122,.06); font-size: 12px; }
-  .horaire-row:last-child { border-bottom: none; }
-  .horaire-day { color: var(--gris-clair); letter-spacing: .1em; }
-  .horaire-time { color: var(--blanc-creme); }
-  .horaire-closed { color: rgba(201,169,122,.4); font-style: italic; }
-
-  /* Sélecteur de sujet */
-  .subject-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
-  .subject-btn {
-    padding: 12px 16px; background: none;
-    border: 1px solid rgba(201,169,122,.15); cursor: pointer;
-    font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--gris-clair); font-family: 'Josefin Sans', sans-serif;
-    transition: all .3s; text-align: left;
+  /* ─── FORM ELEMENTS ─── */
+  .form-group { margin-bottom: 20px; }
+  .form-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 14px 18px;
+    background: rgba(7,14,26,0.6); border: 1px solid rgba(201,169,122,0.2);
+    color: var(--blanc-creme); font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px; letter-spacing: 0.05em; outline: none;
+    transition: border-color 0.3s; -webkit-appearance: none; border-radius: 0;
   }
-  .subject-btn:hover, .subject-btn.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,.06); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--gris-clair); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(201,169,122,0.55); background: rgba(7,14,26,0.8); }
+  .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a97a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; background-color: rgba(7,14,26,0.6); }
+  .form-textarea { min-height: 130px; resize: vertical; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ─── SUBJECT GRID ─── */
+  .subject-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .subject-btn { padding: 11px 14px; background: none; border: 1px solid rgba(201,169,122,0.15); cursor: pointer; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-clair); font-family: 'Josefin Sans', sans-serif; transition: all 0.3s; text-align: left; border-radius: 0; }
+  .subject-btn:hover, .subject-btn.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,169,122,0.06); }
   .subject-btn.selected::before { content: '◆ '; font-size: 7px; }
 
-  /* Notice succès */
-  .success-msg {
-    background: rgba(100,200,120,.08); border: 1px solid rgba(100,200,120,.3);
-    padding: 20px 24px; display: none; align-items: center; gap: 16px; margin-top: 20px;
+  /* ─── BOUTON WHATSAPP SUBMIT ─── */
+  .btn-wa-submit {
+    width: 100%; padding: 18px 24px;
+    background: #25D366; border: none; cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: #ffffff; font-weight: 300;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
   }
-  .success-msg.show { display: flex; }
-  .success-msg p { font-size: 12px; color: #64c878; letter-spacing: .05em; }
+  .btn-wa-submit:hover { background: #1fbd5c; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(37,211,102,0.28); }
+  .btn-wa-submit svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+  .btn-wa-submit-sub { font-size: 9px; opacity: 0.75; text-transform: none; letter-spacing: 0.05em; display: block; margin-top: 2px; }
 
+  /* ─── NOTICE SUCCÈS ─── */
+  .success-msg { background: rgba(37,211,102,0.08); border: 1px solid rgba(37,211,102,0.3); padding: 20px 24px; display: none; align-items: center; gap: 16px; margin-top: 16px; }
+  .success-msg.show { display: flex; }
+  .success-msg p { font-size: 12px; color: #64c878; letter-spacing: 0.05em; }
+
+  /* ─── BANDE RÉASSURANCE ─── */
+  .reassurance { background: var(--noir); padding: 60px 0; }
+  .reassurance-grid { max-width: 1200px; margin: 0 auto; padding: 0 60px; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; }
+  .reassurance-item { text-align: center; padding: 36px 24px; border-left: 1px solid rgba(201,169,122,0.08); }
+  .reassurance-item:first-child { border-left: none; }
+  .reassurance-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--gold); margin-bottom: 8px; }
+  .reassurance-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gris-clair); text-transform: uppercase; }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--noir); border-top: 1px solid rgba(201,169,122,0.15); padding: 80px 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .footer-brand .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--blanc-creme); letter-spacing: 0.12em; line-height: 1.2; }
+  .footer-brand .brand-name span { color: var(--gold); font-size: 11px; letter-spacing: 0.3em; display: block; font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
+  .footer-brand p { font-size: 11px; line-height: 1.9; color: var(--gris-clair); margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 12px; }
+  .footer-col h4 { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a { font-size: 11px; color: var(--gris-clair); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s; }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom { max-width: 1200px; margin: 60px auto 0; padding: 24px 60px 0; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 10px; color: var(--gris-clair); letter-spacing: 0.1em; }
+  .footer-payments { display: flex; gap: 8px; }
+  .payment-chip { padding: 4px 10px; border: 1px solid rgba(201,169,122,0.2); font-size: 9px; letter-spacing: 0.1em; color: var(--gris-clair); }
+
+  /* ─── FLOATING WA ─── */
+  .wa-float { position: fixed; bottom: 30px; right: 30px; z-index: 500; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; box-shadow: 0 8px 28px rgba(37,211,102,0.4); animation: waBounce 3s ease-in-out infinite; transition: transform 0.3s, box-shadow 0.3s; }
+  .wa-float:hover { transform: scale(1.12); box-shadow: 0 12px 40px rgba(37,211,102,0.55); animation: none; }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+  @keyframes waBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .wa-float-tip { position: absolute; right: 66px; top: 50%; transform: translateY(-50%); background: rgba(7,14,26,0.95); border: 1px solid rgba(37,211,102,0.3); color: var(--blanc-creme); font-size: 11px; letter-spacing: 0.08em; padding: 8px 14px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s; font-family: 'Josefin Sans', sans-serif; }
+  .wa-float:hover .wa-float-tip { opacity: 1; }
+
+  /* ─── TOAST ─── */
+  .toast { position: fixed; bottom: 100px; right: 30px; z-index: 600; background: #25D366; color: #ffffff; padding: 14px 24px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; transform: translateY(20px); opacity: 0; transition: all 0.4s var(--transition); pointer-events: none; font-family: 'Josefin Sans', sans-serif; display: flex; align-items: center; gap: 10px; max-width: 340px; }
+  .toast svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── RESPONSIVE ─── */
   @media(max-width:1024px){
+    nav { padding: 0 30px; }
+    .nav-links { gap: 20px; }
     .contact-layout { grid-template-columns: 1fr; }
     .contact-info, .contact-form-side { padding: 50px 30px; }
-    .contact-info { border-right: none; border-bottom: 1px solid rgba(201,169,122,.1); }
+    .contact-info { border-right: none; border-bottom: 1px solid rgba(201,169,122,0.1); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 30px; }
+    .footer-bottom { padding: 24px 30px 0; flex-direction: column; gap: 16px; text-align: center; }
+    .reassurance-grid { grid-template-columns: 1fr 1fr; padding: 0 30px; }
+    .page-hero-content { padding: 40px 40px 60px; }
   }
-  @media(max-width:640px){
+  @media(max-width:768px){
+    nav { padding: 0 16px; height: 70px; }
+    .menu-toggle { display: flex; }
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; background: rgba(7,14,26,0.98); padding: 20px 24px; gap: 14px; border-bottom: 1px solid rgba(201,169,122,0.2); }
+    .nav-links.open { display: flex; }
+    .form-grid { grid-template-columns: 1fr; }
     .subject-grid { grid-template-columns: 1fr; }
-    .form-tabs { overflow-x: auto; }
+    .reassurance-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px 0; }
+    .breadcrumb { display: none; }
+    .page-hero-content { padding: 32px 20px 50px; }
+  }
+  @media(max-width:480px){
+    nav { height: 60px; padding: 0 12px; }
+    .nav-links.open { top: 60px; }
+    .nav-logo-img { width: 34px; height: 34px; }
+    .nav-logo-main { font-size: 13px; }
+    .nav-logo-sub { font-size: 7px; }
+    .page-hero-title { font-size: clamp(32px,10vw,52px); }
+    .reassurance-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="toast" id="toast"></div> -->
+<!-- ─── FLOATING WHATSAPP ─── -->
+<a class="wa-float" href="https://wa.me/22901537604" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="wa-float-tip">Écrire sur WhatsApp</div>
+</a>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span id="toastMsg">Redirection vers WhatsApp…</span>
+</div>
 
 <!-- ─── NAVIGATION ─── -->
-
 <nav id="navbar">
-
-  <!-- LOGO (gauche) -->
   <a href="index.html" class="nav-logo">
     <img src="https://i.ibb.co/jPC5gQDd/votre-logo.png" alt="ELS Bénin Logo" class="nav-logo-img">
     <span class="nav-logo-text">
@@ -1197,37 +283,30 @@
       <span class="nav-logo-sub">LIVING SPACE</span>
     </span>
   </a>
-
-  <!-- MENU BURGER (mobile) -->
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-
-  <!-- LIENS DE NAVIGATION (centrés) -->
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html" >Accueil</a></li>
-    <li><a href="apropos.html" >À propos</a></li>
-    <li><a href="collections.html" >Nos collections</a></li>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="collections.html">Nos collections</a></li>
     <li><a href="rejoindre.html">Travaillez avec nous</a></li>
     <li><a href="contact.html" class="active">Nous contacter</a></li>
   </ul>
-
-  <!-- DEVIS (bouton à droite) -->
   <a href="contact.html" class="nav-devis-btn">Devis</a>
 </nav>
 
-
 <!-- ─── HERO ─── -->
-<section class="page-hero" style="min-height:360px">
+<section class="page-hero">
   <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')"></div>
   <div class="page-hero-overlay"></div>
   <div class="breadcrumb">
-    <a href="luxe_materiaux.html">Accueil</a><span>›</span><span>Contact</span>
+    <a href="index.html">Accueil</a><span>›</span><span>Contact</span>
   </div>
   <div class="page-hero-content">
     <p class="page-hero-label">Parlons de votre projet</p>
     <h1 class="page-hero-title">Contactez<br><em>nos experts</em></h1>
-    <p class="page-hero-sub">Devis gratuit, conseil showroom, question produit ou partenariat — notre équipe vous répond sous 24h.</p>
+    <p class="page-hero-sub">Devis gratuit, conseil showroom, question produit ou partenariat — notre équipe vous répond sous 24h via WhatsApp.</p>
   </div>
 </section>
 
@@ -1235,9 +314,9 @@
 <div class="ticker-wrap">
   <div class="ticker">
     <span>Devis gratuit sous 24h</span><span>Conseil expert</span><span>Showroom ouvert 6j/7</span>
-    <span>Livraison dans 6 pays</span><span>+229 els </span><span>contact@els.benin</span>
+    <span>Livraison dans 6 pays</span><span>+229 01 53 76 04</span><span>contact@elsbenin.com</span>
     <span>Devis gratuit sous 24h</span><span>Conseil expert</span><span>Showroom ouvert 6j/7</span>
-    <span>Livraison dans 6 pays</span><span>+229 97 XX XX XX</span><span>contact@els.benin</span>
+    <span>Livraison dans 6 pays</span><span>+229 01 53 76 04</span><span>contact@elsbenin.com</span>
   </div>
 </div>
 
@@ -1245,37 +324,115 @@
 <section style="background:var(--charbon);padding:0">
   <div class="contact-layout">
 
-    <!-- INFOS (inchangées) -->
+    <!-- ── INFOS ── -->
     <div class="contact-info">
-      <!-- ... -->
-    </div>
+      <p class="section-label" style="margin-bottom:10px">Où nous trouver</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--blanc-creme);margin-bottom:40px;line-height:1.1">
+        Venez nous<br><em style="font-style:italic;color:var(--gold-light)">rendre visite</em>
+      </h2>
 
-    <!-- FORMULAIRE -->
-    <div class="contact-form-side">
-      <p class="section-label" style="margin-bottom:10px">Formulaire de contact</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--blanc-creme);margin-bottom:36px;line-height:1.1">Écrivez-<em style="font-style:italic;color:var(--gold-light)">nous</em></h2>
-
-      <!-- Tabs -->
-      <div class="form-tabs">
-        <button class="form-tab active" onclick="switchTab('devis',this)">Demande de devis</button>
-        <button class="form-tab" onclick="switchTab('conseil',this)">Conseil produit</button>
-        <button class="form-tab" onclick="switchTab('rdv',this)">Prendre RDV</button>
-        <button class="form-tab" onclick="switchTab('autre',this)">Autre</button>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <p class="info-label">Adresse</p>
+          <p class="info-value">Fidjrossè Fiyegnon<br>sur les pavés de Houdouali, Cotonou</p>
+          <p class="info-sub">Bénin · Afrique de l'Ouest</p>
+        </div>
       </div>
 
-      <!-- PANEL DEVIS -->
-      <div class="form-panel active" id="panel-devis">
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Prénom *</label><input class="form-input" type="text" id="devis-prenom" placeholder="Votre prénom"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Nom *</label><input class="form-input" type="text" id="devis-nom" placeholder="Votre nom"/></div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 12a19.79 19.79 0 01-3.07-8.67A2 2 0 011.72 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div>
+          <p class="info-label">Téléphone / WhatsApp</p>
+          <p class="info-value">+229 01 53 76 04</p>
+          <p class="info-sub">Disponible Lun–Sam · 8h–18h</p>
         </div>
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Email *</label><input class="form-input" type="email" id="devis-email" placeholder="email@exemple.com"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Téléphone</label><input class="form-input" type="tel" id="devis-tel" placeholder="+229 XX XX XX XX"/></div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <p class="info-label">Email</p>
+          <p class="info-value">contact@elsbenin.com</p>
+          <p class="info-sub">Réponse garantie sous 24h ouvrées</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <p class="info-label">Horaires Showroom</p>
+          <div style="margin-top:8px">
+            <div class="horaire-row"><span class="horaire-day">Lundi – Vendredi</span><span class="horaire-time">8h00 – 18h00</span></div>
+            <div class="horaire-row"><span class="horaire-day">Samedi</span><span class="horaire-time">9h00 – 16h00</span></div>
+            <div class="horaire-row"><span class="horaire-day">Dimanche</span><span class="horaire-closed">Fermé</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte -->
+      <div class="map-box">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.39,6.34,2.42,6.38&layer=mapnik&marker=6.3636,2.4183" title="ELS Bénin - Cotonou" loading="lazy"></iframe>
+        <div class="map-overlay-label">📍 ELS Bénin — Cotonou</div>
+      </div>
+
+      <!-- Réseaux -->
+      <div style="margin-top:36px">
+        <p class="info-label" style="margin-bottom:16px">Suivez-nous</p>
+        <div style="display:flex;gap:10px">
+          <a class="social-btn" href="#" title="Instagram">ig</a>
+          <a class="social-btn" href="#" title="Facebook">f</a>
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="YouTube">yt</a>
+          <a class="social-btn" href="https://wa.me/22901537604" target="_blank" title="WhatsApp" style="font-size:16px;background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.4);color:#25D366">W</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORMULAIRES ── -->
+    <div class="contact-form-side">
+      <p class="section-label" style="margin-bottom:10px">Formulaire de contact</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--blanc-creme);margin-bottom:8px;line-height:1.1">
+        Écrivez-<em style="font-style:italic;color:var(--gold-light)">nous</em>
+      </h2>
+      <p style="font-size:11px;color:var(--gris-clair);margin-bottom:32px;display:flex;align-items:center;gap:8px">
+        <svg width="14" height="14" viewBox="0 0 24 24" style="fill:#25D366;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Votre message sera envoyé directement sur notre WhatsApp — réponse assurée sous 1h
+      </p>
+
+      <!-- TABS -->
+      <div class="form-tabs">
+        <button class="form-tab active" onclick="switchTab('devis',this)">📋 Demande de devis</button>
+        <button class="form-tab" onclick="switchTab('conseil',this)">💬 Conseil produit</button>
+        <button class="form-tab" onclick="switchTab('rdv',this)">📅 Prendre RDV</button>
+        <button class="form-tab" onclick="switchTab('autre',this)">✉ Autre</button>
+      </div>
+
+      <!-- ══ PANEL DEVIS ══ -->
+      <div class="form-panel active" id="panel-devis">
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Prénom *</label>
+            <input class="form-input" id="d-prenom" type="text" placeholder="Votre prénom"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Nom *</label>
+            <input class="form-input" id="d-nom" type="text" placeholder="Votre nom"/>
+          </div>
+        </div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Téléphone / WhatsApp *</label>
+            <input class="form-input" id="d-tel" type="tel" placeholder="+229 XX XX XX XX"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="d-email" type="email" placeholder="email@exemple.com"/>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Type de projet *</label>
-          <select class="form-select form-input" id="devis-projet">
+          <select class="form-select form-input" id="d-projet">
             <option value="" disabled selected>Sélectionnez votre type de projet</option>
             <option>Résidence particulière</option>
             <option>Hôtel / Resort</option>
@@ -1286,7 +443,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Catégories de matériaux souhaitées</label>
+          <label class="form-label">Matériaux souhaités (sélection multiple)</label>
           <div class="subject-grid">
             <button type="button" class="subject-btn" onclick="toggleSubject(this)">Carrelage & Grand Format</button>
             <button type="button" class="subject-btn" onclick="toggleSubject(this)">Marbre & Pierre</button>
@@ -1296,46 +453,107 @@
             <button type="button" class="subject-btn" onclick="toggleSubject(this)">Toutes catégories</button>
           </div>
         </div>
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Surface estimée (m²)</label><input class="form-input" type="number" id="devis-surface" placeholder="Ex : 250"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Budget approximatif (FCFA)</label><select class="form-select form-input" id="devis-budget"><option disabled selected>Sélectionner</option><option>Moins de 500 000</option><option>500 000 – 2 000 000</option><option>2 000 000 – 5 000 000</option><option>Plus de 5 000 000</option></select></div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Surface estimée (m²)</label>
+            <input class="form-input" id="d-surface" type="number" placeholder="Ex : 250"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Budget approximatif (FCFA)</label>
+            <select class="form-select form-input" id="d-budget">
+              <option value="" disabled selected>Sélectionner</option>
+              <option>Moins de 500 000</option>
+              <option>500 000 – 2 000 000</option>
+              <option>2 000 000 – 5 000 000</option>
+              <option>Plus de 5 000 000</option>
+            </select>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Détails du projet</label>
-          <textarea class="form-textarea" id="devis-details" placeholder="Décrivez votre projet : nombre de pièces, style souhaité, contraintes techniques, délais…"></textarea>
+          <textarea class="form-textarea" id="d-details" placeholder="Décrivez votre projet : nombre de pièces, style souhaité, contraintes techniques, délais…"></textarea>
         </div>
-        <button class="form-submit" onclick="submitToWhatsApp('devis')">Envoyer ma demande de devis →</button>
+
+        <button class="btn-wa-submit" onclick="sendDevisWA()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>
+            Envoyer ma demande de devis sur WhatsApp
+            <span class="btn-wa-submit-sub">Ouverture directe de WhatsApp · Réponse sous 1h</span>
+          </span>
+        </button>
+        <div class="success-msg" id="success-devis">
+          <svg style="width:20px;height:20px;fill:#64c878;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <p>WhatsApp ouvert ! Votre message est prêt à envoyer. Merci de le valider dans l'application.</p>
+        </div>
       </div>
 
-      <!-- PANEL CONSEIL -->
+      <!-- ══ PANEL CONSEIL ══ -->
       <div class="form-panel" id="panel-conseil">
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Prénom *</label><input class="form-input" type="text" id="conseil-prenom" placeholder="Votre prénom"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Email *</label><input class="form-input" type="email" id="conseil-email" placeholder="email@exemple.com"/></div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Prénom & Nom *</label>
+            <input class="form-input" id="c-nom" type="text" placeholder="Prénom Nom"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Téléphone *</label>
+            <input class="form-input" id="c-tel" type="tel" placeholder="+229 XX XX XX XX"/>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Référence produit (si connue)</label>
-          <input class="form-input" type="text" id="conseil-ref" placeholder="Ex : REF-MB001 — Calacatta Gold"/>
+          <input class="form-input" id="c-ref" type="text" placeholder="Ex : REF-MB001 — Calacatta Gold Veiné"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Catégorie du produit</label>
+          <select class="form-select form-input" id="c-cat">
+            <option value="" disabled selected>Sélectionner une catégorie</option>
+            <option>Carrelage & Grand Format</option>
+            <option>Marbre & Pierre Naturelle</option>
+            <option>Parquet & Revêtements Sol</option>
+            <option>Luminaires & Éclairage Design</option>
+            <option>Peintures & Enduits Décoratifs</option>
+            <option>Autre</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">Votre question *</label>
-          <textarea class="form-textarea" id="conseil-question" placeholder="Posez votre question sur un produit, une technique de pose, la compatibilité de matériaux, l'entretien…"></textarea>
+          <textarea class="form-textarea" id="c-question" placeholder="Ex : Quelle finition choisir pour une salle de bain humide ? Ce produit est-il compatible avec un chauffage au sol ?…"></textarea>
         </div>
-        <button class="form-submit" onclick="submitToWhatsApp('conseil')">Envoyer ma question →</button>
+
+        <button class="btn-wa-submit" onclick="sendConseilWA()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>
+            Envoyer ma question sur WhatsApp
+            <span class="btn-wa-submit-sub">Notre expert vous répond sous 1h · Lun–Sam 8h–18h</span>
+          </span>
+        </button>
+        <div class="success-msg" id="success-conseil">
+          <svg style="width:20px;height:20px;fill:#64c878;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <p>WhatsApp ouvert ! Validez l'envoi dans l'application. Notre expert vous répond rapidement.</p>
+        </div>
       </div>
 
-      <!-- PANEL RDV -->
+      <!-- ══ PANEL RDV ══ -->
       <div class="form-panel" id="panel-rdv">
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Prénom & Nom *</label><input class="form-input" type="text" id="rdv-nom" placeholder="Prénom Nom"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Téléphone *</label><input class="form-input" type="tel" id="rdv-tel" placeholder="+229 XX XX XX XX"/></div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Prénom & Nom *</label>
+            <input class="form-input" id="r-nom" type="text" placeholder="Prénom Nom"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Téléphone / WhatsApp *</label>
+            <input class="form-input" id="r-tel" type="tel" placeholder="+229 XX XX XX XX"/>
+          </div>
         </div>
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Date souhaitée *</label><input class="form-input" type="date" id="rdv-date"/></div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Date souhaitée *</label>
+            <input class="form-input" id="r-date" type="date"/>
+          </div>
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label">Créneau préféré</label>
-            <select class="form-select form-input" id="rdv-creneau">
-              <option disabled selected>Choisir un créneau</option>
+            <select class="form-select form-input" id="r-creneau">
+              <option value="" disabled selected>Choisir un créneau</option>
               <option>8h00 – 10h00</option>
               <option>10h00 – 12h00</option>
               <option>14h00 – 16h00</option>
@@ -1344,63 +562,100 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Objet du rendez-vous</label>
-          <textarea class="form-textarea" id="rdv-objet" placeholder="Précisez l'objet de votre visite : présentation de projet, sélection de matériaux, visite showroom, etc." style="min-height:100px"></textarea>
+          <label class="form-label">Type de visite</label>
+          <select class="form-select form-input" id="r-type">
+            <option value="" disabled selected>Sélectionner</option>
+            <option>Visite libre du showroom</option>
+            <option>Conseil avec un expert</option>
+            <option>Présentation de projet</option>
+            <option>Sélection de matériaux</option>
+            <option>Autre</option>
+          </select>
         </div>
-        <button class="form-submit" onclick="submitToWhatsApp('rdv')">Confirmer ma demande de RDV →</button>
+        <div class="form-group">
+          <label class="form-label">Informations complémentaires</label>
+          <textarea class="form-textarea" id="r-info" placeholder="Précisez l'objet de votre visite, le nombre de personnes, votre projet actuel…" style="min-height:100px"></textarea>
+        </div>
+
+        <button class="btn-wa-submit" onclick="sendRdvWA()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>
+            Confirmer mon RDV sur WhatsApp
+            <span class="btn-wa-submit-sub">Confirmation immédiate par notre équipe</span>
+          </span>
+        </button>
+        <div class="success-msg" id="success-rdv">
+          <svg style="width:20px;height:20px;fill:#64c878;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <p>WhatsApp ouvert ! Envoyez le message pour confirmer votre RDV.</p>
+        </div>
       </div>
 
-      <!-- PANEL AUTRE -->
+      <!-- ══ PANEL AUTRE ══ -->
       <div class="form-panel" id="panel-autre">
-        <div class="form-grid" style="margin-bottom:20px">
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Nom *</label><input class="form-input" type="text" id="autre-nom" placeholder="Votre nom"/></div>
-          <div class="form-group" style="margin-bottom:0"><label class="form-label">Email *</label><input class="form-input" type="email" id="autre-email" placeholder="email@exemple.com"/></div>
+        <div class="form-grid" style="margin-bottom:16px">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Nom *</label>
+            <input class="form-input" id="a-nom" type="text" placeholder="Votre nom"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Téléphone *</label>
+            <input class="form-input" id="a-tel" type="tel" placeholder="+229 XX XX XX XX"/>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Sujet *</label>
-          <input class="form-input" type="text" id="autre-sujet" placeholder="Objet de votre message"/>
+          <input class="form-input" id="a-sujet" type="text" placeholder="Objet de votre message"/>
         </div>
         <div class="form-group">
           <label class="form-label">Message *</label>
-          <textarea class="form-textarea" id="autre-message" placeholder="Votre message…"></textarea>
+          <textarea class="form-textarea" id="a-message" placeholder="Votre message…"></textarea>
         </div>
-        <button class="form-submit" onclick="submitToWhatsApp('autre')">Envoyer mon message →</button>
+
+        <button class="btn-wa-submit" onclick="sendAutreWA()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>
+            Envoyer mon message sur WhatsApp
+            <span class="btn-wa-submit-sub">Réponse garantie sous 24h ouvrées</span>
+          </span>
+        </button>
+        <div class="success-msg" id="success-autre">
+          <svg style="width:20px;height:20px;fill:#64c878;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <p>WhatsApp ouvert ! Validez l'envoi dans l'application.</p>
+        </div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- fin contact-form-side -->
+  </div><!-- fin contact-layout -->
 </section>
-
 
 <!-- ─── BANDE RÉASSURANCE ─── -->
-<section style="background:var(--noir);padding:60px 0">
-  <div style="max-width:1200px;margin:0 auto;padding:0 60px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px">
-    <div style="text-align:center;padding:36px 24px">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-bottom:8px">24h</div>
-      <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);text-transform:uppercase">Délai de réponse</div>
+<div class="reassurance">
+  <div class="reassurance-grid">
+    <div class="reassurance-item" style="border-left:none">
+      <div class="reassurance-num">1h</div>
+      <div class="reassurance-label">Réponse WhatsApp</div>
     </div>
-    <div style="text-align:center;padding:36px 24px;border-left:1px solid rgba(201,169,122,.08)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-bottom:8px">100%</div>
-      <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);text-transform:uppercase">Devis gratuit</div>
+    <div class="reassurance-item">
+      <div class="reassurance-num">100%</div>
+      <div class="reassurance-label">Devis gratuit</div>
     </div>
-    <div style="text-align:center;padding:36px 24px;border-left:1px solid rgba(201,169,122,.08)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-bottom:8px">6</div>
-      <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);text-transform:uppercase">Jours sur 7</div>
+    <div class="reassurance-item">
+      <div class="reassurance-num">6j/7</div>
+      <div class="reassurance-label">Showroom ouvert</div>
     </div>
-    <div style="text-align:center;padding:36px 24px;border-left:1px solid rgba(201,169,122,.08)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-bottom:8px">1200</div>
-      <div style="font-size:10px;letter-spacing:.2em;color:var(--gris-clair);text-transform:uppercase">m² de showroom</div>
+    <div class="reassurance-item">
+      <div class="reassurance-num">1200</div>
+      <div class="reassurance-label">m² d'exposition</div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ─── FOOTER ─── -->
-<footer id="contact">
+<footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo-wrap">
-        <!-- Logo identique à celui de la navigation -->
-        <img src="https://i.ibb.co/jPC5gQDd/votre-logo.png" alt="ELS Bénin Logo" style="width:56px; height:56px; object-fit:contain; border-radius:4px;">
+        <img src="https://i.ibb.co/jPC5gQDd/votre-logo.png" alt="ELS Bénin Logo" style="width:52px;height:52px;object-fit:contain;border-radius:4px;">
         <div>
           <div class="brand-name">ELEGANT <span>LIVING SPACE</span></div>
           <div style="font-size:10px;letter-spacing:0.2em;color:var(--gris-clair);margin-top:2px">els.benin</div>
@@ -1408,10 +663,10 @@
       </div>
       <p>Spécialiste des matériaux de finition et décoration haut de gamme. Showroom à Cotonou, livraisons dans toute l'Afrique de l'Ouest.</p>
       <div class="footer-social">
-        <a class="social-btn">in</a>
-        <a class="social-btn">f</a>
-        <a class="social-btn">ig</a>
-        <a class="social-btn">yt</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#">ig</a>
+        <a class="social-btn" href="#">yt</a>
       </div>
     </div>
     <div class="footer-col">
@@ -1422,7 +677,6 @@
         <li><a href="collections.html">Parquet & Revêtements</a></li>
         <li><a href="collections.html">Luminaires Design</a></li>
         <li><a href="collections.html">Peintures & Enduits</a></li>
-        <li><a href="collections.html">Sanitaires & Bain</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1433,23 +687,21 @@
         <li><a href="contact.html">Devis gratuit</a></li>
         <li><a href="contact.html">Service Architectes</a></li>
         <li><a href="contact.html">Projets hôtels & bureaux</a></li>
-        <li><a href="contact.html">Entretien & garantie</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="#">📍 Fidjrossè fiyegnon , sur les pavés de Houdouali, Cotonou - Benin</a></li>
-        <li><a href="#">📞 +229 0153 7604 04</a></li>
-        <li><a href="#">✉ <span class="__cf_email__" data-cfemail="a2c1cdccd6c3c1d6e2cfc3cbd1cdccc3d7d0cdd0c78cc0c8">contact@elsbenin.com</span></a></li>
+        <li><a href="#">📍 Fidjrossè Fiyegnon, Cotonou</a></li>
+        <li><a href="tel:+22901537604">📞 +229 01 53 76 04</a></li>
+        <li><a href="mailto:contact@elsbenin.com">✉ contact@elsbenin.com</a></li>
+        <li><a href="https://wa.me/22901537604" target="_blank">💬 WhatsApp Business</a></li>
         <li><a href="#">🕐 Lun–Sam : 8h – 18h</a></li>
-        <li><a href="#">Politique de retour</a></li>
-        <li><a href="#">Mentions légales</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. Cotonou, Bénin · els.benin - by Usoft</p>
+    <p class="footer-copy">© 2025 ELS Bénin — Elegant Living Space. Tous droits réservés. Cotonou, Bénin · els.benin — by Usoft</p>
     <div class="footer-payments">
       <span class="payment-chip">MTN Money</span>
       <span class="payment-chip">Moov Money</span>
@@ -1459,208 +711,221 @@
   </div>
 </footer>
 
-
+<!-- ══════════════════════
+     JAVASCRIPT
+══════════════════════ -->
 <script>
+  // ── Numéro WhatsApp ELS Bénin ──
+  const WA_NUMBER = '22901537604';
 
-
-─── NAV SCROLL ───
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// ─── MENU BURGER ───
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('open');
-  });
-}
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-    navLinks.classList.remove('open');
-  });
-});
-
-// ─── TABS ───
-let activePanel = 'devis';
-
-function switchTab(tab, btn) {
-  document.querySelectorAll('.form-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-  activePanel = tab;
-}
-
-function toggleSubject(btn) {
-  btn.classList.toggle('selected');
-}
-
-// ─── ENVOI VERS WHATSAPP ───
-function submitToWhatsApp(panel) {
-  // Numéro WhatsApp (remplacez par le vôtre)
-  const phoneNumber = '2290162928209';
-  
-  // Récupération des données selon le panel
-  let message = '';
-  const sujet = document.querySelector('.form-tab.active')?.textContent.trim() || 'Demande de contact';
-  
-  message += `📋 *Nouveau message depuis le site ELS Bénin*\n`;
-  message += `📌 *Sujet :* ${sujet}\n`;
-  message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
-
-  if (panel === 'devis') {
-    const prenom = document.getElementById('devis-prenom')?.value || 'Non renseigné';
-    const nom = document.getElementById('devis-nom')?.value || 'Non renseigné';
-    const email = document.getElementById('devis-email')?.value || 'Non renseigné';
-    const tel = document.getElementById('devis-tel')?.value || 'Non renseigné';
-    const projet = document.getElementById('devis-projet')?.value || 'Non renseigné';
-    const surface = document.getElementById('devis-surface')?.value || 'Non renseignée';
-    const budget = document.getElementById('devis-budget')?.value || 'Non renseigné';
-    const details = document.getElementById('devis-details')?.value || 'Non renseignés';
-
-    // Récupérer les catégories sélectionnées
-    const categories = document.querySelectorAll('#panel-devis .subject-btn.selected');
-    const catList = categories.length ? [...categories].map(b => b.textContent.trim()).join(', ') : 'Aucune sélectionnée';
-
-    message += `👤 *Prénom :* ${prenom}\n`;
-    message += `👤 *Nom :* ${nom}\n`;
-    message += `📧 *Email :* ${email}\n`;
-    message += `📞 *Téléphone :* ${tel}\n`;
-    message += `🏗️ *Type de projet :* ${projet}\n`;
-    message += `📐 *Surface :* ${surface} m²\n`;
-    message += `💰 *Budget :* ${budget}\n`;
-    message += `📦 *Catégories :* ${catList}\n`;
-    message += `📝 *Détails :* ${details}\n`;
-
-  } else if (panel === 'conseil') {
-    const prenom = document.getElementById('conseil-prenom')?.value || 'Non renseigné';
-    const email = document.getElementById('conseil-email')?.value || 'Non renseigné';
-    const ref = document.getElementById('conseil-ref')?.value || 'Non renseignée';
-    const question = document.getElementById('conseil-question')?.value || 'Non renseignée';
-
-    message += `👤 *Prénom :* ${prenom}\n`;
-    message += `📧 *Email :* ${email}\n`;
-    message += `🔖 *Référence produit :* ${ref}\n`;
-    message += `❓ *Question :* ${question}\n`;
-
-  } else if (panel === 'rdv') {
-    const nom = document.getElementById('rdv-nom')?.value || 'Non renseigné';
-    const tel = document.getElementById('rdv-tel')?.value || 'Non renseigné';
-    const date = document.getElementById('rdv-date')?.value || 'Non renseignée';
-    const creneau = document.getElementById('rdv-creneau')?.value || 'Non renseigné';
-    const objet = document.getElementById('rdv-objet')?.value || 'Non renseigné';
-
-    message += `👤 *Nom :* ${nom}\n`;
-    message += `📞 *Téléphone :* ${tel}\n`;
-    message += `📅 *Date souhaitée :* ${date}\n`;
-    message += `⏰ *Créneau :* ${creneau}\n`;
-    message += `📝 *Objet :* ${objet}\n`;
-
-  } else if (panel === 'autre') {
-    const nom = document.getElementById('autre-nom')?.value || 'Non renseigné';
-    const email = document.getElementById('autre-email')?.value || 'Non renseigné';
-    const sujet = document.getElementById('autre-sujet')?.value || 'Non renseigné';
-    const msg = document.getElementById('autre-message')?.value || 'Non renseigné';
-
-    message += `👤 *Nom :* ${nom}\n`;
-    message += `📧 *Email :* ${email}\n`;
-    message += `📌 *Sujet :* ${sujet}\n`;
-    message += `📝 *Message :* ${msg}\n`;
+  // ── Utilitaires ──
+  function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  function getSelectedSubjects() {
+    const btns = document.querySelectorAll('#panel-devis .subject-btn.selected');
+    return Array.from(btns).map(b => b.textContent.replace('◆ ','')).join(', ') || 'Non précisé';
+  }
+  function openWA(msg, panelId) {
+    const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+    // Afficher confirmation
+    const s = document.getElementById('success-' + panelId);
+    if (s) { s.classList.add('show'); setTimeout(() => s.classList.remove('show'), 8000); }
+    // Toast
+    const t = document.getElementById('toast');
+    const m = document.getElementById('toastMsg');
+    if (m) m.textContent = 'Ouverture de WhatsApp…';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
   }
 
-  // Ajout d'un timestamp
-  const now = new Date();
-  const timestamp = now.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-  message += `\n━━━━━━━━━━━━━━━━━━━━\n`;
-  message += `🕐 *Envoyé le :* ${timestamp}`;
+  // ── DEVIS ──
+  function sendDevisWA() {
+    const prenom  = val('d-prenom');
+    const nom     = val('d-nom');
+    const tel     = val('d-tel');
+    const email   = val('d-email');
+    const projet  = val('d-projet');
+    const surface = val('d-surface');
+    const budget  = val('d-budget');
+    const details = val('d-details');
+    const materiaux = getSelectedSubjects();
 
-  // Encodage pour URL WhatsApp
-  const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-  // Ouvrir WhatsApp dans un nouvel onglet
-  window.open(whatsappUrl, '_blank');
-
-  // Afficher un message de confirmation
-  showToast('✅ Message envoyé vers WhatsApp !');
-}
-
-// ─── TOAST ───
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  if (!toast) {
-    // Créer le toast s'il n'existe pas
-    const newToast = document.createElement('div');
-    newToast.className = 'toast';
-    newToast.id = 'toast';
-    newToast.textContent = msg;
-    document.body.appendChild(newToast);
-    setTimeout(() => {
-      newToast.classList.add('show');
-      setTimeout(() => newToast.classList.remove('show'), 3000);
-    }, 100);
-    return;
-  }
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-// ─── ANIMATION SCROLL ───
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+    if (!prenom || !nom || !tel) {
+      alert('Merci de renseigner au minimum votre prénom, nom et numéro de téléphone.');
+      return;
     }
+
+    const msg =
+`━━━━━━━━━━━━━━━━━━━━
+📋 *DEMANDE DE DEVIS — ELS Bénin*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 *Contact*
+• Nom : ${prenom} ${nom}
+• Téléphone : ${tel}${email ? '\n• Email : ' + email : ''}
+
+🏗️ *Projet*
+• Type : ${projet || 'Non précisé'}
+• Matériaux : ${materiaux}
+• Surface estimée : ${surface ? surface + ' m²' : 'Non précisée'}
+• Budget : ${budget || 'Non précisé'}
+
+📝 *Détails*
+${details || 'Aucun détail fourni.'}
+
+━━━━━━━━━━━━━━━━━━━━
+_Message envoyé depuis le site ELS Bénin_`;
+
+    openWA(msg, 'devis');
+  }
+
+  // ── CONSEIL PRODUIT ──
+  function sendConseilWA() {
+    const nom      = val('c-nom');
+    const tel      = val('c-tel');
+    const ref      = val('c-ref');
+    const cat      = val('c-cat');
+    const question = val('c-question');
+
+    if (!nom || !tel || !question) {
+      alert('Merci de renseigner votre nom, téléphone et votre question.');
+      return;
+    }
+
+    const msg =
+`━━━━━━━━━━━━━━━━━━━━
+💬 *CONSEIL PRODUIT — ELS Bénin*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 *Contact*
+• Nom : ${nom}
+• Téléphone : ${tel}
+
+🪨 *Produit concerné*
+• Catégorie : ${cat || 'Non précisée'}${ref ? '\n• Référence : ' + ref : ''}
+
+❓ *Question*
+${question}
+
+━━━━━━━━━━━━━━━━━━━━
+_Message envoyé depuis le site ELS Bénin_`;
+
+    openWA(msg, 'conseil');
+  }
+
+  // ── RENDEZ-VOUS ──
+  function sendRdvWA() {
+    const nom     = val('r-nom');
+    const tel     = val('r-tel');
+    const date    = val('r-date');
+    const creneau = val('r-creneau');
+    const type    = val('r-type');
+    const info    = val('r-info');
+
+    if (!nom || !tel || !date) {
+      alert('Merci de renseigner votre nom, téléphone et la date souhaitée.');
+      return;
+    }
+
+    // Formatage date lisible
+    let dateStr = date;
+    try {
+      const d = new Date(date);
+      dateStr = d.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    } catch(e) {}
+
+    const msg =
+`━━━━━━━━━━━━━━━━━━━━
+📅 *DEMANDE DE RDV — ELS Bénin*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 *Contact*
+• Nom : ${nom}
+• Téléphone : ${tel}
+
+🗓️ *Rendez-vous souhaité*
+• Date : ${dateStr}
+• Créneau : ${creneau || 'Flexible'}
+• Type de visite : ${type || 'Non précisé'}
+
+📝 *Informations complémentaires*
+${info || 'Aucune information complémentaire.'}
+
+━━━━━━━━━━━━━━━━━━━━
+_Message envoyé depuis le site ELS Bénin_`;
+
+    openWA(msg, 'rdv');
+  }
+
+  // ── AUTRE MESSAGE ──
+  function sendAutreWA() {
+    const nom     = val('a-nom');
+    const tel     = val('a-tel');
+    const sujet   = val('a-sujet');
+    const message = val('a-message');
+
+    if (!nom || !tel || !message) {
+      alert('Merci de renseigner votre nom, téléphone et votre message.');
+      return;
+    }
+
+    const msg =
+`━━━━━━━━━━━━━━━━━━━━
+✉ *MESSAGE — ELS Bénin*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 *Contact*
+• Nom : ${nom}
+• Téléphone : ${tel}
+
+📌 *Sujet*
+${sujet || 'Non précisé'}
+
+💬 *Message*
+${message}
+
+━━━━━━━━━━━━━━━━━━━━
+_Message envoyé depuis le site ELS Bénin_`;
+
+    openWA(msg, 'autre');
+  }
+
+  // ── Tabs ──
+  let activePanel = 'devis';
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.form-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+    activePanel = tab;
+  }
+
+  // ── Sujets ──
+  function toggleSubject(btn) { btn.classList.toggle('selected'); }
+
+  // ── Nav scroll ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
   });
-}, { threshold: 0.08 });
 
-document.querySelectorAll('.info-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity .6s ease,transform .6s ease';
-  observer.observe(el);
-});
+  // ── Menu burger ──
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 
-
-
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
-window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
-
-let activePanel='devis';
-function switchTab(tab,btn){
-  document.querySelectorAll('.form-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-'+tab).classList.add('active');
-  activePanel=tab;
-}
-
-function toggleSubject(btn){btn.classList.toggle('selected');}
-
-function submitForm(){
-  const msg=document.getElementById('success-'+activePanel);
-  if(msg){msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),6000);}
-  const t=document.getElementById('toast');
-  t.textContent='Message envoyé avec succès !';t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-const obs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';}},{threshold:.08}));
-document.querySelectorAll('.info-item').forEach(el=>{
-  el.style.opacity='0';el.style.transform='translateY(20px)';
-  el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el);
-});
+  // ── Animations scroll ──
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+  }), { threshold: 0.1 });
+  document.querySelectorAll('.info-item').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    obs.observe(el);
+  });
 </script>
 </body>
 </html>

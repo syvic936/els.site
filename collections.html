@@ -1178,6 +1178,23 @@
     .coll-content { padding:40px 24px 50px; }
     .coll-filter-inner { padding:0 20px; }
   }
+  
+  
+  /* Style bouton WhatsApp — à coller UNE SEULE FOIS dans votre*/
+  
+  
+.prod-btn.wa {
+  background: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+}
+.prod-btn.wa:hover { background: #1fbd5c; }
+.prod-btn.wa svg { width: 14px; height: 14px; fill: white; flex-shrink: 0; }
+  
 </style>
 </head>
 <body>
@@ -1277,22 +1294,33 @@
 </div>
 
 <!-- ══ CARRELAGE ══ -->
+
 <section class="coll-section" id="carrelage" style="background:var(--charbon)">
   <div class="coll-section-header">
     <div>
       <p class="section-label">Collection 01</p>
       <h2>Carrelage &amp; <em>Grand Format</em></h2>
-      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.</p>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
     </div>
-    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
   </div>
+
   <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
     <div class="prod-card">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
         <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Grès Cérame Grand Format Ivory',185000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1300,15 +1328,25 @@
         <p class="prod-ref">REF-CT001</p>
         <h3 class="prod-name">Grès Cérame Ivory</h3>
         <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
-        <div class="prod-price-row"><span class="prod-price">185 000 F</span><span class="prod-unit">/ m²</span></div>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 2 -->
     <div class="prod-card">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Travertin Noce Veiné',210000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1316,15 +1354,25 @@
         <p class="prod-ref">REF-CT002</p>
         <h3 class="prod-name">Travertin Noce Veiné</h3>
         <p class="prod-matiere">60×120 cm · Poli</p>
-        <div class="prod-price-row"><span class="prod-price">210 000 F</span><span class="prod-unit">/ m²</span></div>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 3 -->
     <div class="prod-card">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
         <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Zellige Blanc Nacré',95000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1332,14 +1380,24 @@
         <p class="prod-ref">REF-CT003</p>
         <h3 class="prod-name">Zellige Blanc Nacré</h3>
         <p class="prod-matiere">10×10 cm · Marocain</p>
-        <div class="prod-price-row"><span class="prod-price">95 000 F</span><span class="prod-unit">/ m²</span></div>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 4 -->
     <div class="prod-card">
       <div class="prod-img">
         <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Grès Effet Béton Anthracite',155000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
@@ -1347,271 +1405,618 @@
         <p class="prod-ref">REF-CT006</p>
         <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
         <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
-        <div class="prod-price-row"><span class="prod-price">155 000 F</span><span class="prod-unit">/ m²</span></div>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ══ MARBRE ══ -->
-<section class="coll-section" id="marbre" style="background:var(--gris-fonce)">
+<!-- ═ Sanitaire ══ -->
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
   <div class="coll-section-header">
     <div>
-      <p class="section-label">Collection 02</p>
-      <h2>Marbre &amp; <em>Pierre Naturelle</em></h2>
-      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Calacatta, Nero Marquina, Onyx, Quartzite — les pierres les plus précieuses du monde directement dans votre espace.</p>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
     </div>
-    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
   </div>
+
   <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500&q=85" alt="Calacatta">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
         <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Calacatta Gold Veiné',420000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-MB001</p>
-        <h3 class="prod-name">Calacatta Gold Veiné</h3>
-        <p class="prod-matiere">80×160 cm · Poli brillant</p>
-        <div class="prod-price-row"><span class="prod-price">420 000 F</span><span class="prod-unit">/ m²</span></div>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=85" alt="Nero">
-        <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Nero Marquina Premium',395000)">+ Panier</button>
-          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
         </div>
       </div>
-      <div class="prod-info">
-        <p class="prod-ref">REF-MB002</p>
-        <h3 class="prod-name">Nero Marquina Premium</h3>
-        <p class="prod-matiere">60×120 cm · Espagne</p>
-        <div class="prod-price-row"><span class="prod-price">395 000 F</span><span class="prod-unit">/ m²</span></div>
-      </div>
     </div>
-    <div class="prod-card">
-      <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=500&q=85" alt="Onyx">
-        <span class="prod-badge rare">Rare</span>
-        <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Onyx Miel Translucide',680000)">+ Panier</button>
-          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-ref">REF-MB003</p>
-        <h3 class="prod-name">Onyx Miel Translucide</h3>
-        <p class="prod-matiere">30×60 cm · Rétroéclairé</p>
-        <div class="prod-price-row"><span class="prod-price">680 000 F</span><span class="prod-unit">/ m²</span></div>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=85" alt="Statuario">
-        <span class="prod-badge promo">−10%</span>
-        <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Statuario Extra',510000)">+ Panier</button>
-          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-ref">REF-MB006</p>
-        <h3 class="prod-name">Statuario Extra</h3>
-        <p class="prod-matiere">90×180 cm · Carrare</p>
-        <div class="prod-price-row"><span class="prod-price">510 000 F</span><span class="prod-price-old">567 000 F</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ PARQUET ══ -->
-<section class="coll-section" id="parquet" style="background:var(--charbon)">
-  <div class="coll-section-header">
-    <div>
-      <p class="section-label">Collection 03</p>
-      <h2>Parquet &amp; <em>Revêtements Sol</em></h2>
-      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Du parquet massif fumé au bambou densifié écologique, chaque essence raconte une histoire différente sous vos pieds.</p>
-    </div>
-    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
-  </div>
-  <div class="prod-grid three">
+    <!-- PRODUIT 2 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1543489822-c49534f3271f?w=500&q=85" alt="Chêne fumé">
-        <span class="prod-badge">Best-seller</span>
-        <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Chêne Massif Fumé Huilé',145000)">+ Panier</button>
-          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
-        </div>
-      </div>
-      <div class="prod-info">
-        <p class="prod-ref">REF-PQ001</p>
-        <h3 class="prod-name">Chêne Massif Fumé Huilé</h3>
-        <p class="prod-matiere">190×15 mm · Huile naturelle</p>
-        <div class="prod-price-row"><span class="prod-price">145 000 F</span><span class="prod-unit">/ m²</span></div>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=85" alt="Noyer">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Noyer Américain Verni Satiné',198000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-PQ002</p>
-        <h3 class="prod-name">Noyer Américain Satiné</h3>
-        <p class="prod-matiere">210×20 mm · Verni 5 couches</p>
-        <div class="prod-price-row"><span class="prod-price">198 000 F</span><span class="prod-unit">/ m²</span></div>
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 3 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=500&q=85" alt="Bambou">
-        <span class="prod-badge new">Écologique</span>
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Bambou Densifié Caramel',110000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-PQ005</p>
-        <h3 class="prod-name">Bambou Densifié Caramel</h3>
-        <p class="prod-matiere">185×15 mm · Ultra-résistant</p>
-        <div class="prod-price-row"><span class="prod-price">110 000 F</span><span class="prod-unit">/ m²</span></div>
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 4 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ══ Robinetterie ══ -->
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
+    </div>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+
+  <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 2 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 3 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 4 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ══ LUMINAIRES ══ -->
-<section class="coll-section" id="luminaire" style="background:var(--noir)">
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
   <div class="coll-section-header">
     <div>
-      <p class="section-label">Collection 04</p>
-      <h2>Luminaires &amp; <em>Éclairage Design</em></h2>
-      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">La lumière transforme un espace. Nos luminaires sont sélectionnés chez les meilleurs designers européens pour créer l'ambiance parfaite.</p>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
     </div>
-    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
   </div>
-  <div class="prod-grid three">
+
+  <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=500&q=85" alt="Lustre cristal">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
         <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Lustre Cristal Bohème Grand',950000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-LU001</p>
-        <h3 class="prod-name">Lustre Cristal Bohème</h3>
-        <p class="prod-matiere">Cristal K9 · Ø 90 cm · 12 bras</p>
-        <div class="prod-price-row"><span class="prod-price">950 000 F</span></div>
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 2 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=85" alt="Murano">
-        <span class="prod-badge promo">−20%</span>
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Suspension Murano Or 24k',380000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-LU002</p>
-        <h3 class="prod-name">Suspension Murano Or 24k</h3>
-        <p class="prod-matiere">Verre soufflé · Ø 60 cm</p>
-        <div class="prod-price-row"><span class="prod-price">380 000 F</span><span class="prod-price-old">475 000 F</span></div>
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 3 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=85" alt="Lampe table">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Lampe Table Marbre & Or',245000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-LU004</p>
-        <h3 class="prod-name">Lampe Table Marbre &amp; Or</h3>
-        <p class="prod-matiere">Socle marbre · Pied laiton</p>
-        <div class="prod-price-row"><span class="prod-price">245 000 F</span></div>
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 4 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ══ PEINTURES ══ -->
-<section class="coll-section" id="peinture" style="background:var(--gris-fonce)">
+<!-- ══ Décoration ══ -->
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
   <div class="coll-section-header">
     <div>
-      <p class="section-label">Collection 05</p>
-      <h2>Peintures &amp; <em>Enduits Décoratifs</em></h2>
-      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">Stuc vénitien, béton ciré, tadelakt, peintures métallisées… des finitions murales qui transcendent vos murs.</p>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
     </div>
-    <a href="luxe_materiaux.html#produits" class="coll-see-all">Voir tout →</a>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
   </div>
-  <div class="prod-grid three">
+
+  <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1562184552-997c461abbe6?w=500&q=85" alt="Stuc">
-        <span class="prod-badge">Artisanal</span>
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
+        <span class="prod-badge">Exclusif</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Stuc Vénitien Madreperlato',125000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-PE001</p>
-        <h3 class="prod-name">Stuc Vénitien Madreperlato</h3>
-        <p class="prod-matiere">Enduit de chaux · 5L · 6–8 m²</p>
-        <div class="prod-price-row"><span class="prod-price">125 000 F</span><span class="prod-unit">/ seau</span></div>
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 2 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&q=85" alt="Béton ciré">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
         <span class="prod-badge new">Nouveau</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Béton Ciré Anthracite Kit',78000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-PE002</p>
-        <h3 class="prod-name">Béton Ciré Anthracite Kit</h3>
-        <p class="prod-matiere">Kit complet pour 8 m² · 12 coloris</p>
-        <div class="prod-price-row"><span class="prod-price">78 000 F</span><span class="prod-unit">/ kit</span></div>
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 3 -->
     <div class="prod-card">
       <div class="prod-img">
-        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=85" alt="Peinture or">
-        <span class="prod-badge">Luxe</span>
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
         <div class="prod-actions">
-          <button class="prod-btn add" onclick="addToCart('Peinture Métallisée Or Bruni',68000)">+ Panier</button>
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
           <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
         </div>
       </div>
       <div class="prod-info">
-        <p class="prod-ref">REF-PE003</p>
-        <h3 class="prod-name">Peinture Métallisée Or Bruni</h3>
-        <p class="prod-matiere">Acrylique · 1L · 8–10 m²</p>
-        <div class="prod-price-row"><span class="prod-price">68 000 F</span><span class="prod-unit">/ litre</span></div>
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
       </div>
     </div>
+
+    <!-- PRODUIT 4 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- -- Securité -- -->
+
+<section class="coll-section" id="carrelage" style="background:var(--charbon)">
+  <div class="coll-section-header">
+    <div>
+      <p class="section-label">Collection 01</p>
+      <h2>Carrelage &amp; <em>Grand Format</em></h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--gris-clair);margin-top:12px;max-width:400px">
+        Du grès cérame ultra-résistant aux zellige artisanaux marocains, notre collection couvre tous les styles et toutes les surfaces.
+      </p>
+    </div>
+    <a href="index.html#produits" class="coll-see-all">Voir tout →</a>
+  </div>
+
+  <div class="prod-grid">
+
+    <!-- PRODUIT 1 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=500&q=85" alt="Grès Cérame">
+        <span class="prod-badge">Exclusif</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Cérame%20Ivory*%20(REF-CT001)%0A📐%20Format%20:%20120×260%20cm%20·%20Ep.%206%20mm%0A💰%20Prix%20:%20185%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT001</p>
+        <h3 class="prod-name">Grès Cérame Ivory</h3>
+        <p class="prod-matiere">120×260 cm · Ep. 6 mm</p>
+        <div class="prod-price-row">
+          <span class="prod-price">185 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 2 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=500&q=85" alt="Travertin">
+        <span class="prod-badge new">Nouveau</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Travertin%20Noce%20Veiné*%20(REF-CT002)%0A📐%20Format%20:%2060×120%20cm%20·%20Poli%0A💰%20Prix%20:%20210%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT002</p>
+        <h3 class="prod-name">Travertin Noce Veiné</h3>
+        <p class="prod-matiere">60×120 cm · Poli</p>
+        <div class="prod-price-row">
+          <span class="prod-price">210 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 3 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1572196703936-30f6be0f03c7?w=500&q=85" alt="Zellige">
+        <span class="prod-badge">Artisanal</span>
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Zellige%20Blanc%20Nacré*%20(REF-CT003)%0A📐%20Format%20:%2010×10%20cm%20·%20Marocain%0A💰%20Prix%20:%2095%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT003</p>
+        <h3 class="prod-name">Zellige Blanc Nacré</h3>
+        <p class="prod-matiere">10×10 cm · Marocain</p>
+        <div class="prod-price-row">
+          <span class="prod-price">95 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUIT 4 -->
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Béton">
+        <div class="prod-actions">
+          <a class="prod-btn wa"
+             href="https://wa.me/22901537604?text=Bonjour%20ELS%20Bénin%20👋%0AJe%20suis%20intéressé(e)%20par%20le%20produit%20suivant%20:%0A%0A🪨%20*Grès%20Effet%20Béton%20Anthracite*%20(REF-CT006)%0A📐%20Format%20:%2060×60%20cm%20·%20Antidérapant%20R11%0A💰%20Prix%20:%20155%20000%20F%20/%20m²%0A%0AMerci%20de%20me%20recontacter%20!"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <button class="prod-btn wish" onclick="toggleWish(this)">♡</button>
+        </div>
+      </div>
+      <div class="prod-info">
+        <p class="prod-ref">REF-CT006</p>
+        <h3 class="prod-name">Grès Effet Béton Anthracite</h3>
+        <p class="prod-matiere">60×60 cm · Antidérapant R11</p>
+        <div class="prod-price-row">
+          <span class="prod-price">155 000 F</span>
+          <span class="prod-unit">/ m²</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

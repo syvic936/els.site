@@ -1318,26 +1318,6 @@
   background: var(--gold);
   transform: scale(1.4);
 }
-
-let currentSlide = 0;
-  const slides = document.querySelectorAll('.coll-hero-slider .slide');
-  const dots   = document.querySelectorAll('.hero-dot');
-  const total  = slides.length;
-
-  function goToSlide(index) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = index;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % total);
-  }
-
-  // Défilement automatique toutes les 5 secondes
-  setInterval(nextSlide, 5000);
   
 </style>
 </head>

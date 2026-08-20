@@ -1087,6 +1087,106 @@
     .cat-name { font-size: 22px; }
     .prod-name { font-size: 15px; }
   }
+  
+  .coll-hero {
+  position: relative;
+  overflow: hidden;
+}
+.coll-hero-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.coll-hero-slider .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  overflow: hidden;
+}
+.coll-hero-slider .slide.active {
+  opacity: 1;
+}
+.coll-hero-slider .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  transition: transform 6s ease;
+  display: block;
+}
+.coll-hero-slider .slide.active img {
+  transform: scale(1);
+}
+
+/* Overlay sombre par dessus les images */
+.coll-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(7,14,26,0.92) 0%,
+    rgba(7,14,26,0.45) 55%,
+    rgba(7,14,26,0.25) 100%
+  );
+  z-index: 1;
+}
+
+/* Contenu par dessus */
+.coll-content,
+.breadcrumb,
+.hero-dots {
+  position: relative;
+  z-index: 2;
+}
+
+/* Points navigation */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(201,169,122,0.35);
+  cursor: pointer;
+  border: 1px solid rgba(201,169,122,0.6);
+  transition: background 0.3s, transform 0.3s;
+}
+.hero-dot.active {
+  background: var(--gold);
+  transform: scale(1.4);
+}
+
+let currentSlide = 0;
+  const slides = document.querySelectorAll('.coll-hero-slider .slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  const total  = slides.length;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % total);
+  }
+
+  // Défilement automatique toutes les 5 secondes
+  setInterval(nextSlide, 5000);
+  
+  
+  
 </style>
 
 
@@ -1130,19 +1230,38 @@
 
 
 <!-- ─── PAGE HERO ─── -->
-<section class="page-hero">
-  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80');"></div>
-  <div class="page-hero-overlay"></div>
-  <div class="breadcrumb">
-    <a href="luxe_materiaux.html">Accueil</a>
-    <span>›</span>
-    <span>À Propos</span>
+
+<section class="coll-hero">
+
+  <!-- Slider avec balises img -->
+  <div class="coll-hero-slider" id="heroSlider">
+    <div class="slide active">
+      <img src="staff1.JPG" alt="ELS Bénin - Collection 1"/>
+    </div>
   </div>
-  <div class="page-hero-content">
+
+  <div class="coll-overlay"></div>
+
+  <!-- Points de navigation -->
+  <div class="hero-dots">
+    <span class="hero-dot active" onclick="goToSlide(0)"></span>
+    <span class="hero-dot" onclick="goToSlide(1)"></span>
+    <span class="hero-dot" onclick="goToSlide(2)"></span>
+    <span class="hero-dot" onclick="goToSlide(3)"></span>
+    <span class="hero-dot" onclick="goToSlide(4)"></span>
+  </div>
+
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a><span>›</span><span>Collections</span>
+  </div>
+
+  <div class="coll-content">
     <p class="page-hero-label">Notre Histoire</p>
     <h1 class="page-hero-title">L'excellence<br>au cœur de <em>chaque espace</em></h1>
-    <p class="page-hero-sub">Depuis 2008, ELS Bénin façonne les intérieurs les plus beaux d'Afrique de l'Ouest avec des matériaux d'exception soigneusement sélectionnés.</p>
+    <p class="page-hero-sub">Depuis 2008, ELS Bénin façonne les intérieurs les plus beaux d'Afrique 
+      de l'Ouest avec des matériaux d'exception soigneusement sélectionnés.</p>
   </div>
+
 </section>
 
 <!-- ─── TICKER ─── -->
@@ -1479,6 +1598,28 @@
   </div>
   </footer>
 <script>
+
+let currentSlide = 0;
+  const slides = document.querySelectorAll('.coll-hero-slider .slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  const total  = slides.length;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % total);
+  }
+
+  // Défilement automatique toutes les 5 secondes
+  setInterval(nextSlide, 5000);
+
+
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;

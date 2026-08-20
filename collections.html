@@ -1194,6 +1194,71 @@
 }
 .prod-btn.wa:hover { background: #1fbd5c; }
 .prod-btn.wa svg { width: 14px; height: 14px; fill: white; flex-shrink: 0; }
+
+
+
+.coll-hero-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.coll-hero-slider .slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.2s ease, transform 6s ease;
+}
+.coll-hero-slider .slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Points de navigation */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(201,169,122,0.4);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: 1px solid rgba(201,169,122,0.6);
+}
+.hero-dot.active {
+  background: var(--gold);
+  transform: scale(1.4);
+}
+
+let currentSlide = 0;
+  const slides = document.querySelectorAll('.coll-hero-slider .slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  const total  = slides.length;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % total);
+  }
+
+  // Défilement automatique toutes les 5 secondes
+  setInterval(nextSlide, 5000);
   
 </style>
 </head>
@@ -1255,18 +1320,40 @@
   </div>
 </div>
 
+
 <!-- ─── HERO COLLECTIONS ─── -->
 <section class="coll-hero">
-  <div class="coll-hero-bg" style="background-image:url('1.jpg')"></div>
-  <div class="coll-overlay"></div>
-  <div class="breadcrumb">
-    <a href="luxe_materiaux.html">Accueil</a><span>›</span><span>Collections</span>
+
+  <!-- Slides de vos photos -->
+  <div class="coll-hero-slider" id="heroSlider">
+    <div class="slide active" style="background-image:url('1.jpg')"></div>
+    <div class="slide" style="background-image:url('2.jpg')"></div>
+    <div class="slide" style="background-image:url('3.jpg')"></div>
+    <div class="slide" style="background-image:url('4.jpg')"></div>
+    <div class="slide" style="background-image:url('5.jpg')"></div>
   </div>
+
+  <div class="coll-overlay"></div>
+
+  <!-- Points de navigation -->
+  <div class="hero-dots">
+    <span class="hero-dot active" onclick="goToSlide(0)"></span>
+    <span class="hero-dot" onclick="goToSlide(1)"></span>
+    <span class="hero-dot" onclick="goToSlide(2)"></span>
+    <span class="hero-dot" onclick="goToSlide(3)"></span>
+    <span class="hero-dot" onclick="goToSlide(4)"></span>
+  </div>
+
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a><span>›</span><span>Collections</span>
+  </div>
+
   <div class="coll-content">
     <p class="page-hero-label">Nos Collections</p>
     <h1 class="page-hero-title">Matériaux <em>d'exception</em><br>pour chaque espace</h1>
     <p class="page-hero-sub">Plus de 2 400 références réparties en 5 grandes familles, importées directement des meilleures manufactures européennes.</p>
   </div>
+
 </section>
 
 <!-- ─── TICKER ─── -->
